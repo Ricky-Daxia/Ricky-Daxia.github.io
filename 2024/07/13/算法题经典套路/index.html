@@ -36,17 +36,17 @@
   <!-- 页面元数据 -->
   <title>算法题经典套路 - Rikki's Blog</title>
   <meta name="keywords" content="技巧,null">
-  <meta desc name="description" content="记录做题过程中遇到的经典套路 - Ligu - Rikki's Blog">
+  <meta desc name="description" content="做题过程中积累的经典套路 - Ligu - Rikki's Blog">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法题经典套路">
 <meta property="og:url" content="https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/index.html">
 <meta property="og:site_name" content="Rikki&#39;s Blog">
-<meta property="og:description" content="记录做题过程中遇到的经典套路">
+<meta property="og:description" content="做题过程中积累的经典套路">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-07-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-13T14:50:35.187Z">
+<meta property="article:modified_time" content="2024-07-13T16:22:31.075Z">
 <meta property="article:author" content="Ligu">
 <meta property="article:tag" content="技巧">
 <meta name="twitter:card" content="summary">
@@ -1746,7 +1746,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1720883046370),
+    lastupdate: new Date(1720887808682),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -1756,7 +1756,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           friendlyShow: true
         },
         runtime: {
-          data: "2020/01/01",
+          data: "2024/07/13",
           unit: "天"
         }
       }
@@ -2191,7 +2191,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
         <a class="title flat-box" target="_self" href='/'>
           
-            <img no-lazy class='logo' src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/Logo-NavBar@3x.png'/>
+            <img no-lazy class='logo' src='https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407132356265.png'/>
           
           
           
@@ -2550,7 +2550,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
 <div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
   <a itemprop="url" class='author' target="_blank" href="https://github.com/Ricky-Daxia" rel="nofollow noopener">
-    " class="lazyload" data-srcset="" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==<img itemprop="image" src="">
+    <img itemprop="image" src="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407132303067.png" class="lazyload" data-srcset="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407132303067.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
     <p itemprop="name">钱力古</p>
   </a>
 </div>
@@ -2599,19 +2599,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>记录做题过程中遇到的经典套路</p>
-<span id="more"></span>
-
-
-<p><strong>两数之和</strong>套路：如果是有“两个”，可以考虑枚举第二个，看第一个的性质</p>
-<p>应用：双周赛97.T3：两个线段获得的最多奖品</p>
+    <h5 id="需要考虑两个量时"><a href="#需要考虑两个量时" class="headerlink" title="需要考虑两个量时"></a>需要考虑两个量时</h5><p><strong>两数之和</strong>套路：如果是有“两个”，可以考虑枚举第二个，看第一个的性质</p>
+<p>应用：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximize-win-from-two-segments/description/">两个线段获得的最多奖品</a></p>
 <h5 id="统计和为正数的子数组"><a href="#统计和为正数的子数组" class="headerlink" title="统计和为正数的子数组"></a>统计和为正数的子数组</h5><img src="/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/image-20230716215541725.png" class="lazyload" data-srcset="/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/image-20230716215541725.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class=" lazyload" title="[image-20230716215541725]">
 
-<h5 id="分组循环模板"><a href="#分组循环模板" class="headerlink" title="分组循环模板"></a>分组循环模板</h5><p><strong>适用场景：</strong>按照题目要求，数组会被分割成若干组，且每一组的判断&#x2F;处理逻辑是一样的。</p>
+<h5 id="分组循环模板"><a href="#分组循环模板" class="headerlink" title="分组循环模板"></a>分组循环模板</h5><p><strong>适用场景：</strong>按照题目要求，数组会被分割成若干组，且每一组的判断&#x2F;处理逻辑是一样的</p>
 <p><strong>核心思想：</strong></p>
 <ul>
-<li>外层循环负责遍历组之前的准备工作（记录开始位置），和遍历组之后的统计工作（更新答案最大值）。</li>
-<li>内层循环负责遍历组，找出这一组最远在哪结束。</li>
+<li>外层循环负责遍历组之前的准备工作（记录开始位置），和遍历组之后的统计工作（更新答案最大值）</li>
+<li>内层循环负责遍历组，找出这一组最远在哪结束</li>
 </ul>
 <pre><code class="c++">// 分组循环
 // 外层循环 枚举子数组的起点
@@ -2646,7 +2642,7 @@ for (int i = 1; i &lt; m + n - 2; i++)
 &#125;
 </code></pre>
 <p>左上到右下不满足 <code>x+y</code> 为定值，枚举起点？</p>
-<h5 id="调用库函数二分查找"><a href="#调用库函数二分查找" class="headerlink" title="调用库函数二分查找"></a>调用库函数二分查找</h5><p>例：在前 $j$ 个数中查找有多少个 $nums[i]$ 满足 $lower-nums[j]\leq nums[i] \leq upper-nums[j]$ ，前提是有序数组</p>
+<h5 id="调用库函数二分查找"><a href="#调用库函数二分查找" class="headerlink" title="调用库函数二分查找"></a>调用库函数二分查找</h5><p>例：在前$j$个数中查找有多少个$nums[i]$满足$lower-nums[j]\leq nums[i] \leq upper-nums[j]$，前提是有序数组</p>
 <pre><code class="c++">LL res = 0;
 for (int j = 0; j &lt; n; j++)
 &#123;
@@ -2657,12 +2653,12 @@ for (int j = 0; j &lt; n; j++)
 &#125;
 </code></pre>
 <h5 id="维护一个集合，支持动态求最值，删除和插入：multiset"><a href="#维护一个集合，支持动态求最值，删除和插入：multiset" class="headerlink" title="维护一个集合，支持动态求最值，删除和插入：multiset"></a>维护一个集合，支持动态求最值，删除和插入：multiset</h5><p>注意一点， <code>s.erase(val)</code> 会删除所有等于 <code>val</code> 的值，而 <code>s.erase(s.find(x))</code> 则只会删除一个 <code>x</code> ，求最小值用 <code>*s.begin()</code> ，最大值用 <code>s.rbegin()</code></p>
-<h5 id="把有交集的区间合并在一个集合-统计集合数"><a href="#把有交集的区间合并在一个集合-统计集合数" class="headerlink" title="把有交集的区间合并在一个集合 统计集合数"></a>把有交集的区间合并在一个集合 统计集合数</h5><p>区间按左端点排序，遍历数组，同时维护区间右端点最大值</p>
+<h5 id="哈希表不能用-pair-作为-key"><a href="#哈希表不能用-pair-作为-key" class="headerlink" title="哈希表不能用 pair 作为 key"></a>哈希表不能用 pair 作为 key</h5><p>要么把 <code>pair&lt;x, y&gt;</code> 转成整数，如 <code>1LL * x * n + y</code> ，或者利用位运算，确保不冲突的情况下， key 变成 <code>(LL)x &lt;&lt; 32 | y</code> </p>
+<h5 id="把有交集的区间合并在一个集合-统计集合数"><a href="#把有交集的区间合并在一个集合-统计集合数" class="headerlink" title="把有交集的区间合并在一个集合 统计集合数"></a>把有交集的区间合并在一个集合 统计集合数</h5><p><strong>区间按左端点排序</strong>，遍历数组，同时维护区间右端点最大值</p>
 <ul>
-<li>如当前区间左端点大于 $maxR$ ，后面任何区间都不会和之前的区间有交集， <code>cnt ++</code></li>
+<li>如当前区间左端点大于 <code>maxR</code>，后面任何区间都不会和之前的区间有交集， <code>cnt ++</code></li>
 <li>否则当前区间与上一个区间在同一个集合</li>
 </ul>
-<h5 id="哈希表不能用-pair-作为-key"><a href="#哈希表不能用-pair-作为-key" class="headerlink" title="哈希表不能用 pair 作为 key"></a>哈希表不能用 pair 作为 key</h5><p>要么把 <code>pair&lt;x, y&gt;</code> 转成整数，如 <code>1LL * x * n + y</code> ，或者利用位运算，确保不冲突的情况下， key 变成 <code>(LL)x &lt;&lt; 32 | y</code> </p>
 <h5 id="区间选点-使得每个区间内至少包含一个选出的点"><a href="#区间选点-使得每个区间内至少包含一个选出的点" class="headerlink" title="区间选点 使得每个区间内至少包含一个选出的点"></a>区间选点 使得每个区间内至少包含一个选出的点</h5><p>按区间的右端点从小到大排序 每次总是选择当前区间的右端点</p>
 <pre><code class="c++">  int res = 0, ed = -2e9;
   for (int i = 0; i &lt; n; i++)
@@ -2671,17 +2667,16 @@ for (int j = 0; j &lt; n; j++)
       ed = range[i].r;
     &#125;
 </code></pre>
-<hr>
-<h5 id="如果某个值在计算过程中有可能为负-取模时要写成-x-x-MOD-MOD-MOD"><a href="#如果某个值在计算过程中有可能为负-取模时要写成-x-x-MOD-MOD-MOD" class="headerlink" title="如果某个值在计算过程中有可能为负 取模时要写成 x &#x3D; (x % MOD + MOD) % MOD"></a>如果某个值在计算过程中有可能为负 取模时要写成 x &#x3D; (x % MOD + MOD) % MOD</h5><h5 id="懒惰更新技巧"><a href="#懒惰更新技巧" class="headerlink" title="懒惰更新技巧"></a>懒惰更新技巧</h5><p>见 LC.798</p>
+<h5 id="如果某个值在计算过程中有可能为负-取模时要写成-x-x-MOD-MOD-MOD"><a href="#如果某个值在计算过程中有可能为负-取模时要写成-x-x-MOD-MOD-MOD" class="headerlink" title="如果某个值在计算过程中有可能为负 取模时要写成 x &#x3D; (x % MOD + MOD) % MOD"></a>如果某个值在计算过程中有可能为负 取模时要写成 x &#x3D; (x % MOD + MOD) % MOD</h5><h5 id="懒惰更新技巧"><a href="#懒惰更新技巧" class="headerlink" title="懒惰更新技巧"></a>懒惰更新技巧</h5><p>见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/smallest-rotation-with-highest-score/description/">得分最高的最小轮调</a></p>
 <h5 id="统计词频差"><a href="#统计词频差" class="headerlink" title="统计词频差"></a>统计词频差</h5><p>用哈希表，善用 +1 -1 以及 <code>erase()</code> 方法，然后通过 <code>m.empty()</code> 来作为判断条件</p>
 <h5 id="K-个不同整数的子数组的数目"><a href="#K-个不同整数的子数组的数目" class="headerlink" title="K 个不同整数的子数组的数目"></a>K 个不同整数的子数组的数目</h5><p>用滑窗，枚举右端点，维护一段左端点的区间 <code>[l1, l2)</code> ，前者表示包含 k 个不同整数的区间的左端点，后者表示包含 k - 1 个不同整数的区间的右端点，每次答案加上 <code>l2 - l1</code></p>
 <p>对于维护窗口内不同整数个数的操作，如果值域较小可以用数组模拟，一般来说用哈希表模拟，善用 <code>m.erase()</code>  </p>
 <h5 id="裴蜀定理推论"><a href="#裴蜀定理推论" class="headerlink" title="裴蜀定理推论"></a>裴蜀定理推论</h5><blockquote>
-<p>  引理：若一个环同时有一个长度为 $a$ 的循环节（间隔为 $a$ 的元素都相等），和一个长度为 $b$ 的循环节，那么这个环有一个长度为 $gcd(a,b)$ 的循环节。</p>
+<p>  引理：若一个环同时有一个长度为$a$的循环节（间隔为$a$的元素都相等），和一个长度为$b$的循环节，那么这个环有一个长度为$gcd(a,b)$的循环节</p>
 </blockquote>
-<p>对于一个长度为 $n$ 的环，如果环上所有间隔为 $k$ 的元素都要相等，那么环上所有间隔为 $gcd(n,k)$ 的元素都要相等。</p>
-<h5 id="把序列元素变得相等的最小运算次数"><a href="#把序列元素变得相等的最小运算次数" class="headerlink" title="把序列元素变得相等的最小运算次数"></a>把序列元素变得相等的最小运算次数</h5><p>经典中位数贪心，把所有数变为中位数即可（见 LC462）</p>
-<h5 id="回文串之中心扩散法"><a href="#回文串之中心扩散法" class="headerlink" title="回文串之中心扩散法"></a>回文串之中心扩散法</h5><p>LC2472</p>
+<p>对于一个长度为$n$的环，如果环上所有间隔为$k$的元素都要相等，那么环上所有间隔为$gcd(n,k)$的元素都要相等</p>
+<h5 id="把序列元素变得相等的最小运算次数"><a href="#把序列元素变得相等的最小运算次数" class="headerlink" title="把序列元素变得相等的最小运算次数"></a>把序列元素变得相等的最小运算次数</h5><p>经典中位数贪心，把所有数变为中位数即可（见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/">最小操作次数使数组元素相等 II</a>）</p>
+<h5 id="回文串之中心扩散法"><a href="#回文串之中心扩散法" class="headerlink" title="回文串之中心扩散法"></a>回文串之中心扩散法</h5><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/description/">不重叠回文子字符串的最大数目</a></p>
 <pre><code class="c++">class Solution &#123;
 public:
     int maxPalindromes(string s, int k) &#123;
@@ -2702,7 +2697,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="DFS序"><a href="#DFS序" class="headerlink" title="DFS序"></a>DFS序</h5><p>LC2458</p>
+<h5 id="DFS序"><a href="#DFS序" class="headerlink" title="DFS序"></a>DFS序</h5><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/description/">移除子树后的二叉树高度</a></p>
 <pre><code class="c++">class Solution &#123;
     int n = 0, clk = 0;
     vector&lt;int&gt; A, L, R;
@@ -2748,7 +2743,7 @@ public:
 <h5 id="统计-gcd-为-k-的子数组数目"><a href="#统计-gcd-为-k-的子数组数目" class="headerlink" title="统计 gcd 为 k 的子数组数目"></a>统计 gcd 为 k 的子数组数目</h5><ol>
 <li>枚举子数组右端点，往左看有多少个不同的 gcd</li>
 <li>如何优化：发现大量重复的 gcd</li>
-<li>有多少个<strong>不同</strong>的 gcd ？由于 gcd 只会变小，且不超过原来的一半，故有 log(U) 个<br>&#x3D;&gt; 所有子数组至多有 nlogU 个不同的 gcd</li>
+<li>有多少个<strong>不同</strong>的 gcd ？由于 gcd 只会变小，且不超过原来的一半，故有 log(U) 个 &#x3D;&gt; 所有子数组至多有 nlogU 个不同的 gcd</li>
 <li>实现看代码</li>
 </ol>
 <pre><code class="c++">/*
@@ -2816,7 +2811,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<p>(logN)，思路见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-number-and-its-reverse/solutions/1896433/ji-yi-hua-sou-suo-geng-da-shu-ju-fan-wei-xyer/">https://leetcode.cn/problems/sum-of-number-and-its-reverse/solutions/1896433/ji-yi-hua-sou-suo-geng-da-shu-ju-fan-wei-xyer/</a></p>
+<p>O(logN)解法，思路见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-number-and-its-reverse/solutions/1896433/ji-yi-hua-sou-suo-geng-da-shu-ju-fan-wei-xyer/">题解</a></p>
 <h5 id="n-m-20-k-1e18，问从矩阵左上到右下的异或和等于-k-的路径数"><a href="#n-m-20-k-1e18，问从矩阵左上到右下的异或和等于-k-的路径数" class="headerlink" title="n&#x3D;m&#x3D;20,k&#x3D;1e18，问从矩阵左上到右下的异或和等于 k 的路径数"></a>n&#x3D;m&#x3D;20,k&#x3D;1e18，问从矩阵左上到右下的异或和等于 k 的路径数</h5><p>CF1006F，思路是折半枚举</p>
 <pre><code class="c++">map&lt;LL, int&gt; v[N][N];
 int n, m, half;
@@ -2911,7 +2906,7 @@ public:
 &#125;
 </code></pre>
 <p>字符串快速幂：假如指数是个字符串，怎么算呢？</p>
-<p>比如说 x 的 456 次方，可以表示成 $[(x^4)^{10}\cdot x^5]^{10} \cdot x^6$，所以就可以线性遍历来计算了</p>
+<p>比如说 x 的 456 次方，可以表示成$[(x^4)^{10}\cdot x^5]^{10} \cdot x^6$，所以就可以线性遍历来计算了</p>
 <pre><code class="c++">    for (char c: p) &#123;
       res = (qmi(res, 10, mod) * qmi(x, c - &#39;0&#39;, mod)) % mod;
     &#125;
@@ -2982,14 +2977,14 @@ void divide(int x) &#123;
 &#125;
 </code></pre>
 <p>结论：预处理的复杂度是 <code>O(n)+O(n/2)+O(n/3)+...=O(nlogn)</code> 的</p>
-<p>平均来看，每个自然数有 logn 个真因子</p>
+<p>平均来看，每个自然数有 <code>logn</code> 个真因子</p>
 <h5 id="遍历数组找到相邻元素和最小的对应下标"><a href="#遍历数组找到相邻元素和最小的对应下标" class="headerlink" title="遍历数组找到相邻元素和最小的对应下标"></a>遍历数组找到相邻元素和最小的对应下标</h5><p>还在想设 <code>mx</code> ？不需要！</p>
 <pre><code class="c++">int j = 1; // 设右端点
 for (int i = 1; i &lt; a.size(); i++)
     if (a[i] + a[i - 1] &lt; a[j] + a[j - 1]) 
         j = i;
 </code></pre>
-<h5 id="O-n-2-离散化去重-二维差分模板"><a href="#O-n-2-离散化去重-二维差分模板" class="headerlink" title="O(n^2) 离散化去重+二维差分模板"></a>O(n^2) 离散化去重+二维差分模板</h5><p>见 LCP74.最强祝福力场，就是给出若干矩形，问被矩形覆盖最多的点的被覆盖次数</p>
+<h5 id="O-n-2-离散化去重-二维差分模板"><a href="#O-n-2-离散化去重-二维差分模板" class="headerlink" title="O(n^2) 离散化去重+二维差分模板"></a>O(n^2) 离散化去重+二维差分模板</h5><p>见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xepqZ5/description/">最强祝福力场</a>，就是给出若干矩形，问被矩形覆盖最多的点的被覆盖次数</p>
 <p>遇到 0.5 就要乘以 2</p>
 <pre><code class="c++">class Solution &#123;
 public:
@@ -3106,8 +3101,8 @@ public:
 <p>每一个内向基环树（连通块）都由一个<strong>基环</strong>和其余指向基环的<strong>树枝</strong>组成。</p>
 <p>处理方法：</p>
 <ul>
-<li>我们可以通过一次拓扑排序「剪掉」所有树枝，因为拓扑排序后，树枝节点的入度均为 0 ，基环节点的入度均为 1 。<ul>
-<li>如果要遍历基环，可以从拓扑排序后入度为 1 的节点出发，在图上搜索；</li>
+<li>我们可以通过一次拓扑排序「剪掉」所有树枝，因为拓扑排序后，树枝节点的入度均为 0 ，基环节点的入度均为 1<ul>
+<li>如果要遍历基环，可以从拓扑排序后入度为 1 的节点出发，在图上搜索</li>
 <li>如果要遍历树枝，可以以基环与树枝的连接处为起点，顺着反图来搜索树枝（搜索入度为 0 的节点），从而将问题转化成一个树形问题</li>
 </ul>
 </li>
@@ -3178,7 +3173,7 @@ public:
     cout &lt;&lt; res &lt;&lt; endl;
 &#125;
 </code></pre>
-<h5 id="无向图定向"><a href="#无向图定向" class="headerlink" title="无向图定向"></a>无向图定向</h5><p>把无向图所有边的方向定为从度数小的顶点指向度数大的顶点（相同则从节点编号小到大），任意点的度数不会超过 $$\sqrt{2M}$$ ，在一些需要多重循环枚举图中顶点的题中，定向后的复杂度变为 $$O(m\sqrt{m})$$ </p>
+<h5 id="无向图定向"><a href="#无向图定向" class="headerlink" title="无向图定向"></a>无向图定向</h5><p>把无向图所有边的方向定为从度数小的顶点指向度数大的顶点（相同则从节点编号小到大），任意点的度数不会超过 $\sqrt{2M}$，在一些需要多重循环枚举图中顶点的题中，定向后的复杂度变为 $O(m\sqrt{m})$</p>
 <h5 id="懒删除堆"><a href="#懒删除堆" class="headerlink" title="懒删除堆"></a>懒删除堆</h5><p>对于一些数据结构设计题，需要多次修改某个 key 对应的值，还要查询最大值&#x2F;最小值，这种情况下用此技巧比较方便，修改的时候直接插入堆中并记录，查询的时候堆顶元素不同于记录值则弹出，否则就是答案</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-a-food-rating-system/">2353. 设计食物评分系统</a></p>
 <pre><code class="c++">class FoodRatings &#123;
@@ -3567,11 +3562,10 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="计算有序数组左右点对距离和的公式"><a href="#计算有序数组左右点对距离和的公式" class="headerlink" title="计算有序数组左右点对距离和的公式"></a>计算有序数组左右点对距离和的公式</h5><p>x[1]-x[0]</p>
+<h5 id="计算有序数组左右点对距离和的公式"><a href="#计算有序数组左右点对距离和的公式" class="headerlink" title="计算有序数组左右点对距离和的公式"></a>计算有序数组左右点对距离和的公式</h5><p>‘’’<br>x[1]-x[0]</p>
 <p>x[2]-x[1] x[2]-x[0]</p>
 <p>…</p>
-<p>x[n-1]-x[n-2] x[n-1]-x[n-3] … x[n-1]-x[0]</p>
-<p>通过统计每个项出现为正和为负的次数，得到下列公式<br>$$<br>s&#x3D;(n-1)(x[n-1]-x[0])+(n-3)(x[n-2]-x[1])+… \<br>&#x3D;\Sigma_{i&#x3D;0}^{\lfloor n&#x2F;2 \rfloor-1}(n-1-2i)(x[n-1-i]-x[i])<br>$$<br>记得加 LL</p>
+<p>x[n-1]-x[n-2] x[n-1]-x[n-3] … x[n-1]-x[0]<br>‘’’<br>通过统计每个项出现为正和为负的次数，得到下列公式<br>$$<br>s&#x3D;(n-1)(x[n-1]-x[0])+(n-3)(x[n-2]-x[1])+… \<br>&#x3D;\Sigma_{i&#x3D;0}^{\lfloor n&#x2F;2 \rfloor-1}(n-1-2i)(x[n-1-i]-x[i])<br>$$<br>记得加 LL</p>
 <p><code>res = (res + (n - 1 - 2 * i) * ((LL)a[n - 1 - i] - a[i])) % MOD;</code></p>
 <h5 id="如何判定-i-i-是否能够分割成多个整数，使其累加值为-i-？"><a href="#如何判定-i-i-是否能够分割成多个整数，使其累加值为-i-？" class="headerlink" title="如何判定 i * i 是否能够分割成多个整数，使其累加值为 i ？"></a>如何判定 i * i 是否能够分割成多个整数，使其累加值为 i ？</h5><p>简单做法是递归，每次从当前值的低位开始截取，通过「取余」和「地板除」操作，得到截取部分和剩余部分，再继续递归处理</p>
 <pre><code class="c++">bool check(int t, int x) &#123;
@@ -3777,11 +3771,11 @@ void init() &#123;
 <h5 id="使-x-变为-y-的最小操作次数"><a href="#使-x-变为-y-的最小操作次数" class="headerlink" title="使 x 变为 y 的最小操作次数"></a>使 x 变为 y 的最小操作次数</h5><p>给定一些操作：x 自增、自减、或者除以某个数 k，问变成 y 最小的操作次数</p>
 <p>思路是<strong>贪心+记忆化搜索</strong>，x -&gt; y 的过程中，要么纯自减，要么先变为最接近的 k 的倍数，然后执行除操作</p>
 <p>每次转换为 x &#x2F; k、x &#x2F; k + 1</p>
-<p>记忆化搜索的复杂度为 $log_k(x)$ ，是很小的</p>
+<p>记忆化搜索的复杂度为$log_k(x)$，是很小的</p>
 <p>例题：</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-number-of-operations-to-make-x-and-y-equal/">10033. 使 X 和 Y 相等的最少操作次数</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/meChtZ/">LCP 20. 快速公交</a></p>
-<h5 id="相邻合并——考虑连续子数组的合并"><a href="#相邻合并——考虑连续子数组的合并" class="headerlink" title="相邻合并——考虑连续子数组的合并"></a>相邻合并——考虑连续子数组的合并</h5><p>例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/description/">https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/description/</a></p>
+<h5 id="相邻合并——考虑连续子数组的合并"><a href="#相邻合并——考虑连续子数组的合并" class="headerlink" title="相邻合并——考虑连续子数组的合并"></a>相邻合并——考虑连续子数组的合并</h5><p>例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/description/">给定操作次数内使剩余元素的或值最小</a></p>
 <h5 id="判环"><a href="#判环" class="headerlink" title="判环"></a>判环</h5><p>对于有向图判断环路很简单，拓扑排序即可</p>
 <pre><code class="c++">bool topsort() &#123;
     int hh = 0, tt = -1;
@@ -3858,7 +3852,7 @@ def solve(t1, t2):
 <pre><code class="c++">return s1 + s2 &lt; s2 + s1; // string 数组 按字典序从小到大排序
 </code></pre>
 <h5 id="数组元素两两分组求最大组数"><a href="#数组元素两两分组求最大组数" class="headerlink" title="数组元素两两分组求最大组数"></a>数组元素两两分组求最大组数</h5><p>这类问题不知道该归纳为什么类型比较好。一个数组，两个元素作为一组，要求每组内的元素不同，例如 [1,1,2,3] 可以分为 [1,2] 和 [1,3]。分析的核心在于<strong>出现次数最多的元素出现了 d 次</strong>，若 <code>d&lt;=n-d</code>，则可以分 n&#x2F;2 个组；否则只能分 (n-d)*2 个组。为什么呢？想象我们有两行，<code>a[0][0]</code> 和 <code>a[1][0]</code> 就是一组，以此类推。那么我们可以把出现次数最多的元素先依次排在第一行，剩下的元素排在第二行，这样必定满足同一组的元素不同。可以用反证法证明没有更优的摆法。所以需要讨论 n 和 n-d 的关系，假如某个元素出现次数超过一半，多出来的部分肯定不能配对的</p>
-<p>例题在 LC1953，LC3139</p>
+<p>例题在 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/description/">你可以工作的最大周数</a>，<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-equalize-array/description/">使数组中所有元素相等的最小开销</a></p>
 <h5 id="数组-a-和-b-有多少对下标-a-i-整除-b-j"><a href="#数组-a-和-b-有多少对下标-a-i-整除-b-j" class="headerlink" title="数组 a 和 b 有多少对下标 a[i] 整除 b[j]"></a>数组 a 和 b 有多少对下标 a[i] 整除 b[j]</h5><p>方法一是朴素枚举 a 的因子，复杂度是 nsqrt(U)</p>
 <pre><code class="c++">for (int x : nums1) &#123;
     for (int d = 1; d * d &lt;= x; d++) &#123;
@@ -3883,7 +3877,7 @@ for (auto&amp; [i, c] : cnt2) &#123; // b 数组的数字事先存哈希表
     ans += (long long) s * c;
 &#125;
 </code></pre>
-<p>这个方法的复杂度是多少呢？由于哈希表每个数出现一次，考虑调和级数 U&#x2F;1+U&#x2F;2+…+U&#x2F;m&#x3D;U(1+1&#x2F;2+…+1&#x2F;m) 就是 Ulogm，复杂度比方法一小</p>
+<p>这个方法的复杂度是多少呢？由于哈希表每个数出现一次，考虑调和级数 <code>U/1+U/2+...+U/m=U(1+1/2+...+1/m)</code> 就是 <code>Ulogm</code>，复杂度比方法一小</p>
 <h5 id="矩阵对角线元素的特点"><a href="#矩阵对角线元素的特点" class="headerlink" title="矩阵对角线元素的特点"></a>矩阵对角线元素的特点</h5><p><img src="https://pic.leetcode-cn.com/b4425d9def38f3f74a99525dd2cbe2b5257531f307231294dede11eec729f6cf-%E8%81%9A%E5%90%88%E9%94%AE.PNG" class="lazyload" data-srcset="https://pic.leetcode-cn.com/b4425d9def38f3f74a99525dd2cbe2b5257531f307231294dede11eec729f6cf-%E8%81%9A%E5%90%88%E9%94%AE.PNG" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="聚合键.PNG"></p>
 <p>左下到右上的：i+j 是定值</p>
 <p>左上到右下的：i-j 是定值</p>
@@ -4025,10 +4019,10 @@ public:
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-13T22:50:35+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-14T00:22:31+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年7月13日</p>
+    <p>更新于：2024年7月14日</p>
   </a>
 </div>
 
@@ -4051,7 +4045,7 @@ public:
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/&title=算法题经典套路 - Rikki's Blog&summary=记录做题过程中遇到的经典套路"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/&title=算法题经典套路 - Rikki's Blog&summary="
           
           >
           
@@ -4063,7 +4057,7 @@ public:
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/&title=算法题经典套路 - Rikki's Blog&summary=记录做题过程中遇到的经典套路"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/&title=算法题经典套路 - Rikki's Blog&summary="
           
           >
           
@@ -4075,7 +4069,7 @@ public:
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/&title=算法题经典套路 - Rikki's Blog&summary=记录做题过程中遇到的经典套路"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/&title=算法题经典套路 - Rikki's Blog&summary="
           
           >
           
@@ -4159,7 +4153,7 @@ public:
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E5%92%8C%E4%B8%BA%E6%AD%A3%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-text">统计和为正数的子数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%BE%AA%E7%8E%AF%E6%A8%A1%E6%9D%BF"><span class="toc-text">分组循环模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E7%9F%A9%E9%98%B5%E6%AF%8F%E4%B8%80%E6%9D%A1%E4%BB%8E%E5%B7%A6%E4%B8%8B%E5%88%B0%E5%8F%B3%E4%B8%8A%E7%9A%84%E6%96%9C%E5%AF%B9%E8%A7%92%E7%BA%BF"><span class="toc-text">遍历矩阵每一条从左下到右上的斜对角线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text">调用库函数二分查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88%EF%BC%8C%E6%94%AF%E6%8C%81%E5%8A%A8%E6%80%81%E6%B1%82%E6%9C%80%E5%80%BC%EF%BC%8C%E5%88%A0%E9%99%A4%E5%92%8C%E6%8F%92%E5%85%A5%EF%BC%9Amultiset"><span class="toc-text">维护一个集合，支持动态求最值，删除和插入：multiset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%8A%E6%9C%89%E4%BA%A4%E9%9B%86%E7%9A%84%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E5%9C%A8%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88-%E7%BB%9F%E8%AE%A1%E9%9B%86%E5%90%88%E6%95%B0"><span class="toc-text">把有交集的区间合并在一个集合 统计集合数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8D%E8%83%BD%E7%94%A8-pair-%E4%BD%9C%E4%B8%BA-key"><span class="toc-text">哈希表不能用 pair 作为 key</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E9%80%89%E7%82%B9-%E4%BD%BF%E5%BE%97%E6%AF%8F%E4%B8%AA%E5%8C%BA%E9%97%B4%E5%86%85%E8%87%B3%E5%B0%91%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA%E9%80%89%E5%87%BA%E7%9A%84%E7%82%B9"><span class="toc-text">区间选点 使得每个区间内至少包含一个选出的点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E6%9F%90%E4%B8%AA%E5%80%BC%E5%9C%A8%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%9C%89%E5%8F%AF%E8%83%BD%E4%B8%BA%E8%B4%9F-%E5%8F%96%E6%A8%A1%E6%97%B6%E8%A6%81%E5%86%99%E6%88%90-x-x-MOD-MOD-MOD"><span class="toc-text">如果某个值在计算过程中有可能为负 取模时要写成 x &#x3D; (x % MOD + MOD) % MOD</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%87%92%E6%83%B0%E6%9B%B4%E6%96%B0%E6%8A%80%E5%B7%A7"><span class="toc-text">懒惰更新技巧</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E8%AF%8D%E9%A2%91%E5%B7%AE"><span class="toc-text">统计词频差</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#K-%E4%B8%AA%E4%B8%8D%E5%90%8C%E6%95%B4%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="toc-text">K 个不同整数的子数组的数目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86%E6%8E%A8%E8%AE%BA"><span class="toc-text">裴蜀定理推论</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%8A%E5%BA%8F%E5%88%97%E5%85%83%E7%B4%A0%E5%8F%98%E5%BE%97%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BF%90%E7%AE%97%E6%AC%A1%E6%95%B0"><span class="toc-text">把序列元素变得相等的最小运算次数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9E%E6%96%87%E4%B8%B2%E4%B9%8B%E4%B8%AD%E5%BF%83%E6%89%A9%E6%95%A3%E6%B3%95"><span class="toc-text">回文串之中心扩散法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DFS%E5%BA%8F"><span class="toc-text">DFS序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1-gcd-%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E6%95%B0%E7%9B%AE"><span class="toc-text">统计 gcd 为 k 的子数组数目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%99%E4%B8%80%E4%B8%AA%E6%95%B0-num-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8-k-%E4%BD%BF%E5%BE%97-k-reverse-k-num"><span class="toc-text">给一个数 num 判断是否存在 k 使得 k + reverse(k) &#x3D;&#x3D; num</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#n-m-20-k-1e18%EF%BC%8C%E9%97%AE%E4%BB%8E%E7%9F%A9%E9%98%B5%E5%B7%A6%E4%B8%8A%E5%88%B0%E5%8F%B3%E4%B8%8B%E7%9A%84%E5%BC%82%E6%88%96%E5%92%8C%E7%AD%89%E4%BA%8E-k-%E7%9A%84%E8%B7%AF%E5%BE%84%E6%95%B0"><span class="toc-text">n&#x3D;m&#x3D;20,k&#x3D;1e18，问从矩阵左上到右下的异或和等于 k 的路径数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82-lcp-%E7%9F%A9%E9%98%B5"><span class="toc-text">求 lcp 矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E5%88%86%E7%BB%84%EF%BC%8C%E7%BB%84%E5%86%85%E5%8C%BA%E9%97%B4%E4%BA%92%E4%B8%8D%E7%9B%B8%E4%BA%A4%EF%BC%8C%E6%9C%80%E5%B0%91%E7%BB%84%E6%95%B0"><span class="toc-text">区间分组，组内区间互不相交，最少组数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">快速幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#next-permutation-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">next_permutation 的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#double-%E7%89%88%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">double 版快速幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%B4%A8%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0"><span class="toc-text">预处理质因数个数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E6%AF%8F%E4%B8%AA%E6%95%B0%E7%9A%84%E8%B4%A8%E5%9B%A0%E6%95%B0"><span class="toc-text">预处理每个数的质因数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%95%B0%E7%BB%84%E6%89%BE%E5%88%B0%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AF%B9%E5%BA%94%E4%B8%8B%E6%A0%87"><span class="toc-text">遍历数组找到相邻元素和最小的对应下标</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#O-n-2-%E7%A6%BB%E6%95%A3%E5%8C%96%E5%8E%BB%E9%87%8D-%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E6%A8%A1%E6%9D%BF"><span class="toc-text">O(n^2) 离散化去重+二维差分模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8D%E6%82%94%E8%B4%AA%E5%BF%83"><span class="toc-text">反悔贪心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E5%90%91%E5%9F%BA%E7%8E%AF%E6%A0%91"><span class="toc-text">内向基环树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E5%BC%82%E6%88%96%E5%92%8C"><span class="toc-text">前缀异或和</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E5%90%91%E5%9B%BE%E5%AE%9A%E5%90%91"><span class="toc-text">无向图定向</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%87%92%E5%88%A0%E9%99%A4%E5%A0%86"><span class="toc-text">懒删除堆</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-text">基数排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5"><span class="toc-text">螺旋矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BB%8E%E5%90%8E%E5%BE%80%E5%89%8D%E6%89%BE%E6%9F%90%E4%B8%AA%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">字符串从后往前找某个字符出现的位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#KMP"><span class="toc-text">KMP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">矩阵快速幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C"><span class="toc-text">字符串哈希</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5"><span class="toc-text">双向链表插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%BB%B4%E6%8A%A4%E6%9C%80%E5%80%BC%EF%BC%88%E5%B8%A6%E5%88%A0%E9%99%A4%EF%BC%89"><span class="toc-text">数据流中维护最值（带删除）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">最长公共子序列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LIS"><span class="toc-text">LIS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BB%A1%E8%B6%B3%E4%B8%8B%E6%A0%87-%E6%BB%A1%E8%B6%B3-f-i-j-%E5%85%83%E7%B4%A0%E6%BB%A1%E8%B6%B3-g-nums-i-nums-j-%E7%9A%84%E8%BF%99%E4%B8%80%E7%B1%BB%E9%A2%98%EF%BC%88%E5%90%88%E6%B3%95%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E5%8F%AF%E8%83%BD%E5%80%BC%EF%BC%89"><span class="toc-text">满足下标 满足 f(i, j) 元素满足 g(nums[i], nums[j]) 的这一类题（合法范围内的可能值）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E5%B7%A6%E5%8F%B3%E7%82%B9%E5%AF%B9%E8%B7%9D%E7%A6%BB%E5%92%8C%E7%9A%84%E5%85%AC%E5%BC%8F"><span class="toc-text">计算有序数组左右点对距离和的公式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E5%AE%9A-i-i-%E6%98%AF%E5%90%A6%E8%83%BD%E5%A4%9F%E5%88%86%E5%89%B2%E6%88%90%E5%A4%9A%E4%B8%AA%E6%95%B4%E6%95%B0%EF%BC%8C%E4%BD%BF%E5%85%B6%E7%B4%AF%E5%8A%A0%E5%80%BC%E4%B8%BA-i-%EF%BC%9F"><span class="toc-text">如何判定 i * i 是否能够分割成多个整数，使其累加值为 i ？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E4%BA%92%E8%B4%A8%E7%9A%84%E6%95%B0%E7%9B%B8%E4%BA%92%E7%BB%84%E5%90%88%EF%BC%8C%E4%B8%8D%E8%83%BD%E7%BB%84%E6%88%90%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B4%E6%95%B0%E6%98%AF-a-b-a-b"><span class="toc-text">两个互质的数相互组合，不能组成的最大整数是 a * b - a - b</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2-DP-%E6%B1%82%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="toc-text">树形 DP 求树的直径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%99%E6%A0%91%E5%BD%A2-DP-%E6%97%B6%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-text">写树形 DP 时初始化的注意点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E5%A0%86%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E6%97%A0%E5%90%91%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%B0%8F%E5%80%BC-%E6%9C%80%E5%B0%8F%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="toc-text">用堆解决一些无向图中最小值&#x2F;最小序问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%80%BC%E5%BC%8F%E5%AD%90%E5%B1%95%E5%BC%80"><span class="toc-text">绝对值式子展开</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%88%E6%A8%A1%E6%8B%9F%E6%80%9D%E6%83%B3"><span class="toc-text">栈模拟思想</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%86%E5%85%83-%E7%BB%84%E5%90%88%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="toc-text">逆元 组合数模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E5%AE%9A%E4%B8%8D%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E4%BD%BF%E5%BE%97%E6%94%B6%E7%9B%8A%E6%9C%80%E5%A4%A7-dp-%E4%BA%8C%E5%88%86-%E5%93%88%E5%B8%8C"><span class="toc-text">选定不重叠区间使得收益最大 dp+二分&#x2F;哈希</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LL-LL"><span class="toc-text">LL * LL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86"><span class="toc-text">二维前缀和与差分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86-1e9-%E4%BB%A5%E5%86%85%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0"><span class="toc-text">预处理 1e9 以内的回文数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E4%BB%B7%E3%80%81%E8%8A%B1%E8%B4%B9-%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0"><span class="toc-text">代价、花费 &#x3D;&gt; 出现次数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF-x-%E5%8F%98%E4%B8%BA-y-%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0"><span class="toc-text">使 x 变为 y 的最小操作次数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B8%E9%82%BB%E5%90%88%E5%B9%B6%E2%80%94%E2%80%94%E8%80%83%E8%99%91%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-text">相邻合并——考虑连续子数组的合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E7%8E%AF"><span class="toc-text">判环</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E9%97%AE%E9%A2%98"><span class="toc-text">日期问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-n-1-%E4%B8%AD%E6%AF%8F%E4%B8%AA%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA-1%EF%BC%9F"><span class="toc-text">[1, 2^n-1] 中每个二进制位共有多少个 1？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="toc-text">字典序问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E4%B8%A4%E4%B8%A4%E5%88%86%E7%BB%84%E6%B1%82%E6%9C%80%E5%A4%A7%E7%BB%84%E6%95%B0"><span class="toc-text">数组元素两两分组求最大组数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-a-%E5%92%8C-b-%E6%9C%89%E5%A4%9A%E5%B0%91%E5%AF%B9%E4%B8%8B%E6%A0%87-a-i-%E6%95%B4%E9%99%A4-b-j"><span class="toc-text">数组 a 和 b 有多少对下标 a[i] 整除 b[j]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E7%BA%BF%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">矩阵对角线元素的特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8Cgcd-%E5%AD%90%E6%95%B0%E7%BB%84%E9%80%9A%E7%94%A8%E6%A8%A1%E6%9D%BF"><span class="toc-text">位运算，gcd 子数组通用模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#a-%E6%98%AF%E5%AD%90%E4%B8%B2%EF%BC%8Cb-%E6%98%AF%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">a 是子串，b 是子序列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E9%85%8D-1-%E5%92%8C-1-%E4%BD%BF%E5%BE%97%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">分配 1 和 -1 使得最大化最小值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-l-r-%E6%98%AF%E5%90%A6%E4%BA%92%E4%B8%8D%E7%9B%B8%E5%90%8C"><span class="toc-text">判断 [l,r] 是否互不相同</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E4%B8%A4%E4%B8%AA%E9%87%8F%E6%97%B6"><span class="toc-text">需要考虑两个量时</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E5%92%8C%E4%B8%BA%E6%AD%A3%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-text">统计和为正数的子数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%BE%AA%E7%8E%AF%E6%A8%A1%E6%9D%BF"><span class="toc-text">分组循环模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E7%9F%A9%E9%98%B5%E6%AF%8F%E4%B8%80%E6%9D%A1%E4%BB%8E%E5%B7%A6%E4%B8%8B%E5%88%B0%E5%8F%B3%E4%B8%8A%E7%9A%84%E6%96%9C%E5%AF%B9%E8%A7%92%E7%BA%BF"><span class="toc-text">遍历矩阵每一条从左下到右上的斜对角线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text">调用库函数二分查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88%EF%BC%8C%E6%94%AF%E6%8C%81%E5%8A%A8%E6%80%81%E6%B1%82%E6%9C%80%E5%80%BC%EF%BC%8C%E5%88%A0%E9%99%A4%E5%92%8C%E6%8F%92%E5%85%A5%EF%BC%9Amultiset"><span class="toc-text">维护一个集合，支持动态求最值，删除和插入：multiset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8D%E8%83%BD%E7%94%A8-pair-%E4%BD%9C%E4%B8%BA-key"><span class="toc-text">哈希表不能用 pair 作为 key</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%8A%E6%9C%89%E4%BA%A4%E9%9B%86%E7%9A%84%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E5%9C%A8%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88-%E7%BB%9F%E8%AE%A1%E9%9B%86%E5%90%88%E6%95%B0"><span class="toc-text">把有交集的区间合并在一个集合 统计集合数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E9%80%89%E7%82%B9-%E4%BD%BF%E5%BE%97%E6%AF%8F%E4%B8%AA%E5%8C%BA%E9%97%B4%E5%86%85%E8%87%B3%E5%B0%91%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA%E9%80%89%E5%87%BA%E7%9A%84%E7%82%B9"><span class="toc-text">区间选点 使得每个区间内至少包含一个选出的点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E6%9F%90%E4%B8%AA%E5%80%BC%E5%9C%A8%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%9C%89%E5%8F%AF%E8%83%BD%E4%B8%BA%E8%B4%9F-%E5%8F%96%E6%A8%A1%E6%97%B6%E8%A6%81%E5%86%99%E6%88%90-x-x-MOD-MOD-MOD"><span class="toc-text">如果某个值在计算过程中有可能为负 取模时要写成 x &#x3D; (x % MOD + MOD) % MOD</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%87%92%E6%83%B0%E6%9B%B4%E6%96%B0%E6%8A%80%E5%B7%A7"><span class="toc-text">懒惰更新技巧</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E8%AF%8D%E9%A2%91%E5%B7%AE"><span class="toc-text">统计词频差</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#K-%E4%B8%AA%E4%B8%8D%E5%90%8C%E6%95%B4%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="toc-text">K 个不同整数的子数组的数目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86%E6%8E%A8%E8%AE%BA"><span class="toc-text">裴蜀定理推论</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%8A%E5%BA%8F%E5%88%97%E5%85%83%E7%B4%A0%E5%8F%98%E5%BE%97%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BF%90%E7%AE%97%E6%AC%A1%E6%95%B0"><span class="toc-text">把序列元素变得相等的最小运算次数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9E%E6%96%87%E4%B8%B2%E4%B9%8B%E4%B8%AD%E5%BF%83%E6%89%A9%E6%95%A3%E6%B3%95"><span class="toc-text">回文串之中心扩散法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DFS%E5%BA%8F"><span class="toc-text">DFS序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1-gcd-%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E6%95%B0%E7%9B%AE"><span class="toc-text">统计 gcd 为 k 的子数组数目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%99%E4%B8%80%E4%B8%AA%E6%95%B0-num-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8-k-%E4%BD%BF%E5%BE%97-k-reverse-k-num"><span class="toc-text">给一个数 num 判断是否存在 k 使得 k + reverse(k) &#x3D;&#x3D; num</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#n-m-20-k-1e18%EF%BC%8C%E9%97%AE%E4%BB%8E%E7%9F%A9%E9%98%B5%E5%B7%A6%E4%B8%8A%E5%88%B0%E5%8F%B3%E4%B8%8B%E7%9A%84%E5%BC%82%E6%88%96%E5%92%8C%E7%AD%89%E4%BA%8E-k-%E7%9A%84%E8%B7%AF%E5%BE%84%E6%95%B0"><span class="toc-text">n&#x3D;m&#x3D;20,k&#x3D;1e18，问从矩阵左上到右下的异或和等于 k 的路径数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82-lcp-%E7%9F%A9%E9%98%B5"><span class="toc-text">求 lcp 矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E5%88%86%E7%BB%84%EF%BC%8C%E7%BB%84%E5%86%85%E5%8C%BA%E9%97%B4%E4%BA%92%E4%B8%8D%E7%9B%B8%E4%BA%A4%EF%BC%8C%E6%9C%80%E5%B0%91%E7%BB%84%E6%95%B0"><span class="toc-text">区间分组，组内区间互不相交，最少组数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">快速幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#next-permutation-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">next_permutation 的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#double-%E7%89%88%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">double 版快速幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%B4%A8%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0"><span class="toc-text">预处理质因数个数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E6%AF%8F%E4%B8%AA%E6%95%B0%E7%9A%84%E8%B4%A8%E5%9B%A0%E6%95%B0"><span class="toc-text">预处理每个数的质因数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%95%B0%E7%BB%84%E6%89%BE%E5%88%B0%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0%E5%92%8C%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AF%B9%E5%BA%94%E4%B8%8B%E6%A0%87"><span class="toc-text">遍历数组找到相邻元素和最小的对应下标</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#O-n-2-%E7%A6%BB%E6%95%A3%E5%8C%96%E5%8E%BB%E9%87%8D-%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E6%A8%A1%E6%9D%BF"><span class="toc-text">O(n^2) 离散化去重+二维差分模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8D%E6%82%94%E8%B4%AA%E5%BF%83"><span class="toc-text">反悔贪心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E5%90%91%E5%9F%BA%E7%8E%AF%E6%A0%91"><span class="toc-text">内向基环树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E5%BC%82%E6%88%96%E5%92%8C"><span class="toc-text">前缀异或和</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E5%90%91%E5%9B%BE%E5%AE%9A%E5%90%91"><span class="toc-text">无向图定向</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%87%92%E5%88%A0%E9%99%A4%E5%A0%86"><span class="toc-text">懒删除堆</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-text">基数排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5"><span class="toc-text">螺旋矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BB%8E%E5%90%8E%E5%BE%80%E5%89%8D%E6%89%BE%E6%9F%90%E4%B8%AA%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">字符串从后往前找某个字符出现的位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#KMP"><span class="toc-text">KMP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">矩阵快速幂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C"><span class="toc-text">字符串哈希</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5"><span class="toc-text">双向链表插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%BB%B4%E6%8A%A4%E6%9C%80%E5%80%BC%EF%BC%88%E5%B8%A6%E5%88%A0%E9%99%A4%EF%BC%89"><span class="toc-text">数据流中维护最值（带删除）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">最长公共子序列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LIS"><span class="toc-text">LIS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%BB%A1%E8%B6%B3%E4%B8%8B%E6%A0%87-%E6%BB%A1%E8%B6%B3-f-i-j-%E5%85%83%E7%B4%A0%E6%BB%A1%E8%B6%B3-g-nums-i-nums-j-%E7%9A%84%E8%BF%99%E4%B8%80%E7%B1%BB%E9%A2%98%EF%BC%88%E5%90%88%E6%B3%95%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E5%8F%AF%E8%83%BD%E5%80%BC%EF%BC%89"><span class="toc-text">满足下标 满足 f(i, j) 元素满足 g(nums[i], nums[j]) 的这一类题（合法范围内的可能值）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E5%B7%A6%E5%8F%B3%E7%82%B9%E5%AF%B9%E8%B7%9D%E7%A6%BB%E5%92%8C%E7%9A%84%E5%85%AC%E5%BC%8F"><span class="toc-text">计算有序数组左右点对距离和的公式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E5%AE%9A-i-i-%E6%98%AF%E5%90%A6%E8%83%BD%E5%A4%9F%E5%88%86%E5%89%B2%E6%88%90%E5%A4%9A%E4%B8%AA%E6%95%B4%E6%95%B0%EF%BC%8C%E4%BD%BF%E5%85%B6%E7%B4%AF%E5%8A%A0%E5%80%BC%E4%B8%BA-i-%EF%BC%9F"><span class="toc-text">如何判定 i * i 是否能够分割成多个整数，使其累加值为 i ？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E4%BA%92%E8%B4%A8%E7%9A%84%E6%95%B0%E7%9B%B8%E4%BA%92%E7%BB%84%E5%90%88%EF%BC%8C%E4%B8%8D%E8%83%BD%E7%BB%84%E6%88%90%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B4%E6%95%B0%E6%98%AF-a-b-a-b"><span class="toc-text">两个互质的数相互组合，不能组成的最大整数是 a * b - a - b</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2-DP-%E6%B1%82%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="toc-text">树形 DP 求树的直径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%99%E6%A0%91%E5%BD%A2-DP-%E6%97%B6%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-text">写树形 DP 时初始化的注意点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%A8%E5%A0%86%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E6%97%A0%E5%90%91%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%B0%8F%E5%80%BC-%E6%9C%80%E5%B0%8F%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="toc-text">用堆解决一些无向图中最小值&#x2F;最小序问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%80%BC%E5%BC%8F%E5%AD%90%E5%B1%95%E5%BC%80"><span class="toc-text">绝对值式子展开</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%88%E6%A8%A1%E6%8B%9F%E6%80%9D%E6%83%B3"><span class="toc-text">栈模拟思想</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%86%E5%85%83-%E7%BB%84%E5%90%88%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="toc-text">逆元 组合数模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E5%AE%9A%E4%B8%8D%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4%E4%BD%BF%E5%BE%97%E6%94%B6%E7%9B%8A%E6%9C%80%E5%A4%A7-dp-%E4%BA%8C%E5%88%86-%E5%93%88%E5%B8%8C"><span class="toc-text">选定不重叠区间使得收益最大 dp+二分&#x2F;哈希</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LL-LL"><span class="toc-text">LL * LL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C%E4%B8%8E%E5%B7%AE%E5%88%86"><span class="toc-text">二维前缀和与差分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86-1e9-%E4%BB%A5%E5%86%85%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0"><span class="toc-text">预处理 1e9 以内的回文数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E4%BB%B7%E3%80%81%E8%8A%B1%E8%B4%B9-%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0"><span class="toc-text">代价、花费 &#x3D;&gt; 出现次数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF-x-%E5%8F%98%E4%B8%BA-y-%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0"><span class="toc-text">使 x 变为 y 的最小操作次数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B8%E9%82%BB%E5%90%88%E5%B9%B6%E2%80%94%E2%80%94%E8%80%83%E8%99%91%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-text">相邻合并——考虑连续子数组的合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E7%8E%AF"><span class="toc-text">判环</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E9%97%AE%E9%A2%98"><span class="toc-text">日期问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-n-1-%E4%B8%AD%E6%AF%8F%E4%B8%AA%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA-1%EF%BC%9F"><span class="toc-text">[1, 2^n-1] 中每个二进制位共有多少个 1？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="toc-text">字典序问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E4%B8%A4%E4%B8%A4%E5%88%86%E7%BB%84%E6%B1%82%E6%9C%80%E5%A4%A7%E7%BB%84%E6%95%B0"><span class="toc-text">数组元素两两分组求最大组数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E7%BB%84-a-%E5%92%8C-b-%E6%9C%89%E5%A4%9A%E5%B0%91%E5%AF%B9%E4%B8%8B%E6%A0%87-a-i-%E6%95%B4%E9%99%A4-b-j"><span class="toc-text">数组 a 和 b 有多少对下标 a[i] 整除 b[j]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E7%BA%BF%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">矩阵对角线元素的特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8Cgcd-%E5%AD%90%E6%95%B0%E7%BB%84%E9%80%9A%E7%94%A8%E6%A8%A1%E6%9D%BF"><span class="toc-text">位运算，gcd 子数组通用模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#a-%E6%98%AF%E5%AD%90%E4%B8%B2%EF%BC%8Cb-%E6%98%AF%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">a 是子串，b 是子序列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E9%85%8D-1-%E5%92%8C-1-%E4%BD%BF%E5%BE%97%E6%9C%80%E5%A4%A7%E5%8C%96%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">分配 1 和 -1 使得最大化最小值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-l-r-%E6%98%AF%E5%90%A6%E4%BA%92%E4%B8%8D%E7%9B%B8%E5%90%8C"><span class="toc-text">判断 [l,r] 是否互不相同</span></a></li></ol>
     </div>
   </section>
 
@@ -4256,9 +4250,39 @@ public:
         <div class="social-wrapper" itemprop="about" itemscope itemtype="http://schema.org/Thing">
           
             
-          
+              <a href="https://leetcode.cn/u/ricky-daxia/"
+                class="social fa-solid fa-code flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer" itemprop="url">
+                
+              </a>
             
           
+            
+              <a href="mailto:1915754435@qq.com"
+                class="social fa-solid fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer" itemprop="url">
+                
+              </a>
+            
+          
+            
+              <a href="https://github.com/Ricky-Daxia"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer" itemprop="url">
+                
+              </a>
+            
+          
+            
+              <a href="https://space.bilibili.com/109098553"
+                class="social fa-brands fa-bilibili flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer" itemprop="url">
+                
+              </a>
             
           
         </div>
@@ -4270,23 +4294,9 @@ public:
       
     
       
-        
-          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
-</div>
-        
-      
-    
-      
         本站使用
         <a href="https://github.com/volantis-x/hexo-theme-volantis/#5.8.0" target="_blank" class="codename">Volantis</a>
         作为主题
-      
-    
-      
-        <div class='copyright'>
-        <p><a href="/">Copyright © since 2017 XXX</a></p>
-
-        </div>
       
     
     <!-- Custom Files footer begin-->
@@ -4434,7 +4444,7 @@ public:
   function pjax_giscus() {
     const HEAD = check_giscus();
     if (!HEAD) return;
-    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"}},pdata.commentConfig)
+    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"},"repo":"Ricky-Daxia/comments","repo-id":"R_kgDOMV5HSg","category":"Announcements","category-id":"DIC_kwDOMV5HSs4CgxFo","mapping":"pathname","reactions-enabled":"1","emit-metadata":"0","lang":"zh-CN"},pdata.commentConfig)
     const script = document.createElement('script');
     script.setAttribute('src', 'https://giscus.app/client.js');
     Object.keys(cfg).forEach(k=>{
@@ -4794,7 +4804,7 @@ public:
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/算法/","name":"算法"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/13/算法题经典套路/","name":"算法题经典套路"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法题经典套路","description":"记录做题过程中遇到的经典套路","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/","wordCount":14,"datePublished":"2024-07-12T16:00:00.000Z","dateModified":"2024-07-13T14:50:35.187Z","articleSection":"算法","keywords":"技巧","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/算法/","name":"算法"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/13/算法题经典套路/","name":"算法题经典套路"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法题经典套路","description":"做题过程中积累的经典套路","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/","wordCount":0,"datePublished":"2024-07-12T16:00:00.000Z","dateModified":"2024-07-13T16:22:31.075Z","articleSection":"算法","keywords":"技巧","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
