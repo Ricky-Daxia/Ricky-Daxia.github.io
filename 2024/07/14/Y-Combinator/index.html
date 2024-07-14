@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.0">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://ricky-daxia.github.io/tags/技巧/"/>
+  
+  <link rel="canonical" href="https://ricky-daxia.github.io/2024/07/14/y-combinator/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -34,18 +34,19 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：技巧 - Rikki's Blog</title>
-  <meta name="keywords" content="null">
-  <meta desc name="description" content="hhh - Ligu - Rikki's Blog">
-  
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rikki&#39;s Blog">
-<meta property="og:url" content="https://ricky-daxia.github.io/tags/%E6%8A%80%E5%B7%A7/index.html">
+  <title>Y-Combinator - Rikki's Blog</title>
+  <meta name="keywords" content="计算机科学,null">
+  <meta desc name="description" content="An introduction to Y-Combinator - Ligu - Rikki's Blog">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Y-Combinator">
+<meta property="og:url" content="https://ricky-daxia.github.io/2024/07/14/Y-Combinator/index.html">
 <meta property="og:site_name" content="Rikki&#39;s Blog">
-<meta property="og:description" content="hhh">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2024-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-14T13:25:04.303Z">
 <meta property="article:author" content="Ligu">
+<meta property="article:tag" content="计算机科学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2440,7 +2441,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="half" class='cover-wrapper  dock' style="display: ;">
+      <div id="half" class='cover-wrapper post dock' style="display: ;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu@1.0/20240713223219.jpg"></div>
 
@@ -2516,25 +2517,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://ricky-daxia.github.io/2024/07/13/算法题经典套路/">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://ricky-daxia.github.io/2024/07/14/Y-Combinator/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Rikki's Blog">
   </span>
@@ -2543,64 +2528,243 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="hhh">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/"  itemprop="url">
-        算法题经典套路
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      <p>做题过程中积累的经典套路</p>
+    
+      <h1 class="title" itemprop="name headline">
+        Y-Combinator
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' target="_blank" href="https://github.com/Ricky-Daxia" rel="nofollow noopener">
+    <img itemprop="image" src="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407132303067.png" class="lazyload" data-srcset="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407132303067.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">钱力古</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url"><span itemprop="name">数学</span></a>
+      </span>
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-07-13T00:00:00+08:00">2024-07-13</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url"><span itemprop="name">算法</span></a>
-            </span>
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2024-07-14T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2024年7月14日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <blockquote>
+<p>为什么要写这篇：当我们谈论计算机科学时，lambda 演算算得上其中最抽象，同时又是最优雅的一部分了。它可以构建出一些很神奇的东西，例如神奇的丘奇数（church numeral），用函数定义了所有的自然数和运算。3 月初出于兴趣了解了一下什么是 Y-组合子，当时恰好手写了一些笔记，但更多是对于别人的知识的整理，我个人水平有限，对于这块理论学习不多，就当作写博客练练手吧，如果能让读者产生一丝“计算机科学还挺有意思”的想法就再好不过啦~</p>
+</blockquote>
+<p>当我们需要创建一个递归函数时，如果写成 lambda 表达式，我们可以写成</p>
+<pre><code class="python3">f = lambda x: 1 if x == 0 else x * f(x - 1)
+</code></pre>
+<p>但是假如我给定一个奇怪的规则：不允许使用赋值符号，也就是不能用 <code>f = ...</code>，此时我们创建的就是匿名函数，还能实现同样的递归函数吗？</p>
+<p>在上面的例子中，调用 <code>f(4)</code> 可以得到 <code>24</code>，我们要做的就是定义一个 <code>?</code>，然后立即调用它（因为不能把它存下来），即 <code>(?)(4)</code> 的结果是 <code>24</code>。这看上去挺难的，我们要在 <code>?</code> 的函数体内递归调用自己，而此时 <code>?</code> 甚至都没有名字！</p>
+<p>为了做到这件事，我们要转换下思维，用上“高阶函数”的概念：不再局限于函数参数只能是一个值，它还可以是一个“函数”。假设有这样一个神奇的函数 <code>g</code>，把 <code>f</code> 作为参数传给它，它返回我们需要的 <code>?</code>。这时，我们可以在 <code>g</code> 的函数体内调用 <code>f</code> 了</p>
+<pre><code>g = lambda f: (lambda x: (1 if x == 0 else x * (f f)(x - 1)))
+</code></pre>
+<p>这里为什么是 <code>(f f)</code> 呢？因为我们想要实现 <code>g(x-1)</code> 的效果，但我们手头能用的只有 <code>f</code> 这个传进来的参数，不妨想象 <code>f</code> 跟 <code>g</code> 有类似的性质：<code>f</code> 传入一个函数也能返回想要的 <code>?</code>。那么自然就需要先让 <code>f</code> 作用于自身，得到 <code>?</code>，再进行 <code>?(x-1)</code> 的调用。这样解释似乎有些从结果反过来说的意味，事实上如果接受了这种写法，我们要实现的 <code>?</code> 也就得到了：<code>g(g)</code></p>
+<pre><code>g(g)(4)
+= (lambda f: (lambda x: (1 if x == 0 else x * (f f)(x - 1))))(g g)(4)
+= (lambda x: (1 if x == 0 else x * (g g)(x - 1)))(4)
+= 4 * (g g)(3)
+= 4 * (lambda x: (1 if x == 0 else x * (g g)(x - 1)))(3)
+= 4 * (3 * (g g)(2))
+= 4 * (3 * (lambda x: (1 if x == 0 else x * (g g)(x - 1)))(2))
+= 4 * (3 * (2 * (g g)(1)))
+= 4 * (3 * (2 * (lambda x: (1 if x == 0 else x * (g g)(x - 1)))(1)))
+= 4 * (3 * (2 * (1 * (g g)(0))))
+= 4 * (3 * (2 * (1 * (lambda x: (1 if x == 0 else x * (g g)(x - 1)))(0))))
+= 4 * (3 * (2 * (1 * 1)))
+= 4 * (3 * (2 * 1))
+= 4 * (3 * 2)
+= 4 * 6
+= 24
+</code></pre>
+<p>上面这段推导来自于 GPT，虽然此时我们还用了 <code>g</code> 这个名字，但 <code>g</code> 的表达式可是一个纯纯的函数表达式，把那串很长的 lambda 表达式替换 <code>g</code>，我们实际上得到了前面提到的匿名递归函数。想想还是挺妙的。</p>
+<p>这种思想到底是怎么来的呢？继续考虑 <code>g</code>，如果对于一个递归函数 <code>f</code>，调用 <code>g(f)</code> 还是得到 <code>f</code>，这里的 <code>g(f) = f</code> 看上去跟不动点方程的表达式很像，我们把 <code>f</code> 称为 <code>g</code> 的不动点。</p>
+<p>怎么求解不动点呢？假设存在一种解法可以求得 <code>g</code> 的不动点， 设为 <code>Y</code>，有</p>
+<pre><code>f = Y g 
+</code></pre>
+<p>对于不动点方程不断迭代下去，</p>
+<pre><code>f = g(g(g(...)))
+</code></pre>
+<p>这个无限长序列假设可以开方的话，可以简写成</p>
+<pre><code>f = G(G)
+  = g(G(G))
+</code></pre>
+<p>把 G 写成定义的形式，就是</p>
+<pre><code>G = λG. g(G(G))
+</code></pre>
+<p>由 alpha-变换（函数的参数名可以任意替换，都是等价的），换名得到</p>
+<pre><code>G = λx. g(x x)
+</code></pre>
+<p>代入 <code>Y g = f</code>，得</p>
+<pre><code>Y g = f 
+    = G(G)
+    = (λx. g(x x))(λx. g(x x))
+</code></pre>
+<p>那么 <code>Y = λg. (λx. g(x x))(λx. g(x x))</code>，换名得到</p>
+<pre><code>Y = λf. (λx. f(x x))(λx. f(x x))
+</code></pre>
+<p>可以验证 <code>Y</code> 是满足不动点方程，即 <code>f(Y) = Y</code> 的，这便是大名鼎鼎的 <strong>Y-组合子</strong>，它是一种通用的构造递归函数的算子。</p>
+<hr>
+<p>lambda 演算系统是一个形式系统，只有三条语法规则</p>
+<pre><code>x | λx. expr | expr expr
+</code></pre>
+<p>分别表示变量定义、函数定义、函数调用和两个操作</p>
+<pre><code>alpha-变换：变量任意替换
+beta-规约：两个 λ 项，把右侧替换左侧，剩下一个 λ 项
+</code></pre>
+<p>可以证明，lambda 演算和图灵机的计算能力是等价的，而后者是使得今天一切通用计算机得以成立的计算模型。</p>
+<hr>
+<p>参考知乎文章：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/547191928">https://zhuanlan.zhihu.com/p/547191928</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21099081/answer/18830200">https://www.zhihu.com/question/21099081/answer/18830200</a></p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-14T21:25:04+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2024年7月14日</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>计算机科学</p></a></div>
+  <span hidden itemprop="keywords">计算机科学</span>
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
     
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2024/07/14/%E5%BB%BA%E7%AB%99-log/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>建站 log</p>
+          <p class='content'>
+如果在浏览过程中发现排版问题，请和我说或评论告知噢
+使用 hexo + Volantis 搭建
+文章中使用到的图片，通过 PicGo 上传到 github 仓库，再通过 jsdelivr 获取...</p>
+        </a>
+      
+      
+        <a class='next' href='/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/'>
+          <p class='title'>算法题经典套路<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>需要考虑两个量时两数之和套路：如果是有“两个”，可以考虑枚举第二个，看第一个的性质
+应用：两个线段获得的最多奖品
+统计和为正数的子数组
+分组循环模板适用场景：按照题目要求，数组会被分割成若干组，...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
   
 
 
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/2024/07/14/Y-Combinator/index.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-  
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2609,136 +2773,38 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407132322031.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Ricky-Daxia</h2>
-        
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="https://leetcode.cn/u/ricky-daxia/"
-              class="social fa-solid fa-code flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:1915754435@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/Ricky-Daxia"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://space.bilibili.com/109098553"
-              class="social fa-brands fa-bilibili flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop pjax">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/%E6%95%B0%E5%AD%A6/" href="/categories/%E6%95%B0%E5%AD%A6/"
-            active-action="action-categoriesE695B0E5ADA6"
-            ><div class='name'>数学</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"
-            active-action="action-categoriesE7AE97E6B395"
-            ><div class='name'>算法</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile pjax">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">动态规划</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #999">技巧</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" style="font-size: 14px; color: #999">计算机科学</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 24px; color: #555">题目</a>
-    </div>
-  </section>
-
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <div class="">
+    <!-- pjax占位 -->
+  </div>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2766,13 +2832,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3313,7 +3380,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/tags/技巧/","name":"技巧"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"hhh","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/数学/","name":"数学"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/","name":"Y-Combinator"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Y-Combinator","description":["An introduction to Y-Combinator"],"inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/","wordCount":0,"datePublished":"2024-07-13T16:00:00.000Z","dateModified":"2024-07-14T13:25:04.303Z","articleSection":"数学","keywords":"计算机科学","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
