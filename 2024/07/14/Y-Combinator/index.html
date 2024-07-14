@@ -44,7 +44,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-07-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-14T13:25:04.303Z">
+<meta property="article:modified_time" content="2024-07-14T13:33:11.902Z">
 <meta property="article:author" content="Ligu">
 <meta property="article:tag" content="计算机科学">
 <meta name="twitter:card" content="summary">
@@ -1744,7 +1744,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1720963559889),
+    lastupdate: new Date(1720964000929),
     sidebar: {
       for_page: ["blogger","category","tagcloud"],
       for_post: ["toc"],
@@ -2601,15 +2601,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>为什么要写这篇：当我们谈论计算机科学时，lambda 演算算得上其中最抽象，同时又是最优雅的一部分了。它可以构建出一些很神奇的东西，例如神奇的丘奇数（church numeral），用函数定义了所有的自然数和运算。3 月初出于兴趣了解了一下什么是 Y-组合子，当时恰好手写了一些笔记，但更多是对于别人的知识的整理，我个人水平有限，对于这块理论学习不多，就当作写博客练练手吧，如果能让读者产生一丝“计算机科学还挺有意思”的想法就再好不过啦~</p>
 </blockquote>
 <p>当我们需要创建一个递归函数时，如果写成 lambda 表达式，我们可以写成</p>
-<pre><code class="python3">f = lambda x: 1 if x == 0 else x * f(x - 1)
+<pre><code class="python">f = lambda x: 1 if x == 0 else x * f(x - 1)
 </code></pre>
 <p>但是假如我给定一个奇怪的规则：不允许使用赋值符号，也就是不能用 <code>f = ...</code>，此时我们创建的就是匿名函数，还能实现同样的递归函数吗？</p>
 <p>在上面的例子中，调用 <code>f(4)</code> 可以得到 <code>24</code>，我们要做的就是定义一个 <code>?</code>，然后立即调用它（因为不能把它存下来），即 <code>(?)(4)</code> 的结果是 <code>24</code>。这看上去挺难的，我们要在 <code>?</code> 的函数体内递归调用自己，而此时 <code>?</code> 甚至都没有名字！</p>
 <p>为了做到这件事，我们要转换下思维，用上“高阶函数”的概念：不再局限于函数参数只能是一个值，它还可以是一个“函数”。假设有这样一个神奇的函数 <code>g</code>，把 <code>f</code> 作为参数传给它，它返回我们需要的 <code>?</code>。这时，我们可以在 <code>g</code> 的函数体内调用 <code>f</code> 了</p>
-<pre><code>g = lambda f: (lambda x: (1 if x == 0 else x * (f f)(x - 1)))
+<pre><code class="python">g = lambda f: (lambda x: (1 if x == 0 else x * (f f)(x - 1)))
 </code></pre>
 <p>这里为什么是 <code>(f f)</code> 呢？因为我们想要实现 <code>g(x-1)</code> 的效果，但我们手头能用的只有 <code>f</code> 这个传进来的参数，不妨想象 <code>f</code> 跟 <code>g</code> 有类似的性质：<code>f</code> 传入一个函数也能返回想要的 <code>?</code>。那么自然就需要先让 <code>f</code> 作用于自身，得到 <code>?</code>，再进行 <code>?(x-1)</code> 的调用。这样解释似乎有些从结果反过来说的意味，事实上如果接受了这种写法，我们要实现的 <code>?</code> 也就得到了：<code>g(g)</code></p>
-<pre><code>g(g)(4)
+<pre><code class="python">g(g)(4)
 = (lambda f: (lambda x: (1 if x == 0 else x * (f f)(x - 1))))(g g)(4)
 = (lambda x: (1 if x == 0 else x * (g g)(x - 1)))(4)
 = 4 * (g g)(3)
@@ -2690,7 +2690,7 @@ beta-规约：两个 λ 项，把右侧替换左侧，剩下一个 λ 项
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-14T21:25:04+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-14T21:33:11+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2024年7月14日</p>
@@ -3380,7 +3380,7 @@ beta-规约：两个 λ 项，把右侧替换左侧，剩下一个 λ 项
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/数学/","name":"数学"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/","name":"Y-Combinator"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Y-Combinator","description":["An introduction to Y-Combinator"],"inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/","wordCount":0,"datePublished":"2024-07-13T16:00:00.000Z","dateModified":"2024-07-14T13:25:04.303Z","articleSection":"数学","keywords":"计算机科学","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/数学/","name":"数学"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/","name":"Y-Combinator"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Y-Combinator","description":["An introduction to Y-Combinator"],"inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/14/Y-Combinator/","wordCount":0,"datePublished":"2024-07-13T16:00:00.000Z","dateModified":"2024-07-14T13:33:11.902Z","articleSection":"数学","keywords":"计算机科学","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
