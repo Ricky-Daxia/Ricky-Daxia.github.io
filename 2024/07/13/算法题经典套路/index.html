@@ -46,7 +46,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-07-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-13T16:22:31.075Z">
+<meta property="article:modified_time" content="2024-07-14T05:26:40.832Z">
 <meta property="article:author" content="Ligu">
 <meta property="article:tag" content="技巧">
 <meta name="twitter:card" content="summary">
@@ -1746,7 +1746,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1720934635409),
+    lastupdate: new Date(1720934851807),
     sidebar: {
       for_page: ["blogger","category","tagcloud"],
       for_post: ["toc"],
@@ -2601,15 +2601,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div id="post-body" itemprop="articleBody">
     <h5 id="需要考虑两个量时"><a href="#需要考虑两个量时" class="headerlink" title="需要考虑两个量时"></a>需要考虑两个量时</h5><p><strong>两数之和</strong>套路：如果是有“两个”，可以考虑枚举第二个，看第一个的性质</p>
 <p>应用：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximize-win-from-two-segments/description/">两个线段获得的最多奖品</a></p>
-<h5 id="统计和为正数的子数组"><a href="#统计和为正数的子数组" class="headerlink" title="统计和为正数的子数组"></a>统计和为正数的子数组</h5><img src="/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/image-20230716215541725.png" class="lazyload" data-srcset="/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/image-20230716215541725.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class=" lazyload" title="[image-20230716215541725]">
-
+<h5 id="统计和为正数的子数组"><a href="#统计和为正数的子数组" class="headerlink" title="统计和为正数的子数组"></a>统计和为正数的子数组</h5><p><img src="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407141324484.png" class="lazyload" data-srcset="https://gcore.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407141324484.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
 <h5 id="分组循环模板"><a href="#分组循环模板" class="headerlink" title="分组循环模板"></a>分组循环模板</h5><p><strong>适用场景：</strong>按照题目要求，数组会被分割成若干组，且每一组的判断&#x2F;处理逻辑是一样的</p>
 <p><strong>核心思想：</strong></p>
 <ul>
 <li>外层循环负责遍历组之前的准备工作（记录开始位置），和遍历组之后的统计工作（更新答案最大值）</li>
 <li>内层循环负责遍历组，找出这一组最远在哪结束</li>
 </ul>
-<pre><code class="c++">// 分组循环
+<pre><code class="cpp">// 分组循环
 // 外层循环 枚举子数组的起点
 // 内层循环 扩展子数组的右端点
 int ans = 0, i = 0;
@@ -2628,7 +2627,7 @@ while (i &lt; n) &#123;
 &#125;
 return ans; 
 </code></pre>
-<h5 id="遍历矩阵每一条从左下到右上的斜对角线"><a href="#遍历矩阵每一条从左下到右上的斜对角线" class="headerlink" title="遍历矩阵每一条从左下到右上的斜对角线"></a>遍历矩阵每一条从左下到右上的斜对角线</h5><pre><code class="c++">// 按斜线遍历
+<h5 id="遍历矩阵每一条从左下到右上的斜对角线"><a href="#遍历矩阵每一条从左下到右上的斜对角线" class="headerlink" title="遍历矩阵每一条从左下到右上的斜对角线"></a>遍历矩阵每一条从左下到右上的斜对角线</h5><pre><code class="cpp">// 按斜线遍历
 for (int i = 1; i &lt; m + n - 2; i++)
 &#123;
     // ...
@@ -2643,7 +2642,7 @@ for (int i = 1; i &lt; m + n - 2; i++)
 </code></pre>
 <p>左上到右下不满足 <code>x+y</code> 为定值，枚举起点？</p>
 <h5 id="调用库函数二分查找"><a href="#调用库函数二分查找" class="headerlink" title="调用库函数二分查找"></a>调用库函数二分查找</h5><p>例：在前$j$个数中查找有多少个$nums[i]$满足$lower-nums[j]\leq nums[i] \leq upper-nums[j]$，前提是有序数组</p>
-<pre><code class="c++">LL res = 0;
+<pre><code class="cpp">LL res = 0;
 for (int j = 0; j &lt; n; j++)
 &#123;
     int u = upper - nums[j], l = lower - nums[j];
@@ -2660,7 +2659,7 @@ for (int j = 0; j &lt; n; j++)
 <li>否则当前区间与上一个区间在同一个集合</li>
 </ul>
 <h5 id="区间选点-使得每个区间内至少包含一个选出的点"><a href="#区间选点-使得每个区间内至少包含一个选出的点" class="headerlink" title="区间选点 使得每个区间内至少包含一个选出的点"></a>区间选点 使得每个区间内至少包含一个选出的点</h5><p>按区间的右端点从小到大排序 每次总是选择当前区间的右端点</p>
-<pre><code class="c++">  int res = 0, ed = -2e9;
+<pre><code class="cpp">  int res = 0, ed = -2e9;
   for (int i = 0; i &lt; n; i++)
     if (range[i].l &gt; ed) &#123;
       res++;
@@ -2677,7 +2676,7 @@ for (int j = 0; j &lt; n; j++)
 <p>对于一个长度为$n$的环，如果环上所有间隔为$k$的元素都要相等，那么环上所有间隔为$gcd(n,k)$的元素都要相等</p>
 <h5 id="把序列元素变得相等的最小运算次数"><a href="#把序列元素变得相等的最小运算次数" class="headerlink" title="把序列元素变得相等的最小运算次数"></a>把序列元素变得相等的最小运算次数</h5><p>经典中位数贪心，把所有数变为中位数即可（见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/">最小操作次数使数组元素相等 II</a>）</p>
 <h5 id="回文串之中心扩散法"><a href="#回文串之中心扩散法" class="headerlink" title="回文串之中心扩散法"></a>回文串之中心扩散法</h5><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/description/">不重叠回文子字符串的最大数目</a></p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int maxPalindromes(string s, int k) &#123;
         int n = s.length(), f[n + 1];
@@ -2698,7 +2697,7 @@ public:
 &#125;;
 </code></pre>
 <h5 id="DFS序"><a href="#DFS序" class="headerlink" title="DFS序"></a>DFS序</h5><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/description/">移除子树后的二叉树高度</a></p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
     int n = 0, clk = 0;
     vector&lt;int&gt; A, L, R;
 
@@ -2746,7 +2745,7 @@ public:
 <li>有多少个<strong>不同</strong>的 gcd ？由于 gcd 只会变小，且不超过原来的一半，故有 log(U) 个 &#x3D;&gt; 所有子数组至多有 nlogU 个不同的 gcd</li>
 <li>实现看代码</li>
 </ol>
-<pre><code class="c++">/*
+<pre><code class="cpp">/*
     6 4 2 6 3
 gcd:
     6
@@ -2794,7 +2793,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="给一个数-num-判断是否存在-k-使得-k-reverse-k-num"><a href="#给一个数-num-判断是否存在-k-使得-k-reverse-k-num" class="headerlink" title="给一个数 num 判断是否存在 k 使得 k + reverse(k) &#x3D;&#x3D; num"></a>给一个数 num 判断是否存在 k 使得 k + reverse(k) &#x3D;&#x3D; num</h5><pre><code class="c++">class Solution &#123;
+<h5 id="给一个数-num-判断是否存在-k-使得-k-reverse-k-num"><a href="#给一个数-num-判断是否存在-k-使得-k-reverse-k-num" class="headerlink" title="给一个数 num 判断是否存在 k 使得 k + reverse(k) &#x3D;&#x3D; num"></a>给一个数 num 判断是否存在 k 使得 k + reverse(k) &#x3D;&#x3D; num</h5><pre><code class="cpp">class Solution &#123;
 public:
     bool sumOfNumberAndReverse(int num) &#123;
         string s = to_string(num);
@@ -2813,7 +2812,7 @@ public:
 </code></pre>
 <p>O(logN)解法，思路见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-number-and-its-reverse/solutions/1896433/ji-yi-hua-sou-suo-geng-da-shu-ju-fan-wei-xyer/">题解</a></p>
 <h5 id="n-m-20-k-1e18，问从矩阵左上到右下的异或和等于-k-的路径数"><a href="#n-m-20-k-1e18，问从矩阵左上到右下的异或和等于-k-的路径数" class="headerlink" title="n&#x3D;m&#x3D;20,k&#x3D;1e18，问从矩阵左上到右下的异或和等于 k 的路径数"></a>n&#x3D;m&#x3D;20,k&#x3D;1e18，问从矩阵左上到右下的异或和等于 k 的路径数</h5><p>CF1006F，思路是折半枚举</p>
-<pre><code class="c++">map&lt;LL, int&gt; v[N][N];
+<pre><code class="cpp">map&lt;LL, int&gt; v[N][N];
 int n, m, half;
 LL k;
 LL a[N][N];
@@ -2858,7 +2857,7 @@ int main()
     return 0;
 &#125;
 </code></pre>
-<h5 id="求-lcp-矩阵"><a href="#求-lcp-矩阵" class="headerlink" title="求 lcp 矩阵"></a>求 lcp 矩阵</h5><pre><code class="c++">int lcp[n + 1][n + 1]; // lcp[i][j] 表示 s[i:] 和 s[j:] 的最长公共前缀
+<h5 id="求-lcp-矩阵"><a href="#求-lcp-矩阵" class="headerlink" title="求 lcp 矩阵"></a>求 lcp 矩阵</h5><pre><code class="cpp">int lcp[n + 1][n + 1]; // lcp[i][j] 表示 s[i:] 和 s[j:] 的最长公共前缀
         memset(lcp, 0, sizeof(lcp));
         for (int i = n - 1; i &gt;= 0; --i)
             for (int j = n - 1; j &gt; i; --j)
@@ -2866,7 +2865,7 @@ int main()
                     lcp[i][j] = lcp[i + 1][j + 1] + 1;
 </code></pre>
 <h5 id="区间分组，组内区间互不相交，最少组数"><a href="#区间分组，组内区间互不相交，最少组数" class="headerlink" title="区间分组，组内区间互不相交，最少组数"></a>区间分组，组内区间互不相交，最少组数</h5><p>经典贪心</p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int minGroups(vector&lt;vector&lt;int&gt;&gt;&amp; intervals) &#123;
         sort(intervals.begin(), intervals.end());
@@ -2881,7 +2880,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h5><pre><code class="c++">LL qmi(int a, int k, int p)
+<h5 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h5><pre><code class="cpp">LL qmi(int a, int k, int p)
 &#123;
     LL res = 1;
     while (k)
@@ -2894,7 +2893,7 @@ public:
 &#125;
 // 分子 * qmi(分母，mod - 2，mod)
 </code></pre>
-<pre><code class="c++">LL qmi(LL a, int b)
+<pre><code class="cpp">LL qmi(LL a, int b)
 &#123;
     LL res = 1;
     for (; b; b /= 2)
@@ -2907,11 +2906,11 @@ public:
 </code></pre>
 <p>字符串快速幂：假如指数是个字符串，怎么算呢？</p>
 <p>比如说 x 的 456 次方，可以表示成$[(x^4)^{10}\cdot x^5]^{10} \cdot x^6$，所以就可以线性遍历来计算了</p>
-<pre><code class="c++">    for (char c: p) &#123;
+<pre><code class="cpp">    for (char c: p) &#123;
       res = (qmi(res, 10, mod) * qmi(x, c - &#39;0&#39;, mod)) % mod;
     &#125;
 </code></pre>
-<h5 id="next-permutation-的实现"><a href="#next-permutation-的实现" class="headerlink" title="next_permutation 的实现"></a>next_permutation 的实现</h5><pre><code class="c++">class Solution &#123;
+<h5 id="next-permutation-的实现"><a href="#next-permutation-的实现" class="headerlink" title="next_permutation 的实现"></a>next_permutation 的实现</h5><pre><code class="cpp">class Solution &#123;
 public:
     void nextPermutation(vector&lt;int&gt;&amp; nums) &#123;
         int i = nums.size() - 2;
@@ -2926,7 +2925,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="double-版快速幂"><a href="#double-版快速幂" class="headerlink" title="double 版快速幂"></a>double 版快速幂</h5><pre><code class="c++">class Solution &#123;
+<h5 id="double-版快速幂"><a href="#double-版快速幂" class="headerlink" title="double 版快速幂"></a>double 版快速幂</h5><pre><code class="cpp">class Solution &#123;
 public:
     typedef long long LL;
     double qmi(double x, LL n)
@@ -2940,7 +2939,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="预处理质因数个数"><a href="#预处理质因数个数" class="headerlink" title="预处理质因数个数"></a>预处理质因数个数</h5><pre><code class="c++">int f[N + 10];
+<h5 id="预处理质因数个数"><a href="#预处理质因数个数" class="headerlink" title="预处理质因数个数"></a>预处理质因数个数</h5><pre><code class="cpp">int f[N + 10];
 
 bool inited = false;
 // 预处理每个数有几个质因数
@@ -2954,7 +2953,7 @@ void init() &#123;
             for (int j = i; j &lt;= N; j += i) f[j]++;
 &#125;
 </code></pre>
-<h5 id="预处理每个数的质因数"><a href="#预处理每个数的质因数" class="headerlink" title="预处理每个数的质因数"></a>预处理每个数的质因数</h5><pre><code class="c++">bool inited = false;
+<h5 id="预处理每个数的质因数"><a href="#预处理每个数的质因数" class="headerlink" title="预处理每个数的质因数"></a>预处理每个数的质因数</h5><pre><code class="cpp">bool inited = false;
 vector&lt;int&gt; fac[N + 1];
 void init() &#123;
     if (inited) return;
@@ -2979,14 +2978,14 @@ void divide(int x) &#123;
 <p>结论：预处理的复杂度是 <code>O(n)+O(n/2)+O(n/3)+...=O(nlogn)</code> 的</p>
 <p>平均来看，每个自然数有 <code>logn</code> 个真因子</p>
 <h5 id="遍历数组找到相邻元素和最小的对应下标"><a href="#遍历数组找到相邻元素和最小的对应下标" class="headerlink" title="遍历数组找到相邻元素和最小的对应下标"></a>遍历数组找到相邻元素和最小的对应下标</h5><p>还在想设 <code>mx</code> ？不需要！</p>
-<pre><code class="c++">int j = 1; // 设右端点
+<pre><code class="cpp">int j = 1; // 设右端点
 for (int i = 1; i &lt; a.size(); i++)
     if (a[i] + a[i - 1] &lt; a[j] + a[j - 1]) 
         j = i;
 </code></pre>
 <h5 id="O-n-2-离散化去重-二维差分模板"><a href="#O-n-2-离散化去重-二维差分模板" class="headerlink" title="O(n^2) 离散化去重+二维差分模板"></a>O(n^2) 离散化去重+二维差分模板</h5><p>见 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xepqZ5/description/">最强祝福力场</a>，就是给出若干矩形，问被矩形覆盖最多的点的被覆盖次数</p>
 <p>遇到 0.5 就要乘以 2</p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int fieldOfGreatestBlessing(vector&lt;vector&lt;int&gt;&gt; &amp;forceField) &#123;
         // 1. 统计所有左下和右上坐标
@@ -3041,7 +3040,7 @@ public:
 </blockquote>
 <p>例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/pizza-with-3n-slices/">1388. 3n 块披萨</a></p>
 <p>知识点：基于双向链表标记左右不能选，用堆实现贪心</p>
-<pre><code class="c++">struct Node &#123;
+<pre><code class="cpp">struct Node &#123;
     int v, l, r;
 &#125;;
 vector&lt;Node&gt; a;
@@ -3108,7 +3107,7 @@ public:
 </li>
 </ul>
 <p>模板：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/">2127. 参加会议的最多员工数</a></p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int maximumInvitations(vector&lt;int&gt;&amp; favorite) &#123;
         // case 1
@@ -3159,7 +3158,7 @@ public:
 &#125;;
 </code></pre>
 <h5 id="前缀异或和"><a href="#前缀异或和" class="headerlink" title="前缀异或和"></a>前缀异或和</h5><p>像构建回文串这样的需要统计字符出现次数的奇偶性的情况下，用前缀异或和，通常还要压缩成 <code>mask</code> 表示状态。</p>
-<pre><code class="c++">int main()
+<pre><code class="cpp">int main()
 &#123;
     cin &gt;&gt; s;
     cnt[0] = 1;
@@ -3176,7 +3175,7 @@ public:
 <h5 id="无向图定向"><a href="#无向图定向" class="headerlink" title="无向图定向"></a>无向图定向</h5><p>把无向图所有边的方向定为从度数小的顶点指向度数大的顶点（相同则从节点编号小到大），任意点的度数不会超过 $\sqrt{2M}$，在一些需要多重循环枚举图中顶点的题中，定向后的复杂度变为 $O(m\sqrt{m})$</p>
 <h5 id="懒删除堆"><a href="#懒删除堆" class="headerlink" title="懒删除堆"></a>懒删除堆</h5><p>对于一些数据结构设计题，需要多次修改某个 key 对应的值，还要查询最大值&#x2F;最小值，这种情况下用此技巧比较方便，修改的时候直接插入堆中并记录，查询的时候堆顶元素不同于记录值则弹出，否则就是答案</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-a-food-rating-system/">2353. 设计食物评分系统</a></p>
-<pre><code class="c++">class FoodRatings &#123;
+<pre><code class="cpp">class FoodRatings &#123;
     unordered_map&lt;string, pair&lt;int, string&gt;&gt; fs;
     unordered_map&lt;string, priority_queue&lt;pair&lt;int, string&gt;, vector&lt;pair&lt;int, string&gt;&gt;, greater&lt;&gt;&gt;&gt; cs;
 public:
@@ -3204,7 +3203,7 @@ public:
 &#125;;
 </code></pre>
 <h5 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h5><p>模板：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-gap/">164. 最大间距</a></p>
-<pre><code class="c++">int maximumGap(vector&lt;int&gt;&amp; nums) &#123;
+<pre><code class="cpp">int maximumGap(vector&lt;int&gt;&amp; nums) &#123;
     int n = nums.size();
     if (n &lt; 2) return 0;
     vector&lt;int&gt; tmp(n);
@@ -3237,7 +3236,7 @@ public:
 &#125;
 </code></pre>
 <p>应用：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/query-kth-smallest-trimmed-number/">2343. 裁剪数字后查询第 K 小的数字</a></p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     vector&lt;int&gt; smallestTrimmedNumbers(vector&lt;string&gt;&amp; nums, vector&lt;vector&lt;int&gt;&gt;&amp; queries) &#123;
         int n = nums.size(), m = nums[0].size();
@@ -3261,7 +3260,7 @@ public:
 &#125;;
 </code></pre>
 <h5 id="螺旋矩阵"><a href="#螺旋矩阵" class="headerlink" title="螺旋矩阵"></a>螺旋矩阵</h5><p>按四边界划分：</p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;
         vector &lt;int&gt; ans;
@@ -3286,7 +3285,7 @@ public:
 &#125;;
 </code></pre>
 <p>按方向划分：</p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     vector&lt;vector&lt;int&gt;&gt; spiralMatrix(int m, int n, ListNode* p) &#123;
         vector&lt;vector&lt;int&gt;&gt; res(m, vector&lt;int&gt;(n, -1));
@@ -3308,7 +3307,7 @@ public:
 &#125;;
 </code></pre>
 <h5 id="字符串从后往前找某个字符出现的位置"><a href="#字符串从后往前找某个字符出现的位置" class="headerlink" title="字符串从后往前找某个字符出现的位置"></a>字符串从后往前找某个字符出现的位置</h5><p>利用 <code>rfind()</code> 函数，例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-operations-to-make-a-special-number/">2844. 生成特殊数字的最少操作</a></p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int minimumOperations(string num) &#123;
         int n = num.length();
@@ -3323,7 +3322,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h5><pre><code class="c++">class Solution &#123;
+<h5 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h5><pre><code class="cpp">class Solution &#123;
 public:
   int ne[10010]; // 定义 ne 数组
     int strStr(string s, string p) &#123;
@@ -3350,7 +3349,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h5><pre><code class="c++">vector&lt;vector&lt;int&gt;&gt; matrix;
+<h5 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h5><pre><code class="cpp">vector&lt;vector&lt;int&gt;&gt; matrix;
 void newMatrix(int n, int m)
 &#123;
     matrix = vector&lt;vector&lt;int&gt;&gt;(n, vector&lt;int&gt;(m));
@@ -3389,7 +3388,7 @@ vector&lt;vector&lt;int&gt;&gt; qmi(vector&lt;vector&lt;int&gt;&gt; &amp;a, LL k
 vector&lt;vector&lt;int&gt;&gt; a = &#123;&#123;cnt - 1, cnt&#125;, &#123;n - cnt, n - 1 - cnt&#125;&#125;;
 vector&lt;vector&lt;int&gt;&gt; res = qmi(a, k);
 </code></pre>
-<h5 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h5><pre><code class="c++">typedef unsigned long long ULL;   // 2^64自动处理溢出，不用mod了
+<h5 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h5><pre><code class="cpp">typedef unsigned long long ULL;   // 2^64自动处理溢出，不用mod了
 const int N = 1e6 + 10, P = 131;  // P=13331
 int n, m;
 char str[N];
@@ -3407,7 +3406,7 @@ for (int i = 1; i &lt;= n; i++) &#123;
 if (get(l1, r1) == get(l2, r2))
     puts(&quot;Yes&quot;);
 </code></pre>
-<h5 id="双向链表插入"><a href="#双向链表插入" class="headerlink" title="双向链表插入"></a>双向链表插入</h5><pre><code class="c++">void push_front(Node *x)
+<h5 id="双向链表插入"><a href="#双向链表插入" class="headerlink" title="双向链表插入"></a>双向链表插入</h5><pre><code class="cpp">void push_front(Node *x)
 &#123;
     x-&gt;pre = dummy;
     x-&gt;nxt = dummy-&gt;nxt;
@@ -3417,7 +3416,7 @@ if (get(l1, r1) == get(l2, r2))
 </code></pre>
 <h5 id="数据流中维护最值（带删除）"><a href="#数据流中维护最值（带删除）" class="headerlink" title="数据流中维护最值（带删除）"></a>数据流中维护最值（带删除）</h5><p>常见于数据结构题中，记得使用 <code>multiset</code> ！</p>
 <p>另一种方法是使用两个堆，然后使用<strong>延时删除</strong>的技巧</p>
-<h5 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h5><pre><code class="c++">class Solution &#123;
+<h5 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h5><pre><code class="cpp">class Solution &#123;
 public:
     int longestCommonSubsequence(string text1, string text2) &#123;
       int m = text1.length(), n = text2.length();
@@ -3443,7 +3442,7 @@ public:
 <li>f[i] 随着 i 单调增，这一点可以由反证法证明</li>
 <li>据此可以在 f 中二分查找 a[i] 的插入点</li>
 </ol>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int lengthOfLIS(vector&lt;int&gt;&amp; nums) &#123; // 最长严格递增子序列
         int n = nums.size();
@@ -3468,7 +3467,7 @@ public:
 &#125;;
 </code></pre>
 <p>还需要掌握<strong>最长下降子序列、最长非增子序列、最长非降子序列</strong>，在于灵活运用 f[0] 和 lower_bound 和 upper_bound</p>
-<pre><code class="c++">int LIS(vector&lt;int&gt; &amp;a) &#123; // 另一种写法
+<pre><code class="cpp">int LIS(vector&lt;int&gt; &amp;a) &#123; // 另一种写法
     int n = a.size();
     int f[n + 10];
     int len = 0;
@@ -3501,7 +3500,7 @@ int LNAS(vector&lt;int&gt; &amp;a) &#123; // 最长不上升子序列
 <ul>
 <li>有序列表的查找</li>
 </ul>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     vector&lt;int&gt; findIndices(vector&lt;int&gt;&amp; nums, int x, int y) &#123;
         map&lt;int, int&gt; m//有序哈希表，按照值排序(方便使用二分快速查找)
@@ -3519,7 +3518,7 @@ public:
 <ul>
 <li>只需要找到一组下标对的情况下，可以采用贪心+枚举的方法</li>
 </ul>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     vector&lt;int&gt; findIndices(vector&lt;int&gt;&amp; nums, int indexDifference, int valueDifference) &#123;
         int n = nums.size();
@@ -3547,7 +3546,7 @@ public:
 <ul>
 <li>因为要维护最值，所以用平衡树维护</li>
 </ul>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     int minAbsoluteDifference(vector&lt;int&gt; &amp;nums, int x) &#123;
         int ans = INT_MAX, n = nums.size();
@@ -3568,7 +3567,7 @@ public:
 <p>x[n-1]-x[n-2] x[n-1]-x[n-3] … x[n-1]-x[0]<br>‘’’<br>通过统计每个项出现为正和为负的次数，得到下列公式<br>$$<br>s&#x3D;(n-1)(x[n-1]-x[0])+(n-3)(x[n-2]-x[1])+… \<br>&#x3D;\Sigma_{i&#x3D;0}^{\lfloor n&#x2F;2 \rfloor-1}(n-1-2i)(x[n-1-i]-x[i])<br>$$<br>记得加 LL</p>
 <p><code>res = (res + (n - 1 - 2 * i) * ((LL)a[n - 1 - i] - a[i])) % MOD;</code></p>
 <h5 id="如何判定-i-i-是否能够分割成多个整数，使其累加值为-i-？"><a href="#如何判定-i-i-是否能够分割成多个整数，使其累加值为-i-？" class="headerlink" title="如何判定 i * i 是否能够分割成多个整数，使其累加值为 i ？"></a>如何判定 i * i 是否能够分割成多个整数，使其累加值为 i ？</h5><p>简单做法是递归，每次从当前值的低位开始截取，通过「取余」和「地板除」操作，得到截取部分和剩余部分，再继续递归处理</p>
-<pre><code class="c++">bool check(int t, int x) &#123;
+<pre><code class="cpp">bool check(int t, int x) &#123;
     if (t == x) return true;
     int d = 10;
     while (t &gt;= d &amp;&amp; t % d &lt;= x) &#123;
@@ -3582,7 +3581,7 @@ public:
 <h5 id="树形-DP-求树的直径"><a href="#树形-DP-求树的直径" class="headerlink" title="树形 DP 求树的直径"></a>树形 DP 求树的直径</h5><p><strong>树上任意两节点之间最长的简单路径即为树的「直径」。</strong></p>
 <p>我们记录当 1 为树的根时，每个节点作为子树的根向下，所能延伸的最长路径长度 d1 与次长路径（与最长路径无公共边）长度 d2 ，那么直径就是对于每一个点，该点 d1+d2 能取到的值中的最大值。</p>
 <p>树形 DP 可以在存在负权边的情况下求解出树的直径。</p>
-<pre><code class="c++">LL d1[N], d2[N], d;
+<pre><code class="cpp">LL d1[N], d2[N], d;
 
 void dfs(int u, int fa)
 &#123;
@@ -3637,7 +3636,7 @@ max( |arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j|)
 <p>学会展开，然后一次遍历，维护最值即可</p>
 <h5 id="栈模拟思想"><a href="#栈模拟思想" class="headerlink" title="栈模拟思想"></a>栈模拟思想</h5><p><strong>套路</strong>：从前往后遍历 + 需要考虑相邻元素 + 有消除操作 &#x3D; 栈。</p>
 <p>用一个变量模拟栈的奇偶性即可</p>
-<h5 id="逆元-组合数模板"><a href="#逆元-组合数模板" class="headerlink" title="逆元 组合数模板"></a>逆元 组合数模板</h5><pre><code class="c++">LL qmi(LL x, int n)
+<h5 id="逆元-组合数模板"><a href="#逆元-组合数模板" class="headerlink" title="逆元 组合数模板"></a>逆元 组合数模板</h5><pre><code class="cpp">LL qmi(LL x, int n)
 &#123;
     LL res = 1;
     for (; n; n /= 2)
@@ -3668,7 +3667,7 @@ LL comb(int n, int k)
 <p>关于逆元，当 b 为质数时，可以用快速幂来求，否则就只能用扩展欧几里得法来求</p>
 <p>如何求解 n 个数的逆元？</p>
 <p>首先求前缀积，然后求逆元，因为 sv[n] 是 n 个数积的逆元，把它乘上 a[n]，就会和 a[n] 的逆元抵消，得到 sv[n-1]，以此类推</p>
-<pre><code class="c++">s[0] = 1;
+<pre><code class="cpp">s[0] = 1;
 for (int i = 1;i &lt;= n; i++) s[i] = s[i - 1] * a[i] % p;
 sv[n] = qmi(s[n], p - 2);
 for (int i = n; i &gt;= 1; i--) sv[i - 1] = sv[i] * a[i] % p;
@@ -3676,7 +3675,7 @@ for (int i = 1; i &lt;= n; i++) inv[i] = sv[i] * s[i - 1] % p;
 </code></pre>
 <h5 id="选定不重叠区间使得收益最大-dp-二分-哈希"><a href="#选定不重叠区间使得收益最大-dp-二分-哈希" class="headerlink" title="选定不重叠区间使得收益最大 dp+二分&#x2F;哈希"></a>选定不重叠区间使得收益最大 dp+二分&#x2F;哈希</h5><p>dp+二分的思路很熟悉了：区间按右端点排，然后遍历，选或不选的思路</p>
 <p>哈希的思路是，当区间值域不大时，直接开哈希表或者桶，把同一结束时间的区间都放进去，遍历到 i 的时候直接看 i 这个桶就可以了，复杂度是 O(n+m)</p>
-<h5 id="LL-LL"><a href="#LL-LL" class="headerlink" title="LL * LL"></a>LL * LL</h5><pre><code class="c++">LL mul(LL a, LL b, LL p)
+<h5 id="LL-LL"><a href="#LL-LL" class="headerlink" title="LL * LL"></a>LL * LL</h5><pre><code class="cpp">LL mul(LL a, LL b, LL p)
 &#123;
     LL ret=0;
     while(b)
@@ -3688,7 +3687,7 @@ for (int i = 1; i &lt;= n; i++) inv[i] = sv[i] * s[i - 1] % p;
 &#125;
 </code></pre>
 <h5 id="二维前缀和与差分"><a href="#二维前缀和与差分" class="headerlink" title="二维前缀和与差分"></a>二维前缀和与差分</h5><p>看这个就可以了 </p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     bool possibleToStamp(vector&lt;vector&lt;int&gt;&gt; &amp;grid, int stampHeight, int stampWidth) &#123;
         int m = grid.size(), n = grid[0].size();
@@ -3730,7 +3729,7 @@ public:
     &#125;
 &#125;;
 </code></pre>
-<h5 id="预处理-1e9-以内的回文数"><a href="#预处理-1e9-以内的回文数" class="headerlink" title="预处理 1e9 以内的回文数"></a>预处理 1e9 以内的回文数</h5><pre><code class="c++">bool inited = false;
+<h5 id="预处理-1e9-以内的回文数"><a href="#预处理-1e9-以内的回文数" class="headerlink" title="预处理 1e9 以内的回文数"></a>预处理 1e9 以内的回文数</h5><pre><code class="cpp">bool inited = false;
 vector&lt;int&gt; good;
 
 void init() &#123;
@@ -3777,7 +3776,7 @@ void init() &#123;
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/meChtZ/">LCP 20. 快速公交</a></p>
 <h5 id="相邻合并——考虑连续子数组的合并"><a href="#相邻合并——考虑连续子数组的合并" class="headerlink" title="相邻合并——考虑连续子数组的合并"></a>相邻合并——考虑连续子数组的合并</h5><p>例题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/description/">给定操作次数内使剩余元素的或值最小</a></p>
 <h5 id="判环"><a href="#判环" class="headerlink" title="判环"></a>判环</h5><p>对于有向图判断环路很简单，拓扑排序即可</p>
-<pre><code class="c++">bool topsort() &#123;
+<pre><code class="cpp">bool topsort() &#123;
     int hh = 0, tt = -1;
     for (int i = 1; i &lt;= n; i++)
         if (!d[i])
@@ -3795,7 +3794,7 @@ void init() &#123;
 &#125;
 </code></pre>
 <p>对于无向图，我想知道无环联通块的个数，怎么算呢？可以利用 dfs 求点的个数的边的个数，然后用 V &#x3D;&#x3D; E&#x2F;2+1 来判断</p>
-<pre><code class="c++">void dfs(int u)
+<pre><code class="cpp">void dfs(int u)
 &#123;
     st[u] = 1;
     V ++;
@@ -3810,7 +3809,7 @@ void init() &#123;
 <li>日期问题必默模板</li>
 <li>格式化输入字符串</li>
 </ul>
-<pre><code class="c++">// 必背
+<pre><code class="cpp">// 必背
 const int months[] = &#123;0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31&#125;;
 
 int is_leap(int year) &#123;
@@ -3849,12 +3848,12 @@ def solve(t1, t2):
 </code></pre>
 <h5 id="1-2-n-1-中每个二进制位共有多少个-1？"><a href="#1-2-n-1-中每个二进制位共有多少个-1？" class="headerlink" title="[1, 2^n-1] 中每个二进制位共有多少个 1？"></a>[1, 2^n-1] 中每个二进制位共有多少个 1？</h5><p>一共 n 个二进制位，固定一位填 1，其余任意，发现其实所有二进制位 1 的个数都是 2^(n-1)</p>
 <h5 id="字典序问题"><a href="#字典序问题" class="headerlink" title="字典序问题"></a>字典序问题</h5><p>如何自定义 cmp？</p>
-<pre><code class="c++">return s1 + s2 &lt; s2 + s1; // string 数组 按字典序从小到大排序
+<pre><code class="cpp">return s1 + s2 &lt; s2 + s1; // string 数组 按字典序从小到大排序
 </code></pre>
 <h5 id="数组元素两两分组求最大组数"><a href="#数组元素两两分组求最大组数" class="headerlink" title="数组元素两两分组求最大组数"></a>数组元素两两分组求最大组数</h5><p>这类问题不知道该归纳为什么类型比较好。一个数组，两个元素作为一组，要求每组内的元素不同，例如 [1,1,2,3] 可以分为 [1,2] 和 [1,3]。分析的核心在于<strong>出现次数最多的元素出现了 d 次</strong>，若 <code>d&lt;=n-d</code>，则可以分 n&#x2F;2 个组；否则只能分 (n-d)*2 个组。为什么呢？想象我们有两行，<code>a[0][0]</code> 和 <code>a[1][0]</code> 就是一组，以此类推。那么我们可以把出现次数最多的元素先依次排在第一行，剩下的元素排在第二行，这样必定满足同一组的元素不同。可以用反证法证明没有更优的摆法。所以需要讨论 n 和 n-d 的关系，假如某个元素出现次数超过一半，多出来的部分肯定不能配对的</p>
 <p>例题在 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/description/">你可以工作的最大周数</a>，<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-equalize-array/description/">使数组中所有元素相等的最小开销</a></p>
 <h5 id="数组-a-和-b-有多少对下标-a-i-整除-b-j"><a href="#数组-a-和-b-有多少对下标-a-i-整除-b-j" class="headerlink" title="数组 a 和 b 有多少对下标 a[i] 整除 b[j]"></a>数组 a 和 b 有多少对下标 a[i] 整除 b[j]</h5><p>方法一是朴素枚举 a 的因子，复杂度是 nsqrt(U)</p>
-<pre><code class="c++">for (int x : nums1) &#123;
+<pre><code class="cpp">for (int x : nums1) &#123;
     for (int d = 1; d * d &lt;= x; d++) &#123;
         if (x % d) &#123;
             continue;
@@ -3867,7 +3866,7 @@ def solve(t1, t2):
 &#125;
 </code></pre>
 <p>方法二：以 b 为主视角，寻找在 a 中的倍数</p>
-<pre><code class="c++">long long ans = 0;
+<pre><code class="cpp">long long ans = 0;
 int m = ranges::max_element(cnt1)-&gt;first; // 先求出 U
 for (auto&amp; [i, c] : cnt2) &#123; // b 数组的数字事先存哈希表
     int s = 0;
@@ -3887,7 +3886,7 @@ for (auto&amp; [i, c] : cnt2) &#123; // b 数组的数字事先存哈希表
 </ul>
 <p>可用于 and、or、gcd、lcm</p>
 <p>特点：固定右端点，结果具有单调性质，相同结果的左端点会形成一段连续区间</p>
-<pre><code class="c++">        map&lt;int, LL&gt; res; // 统计子数组数量
+<pre><code class="cpp">        map&lt;int, LL&gt; res; // 统计子数组数量
         vector&lt;array&lt;int, 3&gt;&gt; a; // 左端点闭区间 [a[0], a[1]] 值为 a[2]
         for (int i = 0; i &lt; nums.size(); i++) &#123;
             int cur = nums[i];
@@ -3918,7 +3917,7 @@ for (auto&amp; [i, c] : cnt2) &#123; // b 数组的数字事先存哈希表
         &#125;
 </code></pre>
 <p>另一个模板是枚举 logX 种 and、or 值，找到每个二进制位不同的最近位置</p>
-<pre><code class="c++">class Solution &#123;
+<pre><code class="cpp">class Solution &#123;
 public:
     long long countSubarrays(vector&lt;int&gt;&amp; nums, int K) &#123;
         int n = nums.size();
@@ -3961,7 +3960,7 @@ public:
 &#125;;
 </code></pre>
 <h5 id="a-是子串，b-是子序列"><a href="#a-是子串，b-是子序列" class="headerlink" title="a 是子串，b 是子序列"></a>a 是子串，b 是子序列</h5><p>有一个原串不知道，给两个字符串，满足上述条件，问原串的最小长度。转化为 b 中某一段 cover 了 a，相当于找到 a 的最长子序列，是 b 的子串，然后加上 b 剩下的就是最小长度</p>
-<pre><code class="c++">        cin &gt;&gt; a &gt;&gt; b;
+<pre><code class="cpp">        cin &gt;&gt; a &gt;&gt; b;
         // a 是子串 b 是子序列
         // a 的子序列是 b 的子串
         int res = 0;
@@ -3977,7 +3976,7 @@ public:
         cout &lt;&lt; b.size() - res + a.size() &lt;&lt; endl;
 </code></pre>
 <h5 id="分配-1-和-1-使得最大化最小值"><a href="#分配-1-和-1-使得最大化最小值" class="headerlink" title="分配 1 和 -1 使得最大化最小值"></a>分配 1 和 -1 使得最大化最小值</h5><p>有 A，B 两个数，每轮给 a，b（只可能是 -1，0，1），选择让 A+&#x3D;a 或者 B+&#x3D;b，使得最后 A，B 的最小值最大。首先如果 a，b 不同，肯定是谁大就加谁，对于 a&#x3D;b&#x3D;1 和 a&#x3D;b&#x3D;-1，先把它们的次数存起来。最后通过<strong>二分</strong>判断是否能达到某个值，这样判断是最简单好懂的</p>
-<pre><code class="c++">        auto check = [](int A, int B, int C, int D, int t) -&gt; bool &#123;
+<pre><code class="cpp">        auto check = [](int A, int B, int C, int D, int t) -&gt; bool &#123;
             if (A &lt; t) &#123;
                 C -= t - A;
                 A = t;
@@ -4019,7 +4018,7 @@ public:
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-14T00:22:31+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-14T13:26:40+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2024年7月14日</p>
@@ -4764,7 +4763,7 @@ public:
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/算法/","name":"算法"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/13/算法题经典套路/","name":"算法题经典套路"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法题经典套路","description":"做题过程中积累的经典套路","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/","wordCount":0,"datePublished":"2024-07-12T16:00:00.000Z","dateModified":"2024-07-13T16:22:31.075Z","articleSection":"算法","keywords":"技巧","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/算法/","name":"算法"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/13/算法题经典套路/","name":"算法题经典套路"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法题经典套路","description":"做题过程中积累的经典套路","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/13/%E7%AE%97%E6%B3%95%E9%A2%98%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/","wordCount":0,"datePublished":"2024-07-12T16:00:00.000Z","dateModified":"2024-07-14T05:26:40.832Z","articleSection":"算法","keywords":"技巧","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
