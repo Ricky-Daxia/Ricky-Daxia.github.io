@@ -35,19 +35,20 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>算法题记二 - Rikki's Blog</title>
-  <meta name="keywords" content="null">
-  <meta desc name="description" content="hhh - Ligu - Rikki's Blog">
+  <meta name="keywords" content="题目,null">
+  <meta desc name="description" content="积累一些有意思的题目 - Ligu - Rikki's Blog">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法题记二">
 <meta property="og:url" content="https://ricky-daxia.github.io/2024/07/15/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E4%BA%8C/index.html">
 <meta property="og:site_name" content="Rikki&#39;s Blog">
-<meta property="og:description" content="算法题笔记二LC2289 使数组按非降序排列的操作数 思维题 转换为单调栈如果一个元素左边有比它更大的，那么这个元素一定是在它之后被删除的 对于一个非降序列，删除时刻一定是递增的，只用考虑它左边的元素中删除时刻最大的那个，然后 +1 就是这个数的删除时刻 class Solution &#123; public:     int totalSteps(vector&lt;int&gt;&amp;">
+<meta property="og:description" content="积累一些有意思的题目">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-07-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-15T14:38:07.484Z">
+<meta property="article:modified_time" content="2024-07-15T14:44:50.721Z">
 <meta property="article:author" content="Ligu">
+<meta property="article:tag" content="题目">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1745,7 +1746,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1721054593017),
+    lastupdate: new Date(1721054697810),
     sidebar: {
       for_page: ["blogger","category","tagcloud"],
       for_post: ["toc"],
@@ -2558,6 +2559,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url"><span itemprop="name">算法</span></a>
+      </span>
+    
+  </div>
+
 
           
         
@@ -3642,7 +3653,7 @@ LL get(int lim)
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-15T22:38:07+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-07-15T22:44:50+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2024年7月15日</p>
@@ -3653,6 +3664,10 @@ LL get(int lim)
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%A2%98%E7%9B%AE/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>题目</p></a></div>
+  <span hidden itemprop="keywords">题目</span>
+
 
         
       
@@ -4197,6 +4212,60 @@ LL get(int lim)
 <!-- pjax 标签必须存在于所有页面 否则 pjax error -->
 <pjax>
 
+        <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = "https://unpkg.com/volantis-static@0.0.1654736714924/libs/mathjax/es5/tex-mml-chtml.js";
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typesetPromise();
+  }
+</script>
+
+
+
 </pjax>
 
 <script>
@@ -4328,7 +4397,7 @@ LL get(int lim)
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/15/算法题记二/","name":"算法题记二"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法题记二","description":"hhh","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/15/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E4%BA%8C/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/15/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E4%BA%8C/","wordCount":0,"datePublished":"2024-07-14T16:00:00.000Z","dateModified":"2024-07-15T14:38:07.484Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ricky-daxia.github.io/","name":"Rikki's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ricky-daxia.github.io/categories/算法/","name":"算法"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ricky-daxia.github.io/2024/07/15/算法题记二/","name":"算法题记二"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/","description":"hhh"},"publisher":{"@type":"Organization","name":"Rikki's Blog","url":"https://ricky-daxia.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ricky-daxia.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法题记二","description":"积累一些有意思的题目","inLanguage":["zh-CN","en","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ricky-daxia.github.io/2024/07/15/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E4%BA%8C/"},"author":{"@type":"Person","name":"Ligu","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ricky-daxia.github.io/"},"publisher":{"@type":"Organization","name":"Rikki's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ricky-daxia.github.io/2024/07/15/%E7%AE%97%E6%B3%95%E9%A2%98%E8%AE%B0%E4%BA%8C/","wordCount":0,"datePublished":"2024-07-14T16:00:00.000Z","dateModified":"2024-07-15T14:44:50.721Z","articleSection":"算法","keywords":"题目","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
