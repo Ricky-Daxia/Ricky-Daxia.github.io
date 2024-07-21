@@ -56,7 +56,13 @@ export default defineConfig({
     // 右侧索引展示文本
     outlineTitle: "文章目录",
     // git提交时间展示文本
-    lastUpdatedText: "更新时间",
+    lastUpdated: {
+      text: 'Updated at',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'short'
+      }
+    },
     // md 中使用外部链接时展示额外的图标
     externalLinkIcon: true,
     // 移动端切换主题展示文本
