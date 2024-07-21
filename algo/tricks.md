@@ -1789,7 +1789,7 @@ public:
 
 考虑每个数对答案的贡献，累加相邻元素差值中大于 0 的部分
 
-严禁证明见[题解](https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/solutions/371326/xing-cheng-mu-biao-shu-zu-de-zi-shu-zu-zui-shao-ze/)
+严谨证明见[题解](https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/solutions/371326/xing-cheng-mu-biao-shu-zu-de-zi-shu-zu-zui-shao-ze/)
 
 **类型三**
 
