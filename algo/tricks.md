@@ -1005,23 +1005,45 @@ vector<vector<int>> res = qmi(a, k);
 ### 字符串哈希
 
 ```cpp
-typedef unsigned long long ULL;   // 2^64自动处理溢出，不用mod了
-const int N = 1e6 + 10, P = 131;  // P=13331
-int n, m;
-char str[N];
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-ULL h[N], p[N];  // h数组存储hash值，p指向pow，计算L~R区间hash值时要用到
-ULL get(int l, int r) { return h[r] - h[l - 1] * p[r - l + 1]; }
-
-scanf("%d%d%s", &n, &m, str + 1);
-p[0] = 1;
-for (int i = 1; i <= n; i++) {
-	p[i] = p[i - 1] * P;           //次方数
-	h[i] = h[i - 1] * P + str[i];  //初始化预处理所有hash值
+int rnd(int x, int y) {
+    return uniform_int_distribution<int>(x, y)(rng);
 }
 
-if (get(l1, r1) == get(l2, r2))
-	puts("Yes");
+struct HashSeq {
+    vector<long long> P, H;
+    int MOD, BASE;
+
+    HashSeq() {}
+
+    HashSeq(string &s, int MOD, int BASE): MOD(MOD), BASE(BASE) {
+        int n = s.size();
+        P.resize(n + 1);
+        P[0] = 1;
+        for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
+        H.resize(n + 1);
+        H[0] = 0;
+        for (int i = 1; i <= n; i++) H[i] = (H[i - 1] * BASE + (s[i - 1] ^ 7)) % MOD;
+    }
+
+    long long query(int l, int r) {
+        return (H[r] - H[l - 1] * P[r - l + 1] % MOD + MOD) % MOD;
+    }
+};
+
+int MOD1 = 998244353 + rnd(0, 1e9), BASE1 = 233 + rnd(0, 1e3);
+int MOD2 = 998244353 + rnd(0, 1e9), BASE2 = 233 + rnd(0, 1e3);
+
+struct HashString {
+    HashSeq hs1, hs2;
+
+    HashString(string &s): hs1(HashSeq(s, MOD1, BASE1)), hs2(HashSeq(s, MOD2, BASE2)) {}
+
+    long long query(int l, int r) {
+        return hs1.query(l, r) * MOD1 + hs2.query(l, r);
+    }
+};
 ```
 
 ### 双向链表插入

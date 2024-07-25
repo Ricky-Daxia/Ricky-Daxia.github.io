@@ -13,8 +13,6 @@ export default defineConfig({
 
     lang: 'zh-CN',
 
-    lastUpdated: true,
-
     nav: [
       { 
         text: '算法',
@@ -30,6 +28,38 @@ export default defineConfig({
         items: [
           { text: 'Y-Combinator', link: '/math/ycombinator' }
         ] 
+      },
+      {
+        text: '模板',
+        items: [
+          { text: '01-BFS', link: '/template/01BFS' },
+          { text: '单调栈', link: '/template/单调栈' },
+          { text: '动态区间求并', link: '/template/动态区间求并' },
+          { text: '滑动窗口前K小数', link: '/template/滑动窗口前K小数' },
+          { text: '矩阵快速幂优化floyd', link: '/template/矩阵快速幂优化floyd' },
+          { text: '马拉车与扩展kmp', link: '/template/马拉车与扩展kmp' },
+          { text: '普通莫队算法', link: '/template/普通莫队算法' },
+          { text: '射线法判断点是否在多边形内', link: '/template/射线法判断点是否在多边形内' },
+          { text: '实用函数', link: '/template/实用函数' },
+          { text: '树上倍增或lca', link: '/template/树上倍增或lca' },
+          { text: '树上启发式合并', link: '/template/树上启发式合并' },
+          { text: '树状数组', link: '/template/树状数组' },
+          { text: '数位DP', link: '/template/数位DP' },
+          { text: '图论', link: '/template/图论' },
+          { text: '线段树', link: '/template/线段树' },
+          { text: '整体二分', link: '/template/整体二分' },
+          { text: '子集', link: '/template/子集' },
+          { text: '组合数', link: '/template/组合数' },
+          { text: '最大流最小费模板', link: '/template/最大流最小费模板' },
+          { text: 'AC自动机', link: '/template/AC自动机' },
+          { text: 'dfs序或重链剖分', link: '/template/dfs序或重链剖分' },
+          { text: 'go 代码', link: '/template/go代码' },
+          { text: 'LIS问题', link: '/template/LIS问题' },
+          { text: 'meet-in-the-middle', link: '/template/meet-in-the-middle' },
+          { text: 'RMQ的st表实现', link: '/template/RMQ的st表实现' },
+          { text: 'Tarjan', link: '/template/Tarjan' },
+          { text: 'Trie', link: '/template/Trie' }
+        ]
       }
     ],
 
