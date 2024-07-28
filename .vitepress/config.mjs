@@ -30,6 +30,13 @@ export default defineConfig({
         ] 
       },
       {
+        text: '面试',
+        items: [
+          { text: '笔试题记录', link: 'job/笔试题记录' },
+          
+        ]
+      },
+      {
         text: '模板',
         items: [
           { text: '01-BFS', link: '/template/01BFS' },
