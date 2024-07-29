@@ -30,10 +30,10 @@ export default defineConfig({
         ] 
       },
       {
-        text: '面试',
+        text: '找工',
         items: [
           { text: '笔试题记录', link: 'job/笔试题记录' },
-          
+          { text: '软件体系结构', link: 'job/软件体系结构' }
         ]
       },
       {
