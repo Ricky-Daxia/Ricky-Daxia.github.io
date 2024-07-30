@@ -1190,3 +1190,60 @@ LL get(int lim)
     return res;
 }
 ```
+
+### 长度有上限/下限的最大子数组和
+> https://codeforces.com/problemset/problem/1796/D
+> 
+> 你需要把 a 中恰好 k 个数增加 x，其余数减少 x。<br/>
+> 该操作必须恰好执行一次。<br/>
+> 在最优操作下，a 的最大连续子数组和的最大值是多少？<br/>
+> 注意子数组可以是空的，元素和为 0。<br/>
+
+O(n) 做法。
+
+如果 $x<0$，那么可以把 $x$ 变成 $-x$，同时 $k$ 变成 $n-k$。
+下面的讨论满足 $x>=0$。
+
+为方便计算，先把所有数都减去 $x$，于是操作变成把 $k$ 个数增加 $2x$。
+
+分类讨论：
+1. 如果子数组长度超过 $k$，那么子数组内有 $k$ 个数可以增加 $2x$，总和增加 $2kx$。我们计算的是长度有下限的最大子数组和<br/>
+用前缀和思考，`s[right]-s[left]` 最大，那么 `s[left]` 尽量小，且 `right-left > k`，所以枚举 `right` 的同时，要维护 `s[0]` 到 `s[right-k-1]` 的最小值
+
+2. 如果子数组长度不超过 $k$，那么子数组内所有数都可以增加 $2x$。我们计算的是长度有上限的最大子数组和，这可以用**前缀和+单调队列**解决
+
+总的来说，这题同时考察了最大子数组和的长度下限变体和长度上限变体，是一道不错的综合题目
+
+```cpp
+    cin >> n >> k >> x;
+    if (x < 0) {
+        x = -x;
+        k = n - k;
+    }
+    LL res = 0;
+    LL pre = 0, mn = 0, pre2 = 0;
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        pre += a[i] - x;
+        if (i >= k) {
+            res = max(res, pre - mn + 2LL * k * x);
+            pre2 += a[i - k] - x;
+            mn = min(mn, pre2);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        sum[i + 1] = sum[i] + a[i] + x;
+    }
+    deque<int> q{0};
+    for (int i = 1; i <= n; i++) {
+        if (q.front() < i - k) {
+            q.pop_front();
+        }
+        while (q.size() && sum[i] <= sum[q.back()]) {
+            q.pop_back();
+        }
+        q.push_back(i);
+        res = max(res, sum[i] - sum[q.front()]);
+    }
+    cout << res << '\n';
+```
