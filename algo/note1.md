@@ -1155,3 +1155,82 @@ sort(q, q + m, [](Node &A, Node &B) {
     }
 ```
 
+### 区间合并技巧
+
+> 有 `n` 个城市，编号从 `0` 到 `n - 1`。初始时，每个城市 `i` 都有一条单向道路通往城市 `i + 1（ 0 <= i < n - 1）`。
+> 
+> `queries[i] = [ui, vi]` 表示新建一条从城市 `ui` 到城市 `vi` 的单向道路。每次查询后，你需要找到从城市 `0` 到城市 `n - 1` 的最短路径的长度。
+> 
+> 所有查询中不会存在两个查询都满足 `queries[i][0] < queries[j][0] < queries[i][1] < queries[j][1]`。
+> 
+> 返回一个数组 `answer`，对于范围 `[0, queries.length - 1]` 中的每个 `i`，`answer[i]` 是处理完前 `i + 1` 个查询后，从城市 `0` 到城市 `n - 1` 的最短路径的长度。
+
+题意指的是新加的边不会交叉，每次加边会合并一些区间
+
+方法一：用 `set` 动态维护所有区间，`it = st.erase(it)` 删除当前元素并返回下一个元素的迭代器
+```c++
+class Solution {
+public:
+    using PII = pair<int, int>;
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        set<PII> st;
+        for (int i = 0; i < n - 1; i++) {
+            st.insert({i, i + 1});
+        }
+        vector<int> res;
+        for (auto &q: queries) {
+            int l = q[0], r = q[1];
+            auto it = st.lower_bound({l, -1});
+            if (it != st.end() && it->first == l && it->second < r) {
+                while (it != st.end() && it->first < r) {
+                    it = st.erase(it);
+                }
+                st.insert({l, r});
+            }
+            res.push_back(st.size());
+        }
+        return res;
+    }
+};
+```
+
+方法二：用并查集维护，连通块数量就是最短长度
+```c++
+class Solution {
+public:
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        vector<int> p(n - 1);
+        for (int i = 0; i < n - 1; i++) {
+            p[i] = i;
+        }
+        
+        auto find = [&](int x) -> int {
+            int root = x;
+            while (p[root] != root) {
+                root = p[root];
+            }
+            while (p[x] != root) {
+                int tmp = p[x];
+                p[x] = root;
+                x = tmp;
+            }
+            return root;
+        }; // 递归版的也可以
+        
+        vector<int> res;
+        int cnt = n - 1;
+        for (auto &q: queries) {
+            int l = q[0], r = q[1] - 1;
+            int root = find(r);
+            for (int i = find(l); i < r; i = find(i + 1)) {
+                p[i] = root;
+                cnt --;
+            }
+            res.push_back(cnt);
+        }
+        return res;
+    }
+};
+```
+
+方法三：线段树，一开始全为 `1`，合并的区间内的点置 `0`，区间和即为答案
