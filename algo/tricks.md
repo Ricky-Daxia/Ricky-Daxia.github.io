@@ -1889,3 +1889,51 @@ for (int i = 1, x; i <= n; i++) {
 给数组，可以分任意段，假设分了 $k$ 段，求 $\Sigma_{i=1}^{k}i*S_i$ 的最大值，其中 $S_i$ 是这一段的元素和
 
 本质：切分一段后，**后缀和**的贡献多一倍！得到一个贪心的思路是：从后往前遍历，只要当前的 `sum[i:n] > 0` 就可以切一刀
+
+### 矩阵顺时针旋转 90°
+
+$O(mn)$ 空间写法
+
+```cpp
+// 顺时针旋转矩阵 90°
+vector<vector<int>> rotate(vector<vector<int>>& a) {
+    int m = a.size();
+    int n = a[0].size();
+    vector<vector<int>> b(n, vector<int>(m));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            b[j][m - 1 - i] = a[i][j];
+        }
+    }
+    return b;
+}
+```
+
+如果是方阵的话，可以做到 $O(1)$ 空间，思路是**转置+每一行翻转**
+
+```cpp
+void rotate(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+    // 水平翻转
+    for (int i = 0; i < n / 2; ++i) {
+        for (int j = 0; j < n; ++j) {
+            swap(matrix[i][j], matrix[n - i - 1][j]);
+        }
+    }
+    // 主对角线翻转
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < i; ++j) {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+}
+```
+
+### 矩阵分成三个部分，共有 6 种情况
+
+如图，学会分类讨论
+
+![](https://pic.leetcode.cn/1719115137-fKSEdt-graph1.png)
+
+[题目链接](https://leetcode.cn/problems/find-the-minimum-area-to-cover-all-ones-ii/description/)
+
