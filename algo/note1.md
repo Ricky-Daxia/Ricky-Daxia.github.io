@@ -1234,3 +1234,51 @@ public:
 ```
 
 方法三：线段树，一开始全为 `1`，合并的区间内的点置 `0`，区间和即为答案
+
+```cpp
+const int N = 100010;
+class Solution {
+public:
+    struct Node {
+        int l, r, val;
+    };
+    Node tr[N << 2];
+    void build(int u, int l, int r) {
+        tr[u] = {l, r};
+        if (l == r) {
+            tr[u].val = 1;
+            return;
+        }
+        int mid = l + r >> 1;
+        build(u << 1, l, mid);
+        build(u << 1 | 1, mid + 1, r);
+        tr[u].val = tr[u << 1].val + tr[u << 1 | 1].val;
+    }
+    void update(int u, int L, int R) {
+        if (tr[u].val == 0) { // 不加这个的话就需要懒标记下传
+            return;
+        }
+        if (L <= tr[u].l && tr[u].r <= R) {
+            tr[u].val = 0;
+            return;
+        }
+        int mid = tr[u].l + tr[u].r >> 1;
+        if (L <= mid) {
+            update(u << 1, L, R);
+        }
+        if (R > mid) {
+            update(u << 1 | 1, L, R);
+        }
+        tr[u].val = tr[u << 1].val + tr[u << 1 | 1].val;
+    }
+    vector<int> shortestDistanceAfterQueries(int n, vector<vector<int>>& queries) {
+        build(1, 1, n - 1);
+        vector<int> res;
+        for (auto &q: queries) {
+            update(1, q[0] + 2, q[1]);
+            res.push_back(tr[1].val);
+        }
+        return res;
+    }
+};
+```
