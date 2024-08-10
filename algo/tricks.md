@@ -1937,3 +1937,9 @@ void rotate(vector<vector<int>>& matrix) {
 
 [题目链接](https://leetcode.cn/problems/find-the-minimum-area-to-cover-all-ones-ii/description/)
 
+### 最长路转化为最短路
+
+最常见的是边权取反
+
+如果又有正又有负怎么办？增加势能法/构造等价方案法，使得全部边权都非负，把边增加一个值，最后再减回这个量即可
+
