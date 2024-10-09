@@ -1768,6 +1768,38 @@ public:
 };
 ```
 
+因为具有单调性，还可以考虑滑窗来做，但是运算不具有可逆性的时候，需要用到一个栈来维护信息
+
+例题见 [3171. 找到按位或最接近 K 的子数组](https://leetcode.cn/problems/find-subarray-with-bitwise-or-closest-to-k/solutions/2798206/li-yong-and-de-xing-zhi-pythonjavacgo-by-gg4d) 这篇题解
+
+```cpp
+class Solution {
+public:
+    int minimumDifference(vector<int>& nums, int k) {
+        int ans = INT_MAX, left = 0, bottom = 0, right_or = 0;
+        for (int right = 0; right < nums.size(); right++) {
+            right_or |= nums[right];
+            while (left <= right && (nums[left] | right_or) > k) {
+                ans = min(ans, (nums[left] | right_or) - k);
+                left++;
+                if (bottom < left) {
+                    // 重新构建一个栈
+                    for (int i = right - 1; i >= left; i--) {
+                        nums[i] |= nums[i + 1];
+                    }
+                    bottom = right;
+                    right_or = 0;
+                }
+            }
+            if (left <= right) {
+                ans = min(ans, k - (nums[left] | right_or));
+            }
+        }
+        return ans;
+    }
+};
+```
+
 ### a 是子串，b 是子序列
 
 有一个原串不知道，给两个字符串，满足上述条件，问原串的最小长度。转化为 `b` 中某一段 cover 了 `a`，相当于找到 `a` 的最长子序列，是 `b` 的子串，然后加上 `b` 剩下的就是最小长度
