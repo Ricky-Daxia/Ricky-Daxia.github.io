@@ -106,6 +106,8 @@ for (int j = 0; j < n; j++)
 
 注意一点， `s.erase(val)` 会删除所有等于 `val` 的值，而 `s.erase(s.find(x))` 则只会删除一个 `x` ，求最小值用 `*s.begin()` ，最大值用 `s.rbegin()`
 
+删除最后一个元素，要写 `s.erase(prev(s.end()))` 或者 `s.erase(--s.end())`
+
 ### 哈希表不能用 pair 作为 key
 
 要么把 `pair<x, y>` 转成整数，如 `1LL * x * n + y` ，或者利用位运算，确保不冲突的情况下， key 变成 `(LL)x << 32 | y` 
