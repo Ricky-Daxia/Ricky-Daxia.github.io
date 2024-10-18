@@ -159,23 +159,24 @@ struct Node {
     Node* son[26]{};
     Node* fail; // 当 o.son[i] 不能匹配 target 中的某个字符时，o.fail.son[i] 即为下一个待匹配节点（等于 root 则表示没有匹配）
     Node* last; // 后缀链接（suffix link），用来快速跳到一定是某个 words[k] 的最后一个字母的节点（等于 root 则表示没有）
-    int len;
+    int len; // 从根到 node 的字符串的长度，也是 node 在 trie 中的深度
     int cost = INT_MAX;
+    
+    Node(int len) : len(len) {}
 };
 
 struct AhoCorasick {
-    Node* root = new Node();
+    Node* root = new Node(0);
 
     void put(string& s, int cost) {
         auto cur = root;
         for (char b : s) {
             b -= 'a';
             if (cur->son[b] == nullptr) {
-                cur->son[b] = new Node();
+                cur->son[b] = new Node(cur->len + 1);
             }
             cur = cur->son[b];
         }
-        cur->len = s.length();
         cur->cost = min(cur->cost, cost);
     }
 
