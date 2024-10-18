@@ -4,7 +4,27 @@
 
 ![LIS](https://cdn.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407252306136.png)
 
-LIS 的两种二分写法
+LIS 模板
+
+```c++
+class Solution {
+public:
+    int lengthOfLIS(vector<int> &nums) {
+        vector<int> g;
+        for (int x : nums) {
+            auto it = ranges::lower_bound(g, x);
+            if (it == g.end()) {
+                g.push_back(x); // >=x 的 g[j] 不存在
+            } else {
+                *it = x;
+            }
+        }
+        return g.size();
+    }
+};
+```
+
+~~LIS 的两种二分写法~~
 
 ```c++
 // version 1
