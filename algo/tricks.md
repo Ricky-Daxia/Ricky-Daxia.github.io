@@ -1977,3 +1977,63 @@ void rotate(vector<vector<int>>& matrix) {
 
 如果又有正又有负怎么办？增加势能法/构造等价方案法，使得全部边权都非负，把边增加一个值，最后再减回这个量即可
 
+### 三指针滑窗
+
+如果要求窗口内恰有 $k$ 个元素，可以转化为至少有 $k$ 个减去至少 $k+1$ 个，也可以直街三指针滑窗，用 `l1` 和 `l2` 分别维护即可，例题[3306. 元音辅音字符串计数 II](https://leetcode.cn/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/description/)
+
+```c++
+const int mask = 1065233;
+class Solution {
+public:
+    using LL = long long;
+    long long countOfSubstrings(string word, int k) {
+        LL res = 0;
+        int cnt1[26]{}, cnt2[26]{};
+        int sz_v1 = 0, sz_v2 = 0;
+        int cnt_c1 = 0, cnt_c2 = 0;
+        int l1 = 0, l2 = 0;
+        for (int c: word) {
+            c -= 'a';
+            if (mask >> c & 1) {
+                if (cnt1[c] ++ == 0) {
+                    sz_v1 ++;
+                }
+                if (cnt2[c] ++ == 0) {
+                    sz_v2 ++;
+                }
+            } else {
+                cnt_c1 ++;
+                cnt_c2 ++;
+            }
+            
+            while (sz_v1 == 5 && cnt_c1 >= k) {
+                int out = word[l1] - 'a';
+                if (mask >> out & 1) {
+                    if (-- cnt1[out] == 0) {
+                        sz_v1 --;
+                    }
+                } else {
+                    cnt_c1 --;
+                }
+                l1 ++;
+            }
+            
+            while (sz_v2 == 5 && cnt_c2 > k) {
+                int out = word[l2] - 'a';
+                if (mask >> out & 1) {
+                    if (-- cnt2[out] == 0) {
+                        sz_v2 --;
+                    }
+                } else {
+                    cnt_c2 --;
+                }
+                l2 ++;
+            }
+            
+            res += l1 - l2;
+        }
+        return res;
+    }
+};
+```
+
