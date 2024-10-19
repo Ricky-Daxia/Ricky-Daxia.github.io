@@ -22,6 +22,51 @@ description: DP 题目分类整理
 - 建图技巧：题目说要在矩阵或数组的单元格中跳跃，从值小的跳到大的，显然是有向无环图最长路。第一点：同一行/列，只在大小相邻的点之间建边，即 `u<v<w`，建 `(u,v)` 和 `(v,w)`。第二点：对于同值节点组成的集合，设 `S`、`T`，建立 `dummy` 节点，建 `(S, dummy)` 和 `(dummy, T)`，这样就把边数由 `|S||T|` 降为 `|S|+|T|`
 - 关于序列（字符串） DP，需要遍历**窗口**的状态，可以考虑用**状压**表示窗口的状态
 - 序列 DP ，对**相邻位置**有要求时，处理当前状态不一定要和全部前置状态比较，只需要记录前置状态中 DP 的最大值和次大值对应的状态即可
+- 下标为负时怎么处理、char 转 int 以便处理：[3320. 统计能获胜的出招序列数](https://leetcode.cn/problems/count-the-number-of-winning-sequences/description/) 的代码
+```c++
+class Solution {
+public:
+    int countWinningSequences(string s) {
+        int n = s.size();
+        // 把字符变成数字，方便处理
+        vector<int> vec;
+        for (char c : s) {
+            if (c == 'F') vec.push_back(0);
+            else if (c == 'W') vec.push_back(1);
+            else vec.push_back(2);
+        }
+
+        const int MOD = 1e9 + 7;
+        auto update = [&](long long &a, long long b) {
+            a = (a + b) % MOD;
+        };
+        
+        // 计算 Alice 选 a，Bob 选 b 的分差
+        auto duel = [&](int a, int b) {
+            if ((a + 1) % 3 == b) return 1;
+            else if ((b + 1) % 3 == a) return -1;
+            else return 0;
+        };
+
+        long long f[n][n * 2 + 1][3];
+        memset(f, 0, sizeof(f));
+        // 初值，这里第二维加了 n 是因为 C++ 不能处理负数下标
+        for (int k = 0; k < 3; k++) f[0][duel(vec[0], k) + n][k] = 1;
+        for (int i = 1; i < n; i++) for (int j = -i - 1; j <= i + 1; j++) for (int k = 0; k < 3; k++) {
+            int d = duel(vec[i], k);
+            // 枚举上一轮 Bob 出了什么，只要不相同即可
+            for (int kk = 0; kk < 3; kk++) if (k != kk)
+                // 递推方程
+                if (j - d + n >= 0 && j - d + n <= n * 2) update(f[i][j + n][k], f[i - 1][j - d + n][kk]);
+        }
+
+        long long ans = 0;
+        // 枚举所有分差为正的情况，统计答案
+        for (int j = 1; j <= n; j++) for (int k = 0; k < 3; k++) update(ans, f[n - 1][j + n][k]);
+        return ans;
+    }
+};
+```
 
 ### 状态设计
 
