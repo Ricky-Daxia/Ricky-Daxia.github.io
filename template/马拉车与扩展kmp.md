@@ -81,3 +81,51 @@ vector<int> z_function(string s) {
 
 代码中规定 z[0] = 0，但实际上 z[0]=n，在使用模板时需注意
 
+### Z 函数的应用
+
+给定串 $s$ 和 $p$，如何求出 $s[l:r]$ 与 $p$ 的最长公共前缀和最长公共后缀呢？
+
+设 $p$ 的长度为 $m$
+
+对于前缀，可以通过获取 $p+s$ 的 $z$ 数组来获得，有 $pre_l=z[m+l]$
+
+对于后缀，可以通过获取 $reverse(p) + reverse(s)$ 的 $z$ 数组并反转来获得，有 $suf_r=z[r]$
+
+例题：对于 $s$ 的长为 $m$ 的窗口，能否做到连续修改 $k$ 个字符，使得 $s[l:r]=p$？
+
+```c++
+class Solution {
+    vector<int> calc_z(string s) {
+        int n = s.length();
+        vector<int> z(n);
+        int box_l = 0, box_r = 0; // z-box 左右边界
+        for (int i = 1; i < n; i++) {
+            if (i <= box_r) {
+                z[i] = min(z[i - box_l], box_r - i + 1);
+            }
+            while (i + z[i] < n && s[z[i]] == s[i + z[i]]) {
+                box_l = i;
+                box_r = i + z[i];
+                z[i]++;
+            }
+        }
+        return z;
+    }
+
+public:
+    int minStartingIndex(string s, string pattern) {
+        vector<int> pre_z = calc_z(pattern + s);
+        ranges::reverse(pattern);
+        ranges::reverse(s);
+        vector<int> suf_z = calc_z(pattern + s);
+        ranges::reverse(suf_z); // 也可以不反转，下面写 suf_z[suf_z.size() - i]
+        int m = pattern.length();
+        for (int i = m; i <= s.length(); i++) {
+            if (pre_z[i] + suf_z[i - 1] >= m - k) {
+                return i - m;
+            }
+        }
+        return -1;
+    }
+};
+```
