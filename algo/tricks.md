@@ -1979,7 +1979,7 @@ void rotate(vector<vector<int>>& matrix) {
 
 ### 三指针滑窗
 
-如果要求窗口内恰有 $k$ 个元素，可以转化为至少有 $k$ 个减去至少 $k+1$ 个，也可以直街三指针滑窗，用 `l1` 和 `l2` 分别维护即可，例题[3306. 元音辅音字符串计数 II](https://leetcode.cn/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/description/)
+如果要求窗口内恰有 $k$ 个元素，可以转化为至少有 $k$ 个减去至少 $k+1$ 个，也可以直接三指针滑窗，用 `l1` 和 `l2` 分别维护即可，例题[3306. 元音辅音字符串计数 II](https://leetcode.cn/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/description/)
 
 ```c++
 const int mask = 1065233;
@@ -2036,4 +2036,12 @@ public:
     }
 };
 ```
+
+### 给定若干差分区间，选择最少区间得到目标数组
+
+贪心思路：从左到右遍历下标，如果当前差分值小于目标，就需要选出一些区间来覆盖当前点
+
+怎么选？用一个最大堆，存下所有左端点不超过 $i$ 的区间的右端点，每次贪心地选择最大的右端点
+
+原题见 [LC3362](https://leetcode.cn/problems/zero-array-transformation-iii/description/)
 
