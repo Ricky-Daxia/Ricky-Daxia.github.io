@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Rikki's blog"
   text: "请你吃好吃的"
-  tagline: 我还以为你永远都不会来看我呢
+  tagline: 耶✌ 你来看我了
   image:
     src: https://cdn.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407201731737.png
     alt: 灯塔
@@ -20,12 +20,12 @@ hero:
 features:
   - icon: 💭
     title: 松弛感
-    details: 放弃追求“最优解”的思路，想想你的正反馈都源自什么地方？
+    details: 追求“最优解”的本质是「缺乏安全感」
   - icon: 💡
-    title: 是这样的
-    details: 我们都热衷于表达观点，但我更想交流的是为什么会产生这样的观点
+    title: To 力古
+    details: 我在你那里到底是<br>「定是答你从无双」<br>还是<br>「其实我 跟你都不算得罕有」
   - icon: 🎈
     title: 有话想说？
-    details: 好像没有人有兴趣或者精力听你 confess
+    details: 好像没有人有兴趣或者精力听我 confess
 ---
 
