@@ -1131,6 +1131,39 @@ public:
 
 原题见 [LC3367](https://leetcode.cn/problems/maximize-sum-of-weights-after-edge-removals/description/)
 
+#### 树中删一条链，最大化剩下的连通分支数
+
+原题在 [CF2050G](https://codeforces.com/contest/2050/problem/G) 公式是 $链上点的度数和-2*k$，其中 $k$ 是链的边数
+
+据此设计 DP，一个点
+
+- 要么链以它为开头
+- 要么链经过它，头尾都在子树中
+
+因此定义 $f[u]$ 表示第一种情况时的答案，第二种情况可以顺便算出来
+
+```cpp
+        // 度数和 - 2*k 其中 k 是链的边数
+        auto dfs = [&](auto &&dfs, int u, int fa) -> void {
+            f[u] = g[u].size(); // 只删自己
+            int m1 = -1, m2 = -1;
+            for (int v: g[u]) {
+                if (v != fa) {
+                    dfs(dfs, v, u);
+                    f[u] = max(f[u], f[v] + (int)g[u].size() - 2); // 多了一条边 + 一个点
+                    m2 = max(m2, f[v]);
+                    if (m1 < m2) {
+                        swap(m1, m2);
+                    }
+                }
+            }
+            res = max(res, f[u]);
+            if (m2 != -1) {
+                res = max(res, m1 + m2 + (int)g[u].size() - 4); // 多了一个点 + 两条边
+            }
+        };
+```
+
 ### 优化 DP
 
 #### 后缀和优化
