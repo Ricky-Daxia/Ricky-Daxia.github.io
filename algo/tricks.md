@@ -10,6 +10,104 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 判断平面上点组成矩阵的最大面积
+
+限制是不能有其它点在矩形区域内，包括边界
+
+暴力的 $n^3$ 做法是枚举左上和右下端点，再遍历所有点去 check
+
+使用扫描线思想，枚举竖线，这条线上的每一对相邻点都判断一次，核心是使用**哈希表**，其中 key 为 `ya << 32 | yb`，找到最靠近的相同 key 对应的 $x$ 值，矩形的长就知道了
+
+接下来是判断这个区域内有没有点，还是得用离散化树状数组，满足两条竖线左边的满足 $ya\leq y \leq yb$ 的点数只差等于 $2$ 的话就是合法的，这里的 $2$ 就是矩形左边界的两个端点
+
+$(ya,yb)$ 所对应的满足 $ya\leq y \leq yb$ 的点数可以顺便在哈希表中记录，因此用一个 `pair` 作为 value
+
+```cpp
+class Solution {
+public:
+    using LL = long long;
+    using PII = pair<int, int>;
+    long long maxRectangleArea(vector<int>& xs, vector<int>& ys) {
+        int n = xs.size(), m = 0;
+        map<int, int> mp;
+        for (int y: ys) {
+            mp[y] = 1;
+        }
+        for (auto &p: mp) {
+            p.second = ++ m;
+        }
+        
+        map<int, vector<PII>> vs;
+        for (int i = 0; i < n; i++) {
+            vs[xs[i]].push_back({mp[ys[i]], i});
+        }
+        for (auto &[_, t]: vs) {
+            ranges::sort(t);
+        }
+        
+        int tr[m + 1];
+        memset(tr, 0, sizeof(tr));
+        auto add = [&](int x, int v) {
+            for (int i = x; i <= m; i += i & -i) {
+                tr[i] += v;
+            }
+        };
+        auto query = [&](int x) {
+            int res = 0;
+            for (int i = x; i; i -= i & -i) {
+                res += tr[i];
+            }
+            return res;
+        };
+        
+        LL res = -1;
+        map<LL, PII> last;
+        for (auto &p: vs) {
+            auto &v = p.second;
+            for (int i = 0; i < v.size(); i++) {
+                if (i == 0) {
+                    continue;
+                }
+                
+                int ya = ys[v[i - 1].second], yb = ys[v[i].second];
+                LL key = ((LL)ya << 32) | yb;
+                // 假设现在的竖线是 x = t，这里用树状数组求满足 x < t，且 ya <= y <= yb 的点有几个
+                int cnt = query(v[i].first) - query(v[i - 1].first - 1);
+                if (last.count(key)) {
+                    // oldX：矩形左边界的 x 坐标
+                    // oldCnt：满足 x < oldX，且 ya <= y <= yb 的点有几个
+                    auto &[oldCnt, oldX] = last[key];
+                    // cnt - oldCnt 就是满足 oldX <= x < t 且 ya <= y <= yb 的点有几个
+                    // 根据题意，这里要算出 2 才是合法的矩形，这个 2 就是矩形的左上和左下两个顶点
+                    if (cnt - oldCnt == 2) {
+                        res = max(res, 1LL * (p.first - oldX) * (yb - ya));
+                    }
+                }
+                last[key] = {cnt, p.first};
+            }
+            for (auto &[x, _]: v) {
+                add(x, 1);
+            }
+        }
+        return res;
+    }
+};
+```
+
+### gcd/lcm + 并查集
+
+[LC3378](https://leetcode.cn/problems/count-connected-components-in-lcm-graph/description/) $lcm(a[i],a[j])<=t$ 时连边，求连通块
+
+思路是转换为 gcd，枚举 $g$，找到数组中最小的 $g$ 的倍数 $x$，然后把 $x+k*g$ 都并起来
+
+[LC2709](https://leetcode.cn/problems/greatest-common-divisor-traversal/description/) $gcd(a[i],a[j])>1$ 时连边，判断连通性
+
+把每个数都和所有质因子并起来
+
+[LC1627](https://leetcode.cn/problems/graph-connectivity-with-threshold/description/) $a[i]$ 和 $a[j]$ 存在大于 $t$ 的因子时连边，判断连通性
+
+枚举大于 $t$ 的数 $z$，把 $z$ 的倍数都并起来
+
 ### 需要考虑两个量时
 
 **两数之和**套路：如果是有“两个”，可以考虑枚举第二个，看第一个的性质
