@@ -12,6 +12,64 @@ description: 积累一些有意思的题目
 
 # 算法题笔记二
 
+### 求最短路，但是路径的边必须是数组的子序列
+
+题源 [ABC271E](https://atcoder.jp/contests/abc271/tasks/abc271_e)
+
+给定 $m$ 条带权有向边，可能有重边，然后给定一个数组，找到一条从 $1$ 到 $n$ 的路径，满足路径上边的编号是数组的子序列，输出最小距离（边权和），或报告不存在
+
+乍一看是最短路，实际上是一道 DP。按顺序读入数组，每条边选或不选，选的话就可以更新距离，相当于最短路的松弛操作
+
+```cpp
+        vector<LL> f(n + 1, 1e18);
+        f[1] = 0;
+        for (int i = 0, x; i < k; i++) {
+            cin >> x;
+            int u = edges[x].u, v = edges[x].v, w = edges[x].w;
+            f[v] = min(f[v], f[u] + w);
+        }
+```
+
+### 求出树中与节点 u 距离为 k 的节点
+
+题源 [ABC267F](https://atcoder.jp/contests/abc267/tasks/abc267_f)
+
+给定 $q$ 个询问，每次求出任意一个到 $u$ 的距离为 $k$ 的点，或报告不存在
+
+关键思路是：对于 $u$ 找到距离它最远的点 $p$，求出以 $p$ 为根时，$u$ 的 $k$ 级祖先
+
+最远的点一定在**直径**的端点上。需要对直径的两个端点都做一次 dfs，如何将三次 dfs 优雅地写在一个循环中呢？请看代码
+
+```cpp
+        for (int i = 0, u, k; i < q; i++) {
+            cin >> u >> k;
+            qs[u].push_back({i, k});
+        }
+        vector<int> res(q, -1);
+        vector<int> nodes(n);
+        for (int i = 0, rt = 1; i < 3; i++) {
+            int mx = -1;
+            auto dfs = [&](auto &&dfs, int u, int fa, int d) -> void {
+                if (d > mx) {
+                    mx = d;
+                    rt = u; // 用 rt 记录下一次 dfs 的根
+                }
+                nodes[d] = u; // 记录路径上的点
+                for (auto &[i, k]: qs[u]) {
+                    if (d >= k) {
+                        res[i] = nodes[d - k];
+                    }
+                }
+                for (int v: g[u]) {
+                    if (v != fa) {
+                        dfs(dfs, v, u, d + 1);
+                    }
+                }
+            };
+            dfs(dfs, rt, 0, 0);
+        }
+```
+
 ### [LC2289 使数组按非降序排列的操作数](https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/) 思维题 转换为单调栈
 
 如果一个元素左边有比它更大的，那么这个元素一定是在它之后被删除的
