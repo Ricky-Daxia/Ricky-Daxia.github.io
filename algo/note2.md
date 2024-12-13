@@ -12,6 +12,66 @@ description: 积累一些有意思的题目
 
 # 算法题笔记二
 
+### 构造 n 的排列，使得数组 a 是它的 LIS，要求字典序最小
+
+题源 [ARC125C](https://atcoder.jp/contests/arc125/tasks/arc125_c) 第一个数填什么：填小于 $A_1$ 的不行，会使 LIS 变长；填大于 $A_1$ 的也不行，无法使字典序最小，因此只能填 $A_1$
+
+对于每个 $A_i$，它后面可以跟当前最小的不在 $a$ 中的数
+
+填完这个数后，填小于 $A_{i+1}$ 的不行，因为会使 LIS 变长；填大于 $A_{i+1}$ 的也不行，因此只能填 $A_{i+1}$
+
+按照这个规律填数，但是 $A_k$ 不能这样处理，否则比 $A_k$ 大的数没法填，因此要把 $n$ 到 $A_k$ 从大到小填
+
+注意最后可能还有数没填，要记得补上去
+
+```cpp
+        for (int i = 0; i < k; i++) {
+            cin >> a[i];
+            st[a[i]] = 1;
+        }
+        int j = 1;
+        for (int i = 0; i < k - 1; i++) {
+            cout << a[i] << ' ';
+            while (st[j]) {
+                j ++;
+            }
+            if (j < a[i]) {
+                cout << j << ' ';
+                j ++;
+            }
+        }
+        for (int i = n; i >= a[k - 1]; i--) {
+            cout << i << ' ';
+        }
+        for (int i = a[k - 1] - 1; i >= j; i--) { // 这里别忘记
+            if (!st[i]) {
+                cout << i << ' ';
+            }
+        }
+```
+
+### 构造 n 的排列，LIS 长度为 a，LDS 长度为 b
+
+题源 [ARC091C](https://atcoder.jp/contests/arc091/tasks/arc091_c) 首先 $a>n$ 或 $b>n$ 时是无解的
+
+其次 $a+b>n+1$ 也是无解的，因为这意味着至少两个数同时在 LIS 和 LDS 中，意味着 $x<y$ 又 $x>y$，矛盾
+
+构造的技巧是先构造 LIS，比如 $n=8,a=3,b=3$，先构造出 $6,7,8$，考虑在中间插入数字。这样的好处是 LDS 只会出现在 LIS 的中间，那就可以在中间插入 $b-1$ 个数即可，即 $6,2,1,\ 7,4,3,\ 8,5$
+
+这里蕴含了一个无解条件：最多 $a$ 段，每段最长是 $b$，那么如果 $a\times b<n$，无解
+
+```cpp
+        int tot = 0, mx = n - a;
+        for (int x = 0, y = n - a + 1; y <= n; y++) {
+            cout << y << ' ';
+            tot ++;
+            for (int i = min(x + b - 1, mx); i > x; i--, tot++) {
+                cout << i << ' ';
+            }
+            x = min(x + b - 1, mx);
+        }
+```
+
 ### 求最短路，但是路径的边必须是数组的子序列
 
 题源 [ABC271E](https://atcoder.jp/contests/abc271/tasks/abc271_e)
