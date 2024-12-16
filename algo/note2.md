@@ -12,6 +12,37 @@ description: 积累一些有意思的题目
 
 # 算法题笔记二
 
+### 数组中多少 a[i]+a[j] 的和满足二进制前 k-1 位为 0，第 k 位不为 0
+
+题源 [ABC384F](https://atcoder.jp/contests/abc384/tasks/abc384_f) 
+
+求 $\displaystyle \sum_{i=1}^N \sum_{j=i}^N f(A_i+A_j)$，其中运算指的是：当二进制最低位为 $0$ 时就一直左移
+
+思路明确：需要知道哪些 pair 的前 $k-1$ 位为 $0$，第 $k$ 位不为 $0$。做法是**记 $g[i]$ 表示前 $i$ 位都是 $0$ 的 pair 的和，用 $g[i]-g[i+1]$ 即为所求**
+
+具体来说，如果 $(A_i+A_j)$ 被 $2^k$ 整除，意味着 $A_j\equiv -A_i \mod 2^k$。在遍历 $A_j$ 时维护 $A_i$ 的信息，这里用到了负数取模的技巧
+
+注：atcoder 不卡 `unordered_map`，用 `map` 会超时，也可以用数组作为桶
+
+```cpp
+        LL g[26] = {};
+        for (int k = 0; k <= 25; k++) {
+            int msk = 1 << k;
+            unordered_map<int, LL> sum;
+            unordered_map<int, int> cnt;
+            for (int x: a) {
+                int r = (msk - x % msk) % msk; // -a[j] % 2^k
+                cnt[r] ++;
+                sum[r] += x;
+                g[k] += 1LL * cnt[x % msk] * x + sum[x % msk];
+            }
+        }
+        LL res = 0;
+        for (int i = 0; i < 25; i++) {
+            res += (g[i] - g[i + 1]) >> i;
+        }
+```
+
 ### 构造 n 的排列，使得数组 a 是它的 LIS，要求字典序最小
 
 题源 [ARC125C](https://atcoder.jp/contests/arc125/tasks/arc125_c) 第一个数填什么：填小于 $A_1$ 的不行，会使 LIS 变长；填大于 $A_1$ 的也不行，无法使字典序最小，因此只能填 $A_1$
