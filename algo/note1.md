@@ -289,7 +289,6 @@ def count(num: int, x: int):
 如何快速 check
 
 ```cpp
-cin >> n >> A >> B;
     for (int i = 1; i <= n; i++) cin >> a[i];
     vector<PII> v1, v2;
     for (int i = 2; i * i <= A; i++)
@@ -386,14 +385,6 @@ void dfs(int u, int f)
         }
 }
 
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> x >> y;
-        g[x].push_back(y);
-        g[y].push_back(x);
-    }
-    dfs(1, 0);
     for (int i = 1; (1 << i) <= n; i++) // lca
         for (int j = 1; j <= n; j++)
             fa[j][i] = fa[fa[j][i - 1]][i - 1];
@@ -501,8 +492,6 @@ void solve()
 怎么知道当前请求页面在第几个项？一个页面被访问时，仍然在缓存中的条件是：该页面上次访问到这次访问间，不同的其它页面数不大于缓存大小。因此，需要处理出任意两个相同的数之间不同的数的个数即可。可以从左到右扫数组，每次将每种数字的最后一个设为 1，其它设为 0，区间求和即可，用树状数组维护
 
 ```cpp
-cin >> m;
-    for (int i = 1; i <= m; i++) cin >> q[i];
     for (int i = 1; i <= m; i++)
     {
         if (last[q[i]] == 0) res[m] ++; // 第一次出现
@@ -546,8 +535,6 @@ cin >> m;
 代码中用 prim 实现
 
 ```cpp
-vector<bool> vis(n);
-    vector<int> p(n, -1);
     LL tot = 0;
     vector<int> res;
     for (int i = 0; i < n; i++) {
@@ -575,8 +562,6 @@ vector<bool> vis(n);
         if (p[i] != -1) cout << i + 1 << ' ' << p[i] + 1 << endl;
 ```
 
----
-
 ### 0-1 MST
 
 > [https://codeforces.com/problemset/problem/1242/B](https://codeforces.com/problemset/problem/1242/B)
@@ -591,13 +576,6 @@ vector<bool> vis(n);
 拿这个 v 来构造连通分量，然后暴力遍历剩余的点构造，复杂度为 O(n+2m/n*n)=O(n+m)
 
 ```cpp
-vector<int> g[n + 1]; // 1-边
-    while (m -- ) {
-        int v, w;
-        cin >> v >> w;
-        g[v].push_back(w);
-        g[w].push_back(v);
-    }
     // 寻找 0-边最多的点 maxDeg0V
     int mxDeg0 = 0, mxV = 0;
     for (int i = 1; i <= n; i++) {
@@ -633,8 +611,6 @@ vector<int> g[n + 1]; // 1-边
     cout << res << endl;
 ```
 
----
-
 ### 0-1 BFS
 
 > [https://codeforces.com/problemset/problem/1063/B](https://codeforces.com/problemset/problem/1063/B)
@@ -647,7 +623,6 @@ vector<int> g[n + 1]; // 1-边
 因此最小化一个值即可，比如最小化 l，题意就转换成一个 0-1 bfs 问题
 
 ```cpp
-memset(dist, -1, sizeof dist); // 向左走的步数
     q.push_back({r, c});
     dist[r][c] = 0;
     while (q.size()) {
@@ -1093,7 +1068,7 @@ while (r - l > 1) {
 
 > [https://codeforces.com/contest/1548/problem/B](https://codeforces.com/contest/1548/problem/B)
 
-如果同余，那么 k | a[i]-a[j]，这就转化到 **差分 + 区间 gcd** 了，用 ST 表在差分数组上求最长的 gcd>1 的区间，二分区间长度，枚举区间起点，就解决了
+如果同余，那么 $k |\ a[i]-a[j]$，这就转化到 **差分 + 区间 gcd** 了，用 ST 表在差分数组上求最长的 gcd>1 的区间，二分区间长度，枚举区间起点，就解决了
 
 ```cpp
 void init() {
@@ -1207,7 +1182,7 @@ void getSum() {
 对于给定的区间，我们只关心每个数出现的最右位置。因此思路是离线查询，将所有区间按右端点排序，从左到右遍历每个查询，用树状数组维护这些「最右位置」，区间和就是答案
 
 ```cpp
-sort(q, q + m, [](Node &A, Node &B) {
+    sort(q, q + m, [](Node &A, Node &B) {
         return A.y < B.y;
     });
     for (int i = 0, j = 1; i < m; i++) {

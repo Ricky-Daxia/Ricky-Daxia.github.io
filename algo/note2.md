@@ -163,6 +163,8 @@ description: 积累一些有意思的题目
 
 ### [LC2289 使数组按非降序排列的操作数](https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/) 思维题 转换为单调栈
 
+题意是：在一步操作中，移除所有满足 `nums[i - 1] > nums[i]` 的 `nums[i]`
+
 如果一个元素左边有比它更大的，那么这个元素一定是在它之后被删除的
 
 对于一个非降序列，删除时刻一定是递增的，只用考虑它左边的元素中删除时刻最大的那个，然后 +1 就是这个数的删除时刻
@@ -190,7 +192,7 @@ public:
 };
 ```
 
-### [修改图中边权](https://leetcode.cn/problems/modify-graph-edge-weights/)
+### [LC2699 修改图中边权](https://leetcode.cn/problems/modify-graph-edge-weights/)
 
 把所有负权都改为 `1`，最短路长度还是大于 `target` ，那么无解，因为边权只能变大。
 
@@ -276,89 +278,7 @@ public:
 
 ### 顺丰专场
 
-**顺丰 01：字符串建图，拓扑排序**
-
-```cpp
-class Solution {
-public:
-    bool hasCycle(string graph) {
-        vector<int> g[101];
-        int i = 0, n = 0;
-        vector<int> d(101, 0);
-        for (int j = 0; j <= graph.size(); j++)
-        {
-            if (j < graph.size() && graph[j] != ',') continue;
-            else
-            {
-                int a = 0, b = 0;
-                bool f = false;
-                for (int k = i; k < j; k++)
-                {
-                    int s = graph[k] - '0';
-                    if (s >= 0 && s <= 9)
-                    {
-                        if (!f) a = a * 10 + s;
-                        else b = b * 10 + s;
-                    }
-                    if (graph[k] == '-') f = true;
-                }
-                g[a].push_back(b);
-                d[b] ++;
-                n = max(n, max(a, b));
-                i = j + 1;
-            }
-        }
-        
-        function<bool()> topsort = [&]()
-        {
-            int q[101];
-            int hh = 0, tt = -1;
-            for (int i = 1; i <= n; i++) if (!d[i]) q[++ tt] = i;
-            while (hh <= tt)
-            {
-                int t = q[hh ++];
-                for (int x: g[t])
-                    if (-- d[x] == 0) q[++ tt] = x;
-            }
-            return tt == n - 1;
-        };
-        
-        return !topsort();
-    }
-};
-```
-
-**顺丰 02：01 背包**
-
-```cpp
-class Solution {
-public:
-    int minRemainingSpace(vector<int>& N, int V) {
-        bool f[V + 1];
-        memset(f, 0, sizeof f);
-        f[0] = true;
-        for (int x: N)
-            for (int v = V; v >= x; v--)
-                f[v] |= f[v - x];
-        for (int i = V; i; i--) if (f[i]) return V - i;
-        return V;
-    }
-};
-```
-
-**顺丰 03：最长递增子数组长度**
-
-```cpp
-class Solution {
-public:
-    int findMaxCI(vector<int>& nums) {
-        int res = 1, cnt = 1;
-        for (int i = 1; i < nums.size(); i++)
-            cnt = nums[i] > nums[i - 1] ? cnt + 1 : 1, res = max(res, cnt);
-        return res;
-    }
-};
-```
+[链接](https://leetcode.cn/contest/sf-tech) 在这里
 
 **顺丰 04：射线法判断一个点是否在多边形内**
 
@@ -424,35 +344,6 @@ public:
     }
 };
 ```
-
-**顺丰 05：并查集，统计连通分支**
-
-```cpp
-class Solution {
-public:
-    int p[105], m, tot;
-    int find(int x)
-    {
-        if (x != p[x]) p[x] = find(p[x]);
-        return p[x];
-    }
-    bool isCompliance(vector<vector<int>>& distance, int n) {
-        m = tot = distance.size();
-        for (int i = 0; i < m; i++) p[i] = i;
-        for (int i = 0; i < m; i++)
-                for (int j = 0; j < m; j++)
-                    if (i == j) continue;
-                    else if (distance[i][j] <= 2)
-                    {
-                        int x = find(i), y = find(j);
-                        if (x != y) p[x] = y, tot --;
-                    }
-        return tot <= n;
-    }
-};
-```
-
----
 
 ### LCP 75. 传送卷轴
 
@@ -733,10 +624,12 @@ public:
 
 ### 序列 +1-1 问题
 
+题源 [CF13C](https://codeforces.com/problemset/problem/13/C)
+
 - 给定一个序列，每次操作可以把某个数加上 1 或减去 1。要求把序列变成非降数列。最小化操作次数。
-    - 最小代价意味着答案序列的每一个数都是原序列中出现过的（证明看题解）
-    - 状态定义：`f[i][j]` 表示前 `i` 个数满足条件，最大数不大于原序列第 `j` 个元素的最小代价
-    - `f[i][j] = min(f[i][j - 1], f[i - 1][j] + abs(a[i] - b[j]);`
+    - 最小代价意味着答案序列的每一个数都是原序列中出现过的（证明看题解），感性理解是每个数要么不动，要么就变成 `a[i-1]`
+    - 状态定义：$f[i][j]$ 表示前 $i$ 个数满足条件，最大数不大于原序列第 $j$ 个元素的最小代价
+    - $f[i][j] = min(f[i][j - 1], f[i - 1][j] + abs(a[i] - b[j]);$
 
 ```cpp
 int main()
@@ -754,7 +647,7 @@ int main()
     {
         for (int j = 1; j <= n; j++)
             f[1][j] = min(f[1][j - 1], f[0][j] + abs(a[i] - b[j]));
-        swap(f[0], f[1]);
+        swap(f[0], f[1]); // 本题卡空间，所以用滚动数组
     }
     LL res = 1e18;
     for (int i = 1; i <= n; i++) res = min(res, f[0][i]);
@@ -777,7 +670,7 @@ for (int i = 1; i <= n; i++)
 
 ### 树上启发式合并：蓝桥杯周赛二 T7
 
-[https://oi-wiki.org/graph/dsu-on-tree/](https://oi-wiki.org/graph/dsu-on-tree/)
+[dsu-on-tree-oiwiki](https://oi-wiki.org/graph/dsu-on-tree/)
 
 树上每个点有权值，每次询问返回节点 `x` 的所有 `k` 层子节点中，最大权值是多少。`k` 层子节点 `v` 满足
 
@@ -847,7 +740,7 @@ int main()
 
 ### Kruskal  重构树：网络稳定性
 
-题意是问图中两节点的所有路径中，最大化最小边权，即瓶颈路
+题意是每次询问求出图中两节点的所有路径中最大化最小边权那条，即瓶颈路
 
 重构树：边权从大到小排，跑 kruskal，在加边 `(u,v,w)` 时，新建一个节点 `p` ，连边 `p->find(u)` `p->find(v)`，再把并查集中 `find(u)` `find(v)` 与 `p` 合并，把 `p` 的点权设为 `w`
 
@@ -1069,9 +962,7 @@ public:
 };
 ```
 
-### 容斥原理
-
-**给 3 个人分 n 个物品，每个人不超过 limit 个，问方案数。**
+### 给 3 个人分 n 个物品，每个人不超过 limit 个，问方案数
 
 解法一：考虑枚举第一个人分多少，然后剩下两个人中，第一个人可以分的物品数有上下限，第一个人定下来后第二个人也定下来了，因此可以 $O(1)$ 求出，**难点在于上下限怎么求**
 
@@ -1233,7 +1124,6 @@ int main() {
 1. 贪心：用数组记录当前字符有无出现过，如果有，则答案长度 +2，并清除数组；否则记录当前字符出现过
 
 ```cpp
-cin >> s;
         int n = s.size(), m = 0;
         bool st[26] = {};
         for (auto &i: s)
@@ -1249,7 +1139,6 @@ cin >> s;
 1. dp：令 `f[i]` 为考虑前 `i` 个字符，能构成的最大长度（这个定义统一了奇偶数下标的情况），转移就是选或不选
 
 ```cpp
-cin >> s;
         int n = s.size();
         vector<int> pos(26, -1);
         vector<int> f(n);
@@ -1278,7 +1167,9 @@ cin >> s;
 注意：**此题卡 LL，要用 ULL**
 
 
-### CF1005E2 求中位数为 m 的子段个数
+### 求中位数为 m 的子段个数
+
+题源 [CF1005E2](https://codeforces.com/problemset/problem/1005/E2)
 
 知识点一：转化为大于等于 `m` 的子段数 - 中位数大于等于 `m+1` 的子段数
 
@@ -1348,7 +1239,7 @@ LL get(int lim)
 > 在最优操作下，a 的最大连续子数组和的最大值是多少？<br/>
 > 注意子数组可以是空的，元素和为 0。<br/>
 
-O(n) 做法。
+$O(n)$ 做法。
 
 如果 $x<0$，那么可以把 $x$ 变成 $-x$，同时 $k$ 变成 $n-k$。
 下面的讨论满足 $x>=0$。
