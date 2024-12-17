@@ -213,7 +213,84 @@ struct AhoCorasick {
 };
 ```
 
+TsReaper 模板
 
+```cpp
+// AC 自动机模板开始
+
+const int MAXTOT = 1e5;
+
+struct AhoCorasick {
+    int tot, ch[MAXTOT + 10][26], dep[MAXTOT + 10], fail[MAXTOT + 10];
+
+    int newNode(int d) {
+        int ret = tot++;
+        memset(ch[ret], 0, sizeof(ch[ret]));
+        dep[ret] = d;
+        fail[ret] = 0;
+        return ret;
+    }
+
+    void reset() {
+        tot = 0;
+        newNode(0);
+    }
+
+    AhoCorasick() { reset(); }
+
+    void insert(const char *s) {
+        int now = 0;
+        for (int i = 0; s[i]; s++) {
+            int c = s[i] - 'a';
+            if (ch[now][c] == 0) ch[now][c] = newNode(dep[now] + 1);
+            now = ch[now][c];
+        }
+    }
+
+    void buildFail(const char *s) {
+        queue<int> q;
+        for (int c = 0; c < 26; c++) if (ch[0][c] > 0) q.push(ch[0][c]);
+        while (!q.empty()) {
+            int sn = q.front(); q.pop();
+            for (int c = 0; c < 26; c++) {
+                int x = ch[sn][c], y = ch[fail[sn]][c];
+                if (x > 0) {
+                    fail[x] = y;
+                    q.push(x);
+                } else {
+                    ch[sn][c] = y;
+                }
+            }
+        }
+    }
+} ac;
+
+// AC 自动机模板结束
+
+class Solution {
+public:
+    int minValidStrings(vector<string>& words, string target) {
+        // 用 words 里的字符串构建 AC 自动机
+        ac.reset();
+        for (int i = 0; i < words.size(); i++) ac.insert(words[i].c_str());
+        ac.buildFail(target.c_str());
+
+        int n = target.size();
+        long long f[n + 1];
+        f[0] = 0;
+        // 将 target 输入 AC 自动机，now 是 target 的第 i 个字符匹配的节点
+        for (int i = 1, now = 0; i <= n; i++) {
+            int c = target[i - 1] - 'a';
+            now = ac.ch[now][c];
+            // AC 自动机上匹配失败，返回无解
+            if (now == 0) return -1;
+            // 最后一次加上的前缀长度，就是当前节点的深度
+            f[i] = f[i - ac.dep[now]] + 1;
+        }
+        return f[n];
+    }
+};
+```
 
 fail 指针的含义是：i 的 fail 指向 j，**表示根到 j 的串是根到 i 的串的后缀**
 
