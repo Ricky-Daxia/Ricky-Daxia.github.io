@@ -10,6 +10,38 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 求字符串字典序最大的子串
+
+模板和证明在 [LC1163官解](https://leetcode.cn/problems/last-substring-in-lexicographical-order/solutions/2241014/an-zi-dian-xu-pai-zai-zui-hou-de-zi-chua-31yl/)
+
+首先一定是后缀才有可能成为最大的子串，采用双指针的思路，$i$ 指向当前已知最大的子串，$j$ 指向当前在比较的子串开头，一直找到第一个不同的字符，根据 $s[i+k]$ 和 $s[j+k]$ 的大小来确定下一个比较的串，在这个过程中可以发现一些性质来跳过一些串
+
+```cpp
+class Solution {
+public:
+    string lastSubstring(string s) {
+        int i = 0, j = 1, n = s.size();
+        while (j < n) {
+            int k = 0;
+            while (j + k < n && s[i + k] == s[j + k]) {
+                k ++;
+            }
+            if (j + k < n && s[i + k] < s[j + k]) {
+                int t = i;
+                i = j;
+                j = max(j + 1, t + k + 1);
+            } else {
+                j = j + k + 1;
+            }
+        }
+        return s.substr(i, n - i);
+    }
+};
+```
+
+找字典序最小的子串的思路也是一样的，时间复杂度 $O(n)$ 
+
+
 ### 负数取模的知识
 
 这里讨论的是被除数为负数，除数为正数的情况，例如 $-7\% 10$
