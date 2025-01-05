@@ -1404,51 +1404,6 @@ max( |arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j|)
 
 用一个变量模拟栈的奇偶性即可
 
-### 逆元 组合数模板
-
-```cpp
-LL qmi(LL x, int n)
-{
-    LL res = 1;
-    for (; n; n /= 2)
-    {
-        if (n % 2) res = res * x % MOD;
-        x = x * x % MOD;
-    }
-    return res;
-}
-
-LL fac[N], inv[N];
-
-auto init = [] {
-    fac[0] = 1;
-    for (int i = 1; i < N; i++)
-        fac[i] = fac[i - 1] * i % MOD;
-    inv[N - 1] = qmi(fac[N - 1], MOD - 2);
-    for (int i = N - 1; i; i--)
-        inv[i - 1] = inv[i] * i % MOD;
-    return 0;
-}();
-
-LL comb(int n, int k)
-{
-    return (k < 0 || n < k) ? 0 : fac[n] * inv[k] % MOD * inv[n - k] % MOD;
-}
-```
-
-关于逆元，当 $b$ 为质数时，可以用快速幂来求，否则就只能用扩展欧几里得法来求
-
-如何求解 $n$ 个数的逆元？
-
-首先求前缀积，然后求逆元，因为 `sv[n]` 是 $n$ 个数积的逆元，把它乘上 `a[n]`，就会和 `a[n]` 的逆元抵消，得到 `sv[n-1]`，以此类推
-
-```cpp
-s[0] = 1;
-for (int i = 1;i <= n; i++) s[i] = s[i - 1] * a[i] % p;
-sv[n] = qmi(s[n], p - 2);
-for (int i = n; i >= 1; i--) sv[i - 1] = sv[i] * a[i] % p;
-for (int i = 1; i <= n; i++) inv[i] = sv[i] * s[i - 1] % p;
-```
 
 ### 选定不重叠区间使得收益最大 dp+二分/哈希
 
