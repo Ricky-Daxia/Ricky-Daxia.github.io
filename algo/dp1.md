@@ -1166,6 +1166,126 @@ public:
 
 ### 优化 DP
 
+#### 带权区间，最多选 4 个，求权值和最大，不重叠且字典序最小的方案
+
+定义 $f[i+1][j]$ 表示在下标 $[0,i]$ 中至多选 $j$ 个的最大和，区间排序后维护前缀最大值，二分找到最右边的合法区间转移即可，这个思路很熟悉，但是代码不好写，需要学习编码技巧
+
+写法一：灵神版本
+
+```cpp
+class Solution {
+public:
+    struct Node {
+        int l, r, w, i;
+    };
+    using LL = long long;
+    vector<int> maximumWeight(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        vector<Node> a(n);
+        for (int i = 0; i < n; i++) {
+            a[i] = {intervals[i][0], intervals[i][1], intervals[i][2], i};
+        }
+        ranges::sort(a, {}, &Node::r);
+        vector<array<pair<LL, vector<int>>, 5>> f(n + 1);
+        for (int i = 0; i < n; i++) {
+            auto [l, r, w, idx] = a[i];
+            int k = lower_bound(a.begin(), a.begin() + i, l, [](Node &t, int val) { return t.r < val; }) - a.begin();
+            for (int j = 1; j < 5; j++) {
+                LL s1 = f[i][j].first;
+                // 为什么是 f[k] 不是 f[k+1]：上面算的是 >= l，-1 后得到 < l，但由于还要 +1，抵消了
+                LL s2 = f[k][j - 1].first + w;
+                if (s1 > s2) {
+                    f[i + 1][j] = f[i][j]; // 转移来源一
+                    continue;
+                }
+                vector<int> new_id = f[k][j - 1].second;
+                new_id.push_back(idx);
+                ranges::sort(new_id);
+                if (s1 == s2 && f[i][j].second < new_id) {
+                    new_id = f[i][j].second;
+                }
+                // 转移来源二
+                f[i + 1][j] = {s2, new_id};
+            }
+        }
+        return f[n][4].second;
+    }
+};
+```
+
+写法二：TsReaper 版本，但不太理解为什么把区间拆开来存，虽然在前缀最大值的思路下，二分找到的是右端点还是左端点不影响答案
+
+```cpp
+class Solution {
+public:
+    using PII = pair<int, int>;
+    using LL = long long;
+    vector<int> maximumWeight(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        // a 中保存所有关键点，第一维是坐标，第二维是关键点对应的区间编号
+        // 若编号为 -1 表示这是左端点，若编号非负表示这是右端点
+        // 哨兵元素，防止讨论边界情况
+        vector<PII> a{{-1, -1}};
+        for (int i = 0; i < n; i++) {
+            auto &t = intervals[i];
+            a.push_back({t[0], -1});
+            a.push_back({t[1], i});
+        }
+        ranges::sort(a);
+        n = a.size();
+        // DP 值是一个五维的数组，第一维是权值取负数，后面四维是方案
+        // 此时，取字典序最小的数组就是答案
+        array<LL, 5> f[n][5];
+        const LL INF = 1e18;
+        for (int j = 1; j <= 4; j++) {
+            f[0][j] = {INF, INF, INF, INF, INF};
+        }
+        f[0][0] = {0, INF, INF, INF, INF};
+        
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= 4; j++) {
+                f[i][j] = f[i - 1][j];
+            }
+            int idx = a[i].second;
+            if (idx >= 0) {
+                // 这是一个右端点，通过二分找出 k 的最大值
+                int L = intervals[idx][0];
+                int l = 0, r = i - 1;
+                while (l < r) {
+                    int mid = l + r + 1 >> 1;
+                    if (a[mid].first < L) {
+                        l = mid;
+                    } else {
+                        r = mid - 1;
+                    }
+                }
+                
+                for (int j = 1; j <= 4; j++) {
+                    auto tmp = f[l][j - 1];
+                    tmp[0] -= intervals[idx][2];
+                    tmp[j] = idx;
+                    // 为了让方案字典序最小，方案内部也要排序一下
+                    ranges::sort(tmp);
+                    f[i][j] = min(f[i][j], tmp);
+                }
+            }
+        }
+        
+        array<LL, 5> res = {INF, INF, INF, INF, INF};
+        for (int j = 1; j <= 4; j++) {
+            res = min(res, f[n - 1][j]);
+        }
+        vector<int> ans;
+        for (int j = 1; j <= 4; j++) {
+            if (res[j] < INF) {
+                ans.push_back(res[j]);
+            }
+        }
+        return ans;
+    }
+};
+```
+
 #### 后缀和优化
 
 - [1444. 切披萨的方案数](https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/)

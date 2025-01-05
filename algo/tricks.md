@@ -10,6 +10,75 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 不重叠区间，定长窗口能覆盖的最多下标数量
+
+题源 [LC2271](https://leetcode.cn/problems/maximum-white-tiles-covered-by-a-carpet/description/) 以及 [LC3413](https://leetcode.cn/problems/maximum-coins-from-k-consecutive-bags/description/)
+
+可以发现窗口右端点在区间内部，可以转化为对齐区间的右端点，这样做答案不会变少，因此可以排序之后双指针
+
+固定 $r$ 之后，窗口左端点在 $r-k+1$ 处，窗口外的区间满足 $a[l].r < r-k+1$，据此来移动指针
+
+```cpp
+class Solution {
+public:
+    int maximumWhiteTiles(vector<vector<int>>& tiles, int carpetLen) {
+        ranges::sort(tiles, {}, [](auto &t) { return t[0]; });
+        int res = 0, cnt = 0, l = 0;
+        for (auto &t: tiles) {
+            int tl = t[0], tr = t[1];
+            cnt += tr - tl + 1;
+            while (tiles[l][1] < tr - carpetLen + 1) {
+                cnt -= tiles[l][1] - tiles[l][0] + 1;
+                l ++;
+            }
+            int uncover = max(0, tr - carpetLen + 1 - tiles[l][0]);
+            res = max(res, cnt - uncover);
+        }
+        return res;
+    }
+};
+```
+
+进阶版本是：每个区间给定权重，区间内部每个坐标的权值相等，求最大权值和
+
+这里就要分对齐左端点和对齐右端点分别讨论了，因为左边区间的权值可能大于右边区间
+
+做法就是反转区间，把 $[l,r]$ 变成 $[-r,-l]$，就可以复用右端点对齐的代码了
+
+```cpp
+class Solution {
+public:
+    using LL = long long;
+    long long maximumCoins(vector<vector<int>>& coins, int k) {
+        auto calc = [&]() {
+            LL res = 0, cnt = 0;
+            int l = 0;
+            for (auto &t: coins) {
+                int tl = t[0], tr = t[1], c = t[2];
+                cnt += 1LL * (tr - tl + 1) * c;
+                while (coins[l][1] < tr - k + 1) {
+                    cnt -= 1LL * (coins[l][1] - coins[l][0] + 1) * coins[l][2];
+                    l ++;
+                }
+                LL uncover = max(0LL, 1LL * (tr - k + 1 - coins[l][0]) * coins[l][2]);
+                res = max(res, cnt - uncover);
+            }
+            return res;
+        };
+        
+        ranges::sort(coins, {}, [](auto &t) { return t[0]; });
+        LL res = calc();
+        ranges::reverse(coins);
+        for (auto &t: coins) {
+            int x = t[0];
+            t[0] = -t[1];
+            t[1] = -x;
+        }
+        return max(res, calc());
+    }
+};
+```
+
 ### 哈希表维护 a[p] * a[r] == a[q] * a[s]
 
 给数组，问满足条件的下标对数 $(p,q,r,s)$，将 $a\cdot c=b\cdot d$ 变形为 $\frac{a}{b}=\frac{d}{c}$，这样可以前后缀分解
