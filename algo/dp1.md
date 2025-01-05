@@ -1488,6 +1488,47 @@ func numberOfPermutations(n int, requirements [][]int) int {
 
 ### 典题
 
+#### 维护后缀最大值？直接把状态定义为后缀最大值！
+
+给一个数组，求最长子序列，使得相邻元素的绝对差构成一个非递减序列，$n\leq 1e5, a[i]\leq 300$
+
+标签：**[相邻元素]**、**[后缀最值]**
+
+定义 $f[x][j]$ 表示以 $x$ 结尾，上一个绝对差为 $j$ 时的最大长度。那么枚举当前数 $x$，上一个数为 $y$，当前绝对差 $j$，就需要找到 $f[y][\geq j]$ 的最大值，这是一个后缀最大值
+
+但实际上不需要这样，直接定义 $f[x][j]$ 表示以 $x$ 结尾，绝对差**至少为** $j$ 的最大长度，那么得到转移方程为
+
+$f[x][j]=max(1,f[x][j+1],f[x-j][j]+1,f[x+j][j]+1)$
+
+但是如果 $j=0$，就会重复累加，怎么办？**用一个变量 $fx$ 表示 $f[x][j]$**
+
+```cpp
+class Solution {
+public:
+    int longestSubsequence(vector<int>& nums) {
+        auto [mn, mx] = ranges::minmax(nums);
+        int d = mx - mn;
+        int f[mx + 1][d + 1];
+        memset(f, 0, sizeof(f));
+        int res = 0;
+        for (int x: nums) {
+            int fx = 1;
+            for (int j = d; j >= 0; j--) {
+                if (j + x <= mx) {
+                    fx = max(fx, f[x + j][j] + 1);
+                }
+                if (x - j >= 0) {
+                    fx = max(fx, f[x - j][j] + 1);
+                }
+                f[x][j] = fx;
+                res = max(res, fx);
+            }
+        }
+        return res;
+    }
+};
+```
+
 #### 使得字符串所有出现字母的频次相同的最小操作数
 
 - 要么加一个字符

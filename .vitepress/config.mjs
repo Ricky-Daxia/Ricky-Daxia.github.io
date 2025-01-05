@@ -65,7 +65,8 @@ export default defineConfig({
           { text: 'meet-in-the-middle', link: '/template/meet-in-the-middle' },
           { text: 'RMQ的st表实现', link: '/template/RMQ的st表实现' },
           { text: 'Tarjan', link: '/template/Tarjan' },
-          { text: 'Trie', link: '/template/Trie' }
+          { text: 'Trie', link: '/template/Trie' },
+          { text: '数论', link: 'template/数论' },
         ]
       }
     ],

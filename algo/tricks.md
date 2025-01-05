@@ -10,6 +10,16 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 哈希表维护 a[p] * a[r] == a[q] * a[s]
+
+给数组，问满足条件的下标对数 $(p,q,r,s)$，将 $a\cdot c=b\cdot d$ 变形为 $\frac{a}{b}=\frac{d}{c}$，这样可以前后缀分解
+
+怎么维护这个分数呢？将 $\frac{a}{b}$ 变为**最简分数**，做法是同除它们的 GCD，然后插入哈希表中。如何插入？分子分母映射为一个 key 值即可
+
+什么时候能直接用浮点数来表示？当 $a=2^{26}$ 时就不行了
+
+此技巧来自于 [LC3404题解](https://leetcode.cn/problems/count-special-subsequences/solutions/3033284/shi-zi-bian-xing-qian-hou-zhui-fen-jie-p-ts6n/)
+
 ### 求字符串字典序最大的子串
 
 模板和证明在 [LC1163官解](https://leetcode.cn/problems/last-substring-in-lexicographical-order/solutions/2241014/an-zi-dian-xu-pai-zai-zui-hou-de-zi-chua-31yl/)
@@ -624,55 +634,6 @@ public:
     }
 };
 ```
-
-### 预处理质因数个数
-
-```cpp
-int f[N + 10];
-
-bool inited = false;
-// 预处理每个数有几个质因数
-void init() {
-    if (inited) return;
-    inited = true;
-
-    memset(f, 0, sizeof(f));
-    for (int i = 2; i <= N; i++) 
-        if (!f[i]) 
-            for (int j = i; j <= N; j += i) f[j]++;
-}
-
-```
-
-### 预处理每个数的质因数
-
-```cpp
-bool inited = false;
-vector<int> fac[N + 1];
-void init() {
-    if (inited) return;
-    inited = true;
-
-    for (int i = 2; i <= N; i++) 
-        if (fac[i].empty()) 
-            for (int j = i; j <= N; j += i) fac[j].push_back(i);
-}
-
-void divide(int x) {
-  for (int i = 2; i <= x / i; i++)  // i <= x / i:防止越界，速度大于 i < sqrt(x)
-    if (x % i == 0) {               // i为底数
-      int s = 0;                    // s为指数
-      while (x % i == 0) x /= i, s++;
-      cout << i << ' ' << s << endl;  //输出
-    }
-  if (x > 1) cout << x << ' ' << 1 << endl;  //如果x还有剩余，单独处理
-  cout << endl;
-}
-```
-
-结论：预处理的复杂度是 $O(n)+O(n/2)+O(n/3)+...=O(nlogn)$ 的
-
-平均来看，每个自然数有 $logn$ 个真因子
 
 ### 遍历数组找到相邻元素和最小的对应下标
 
