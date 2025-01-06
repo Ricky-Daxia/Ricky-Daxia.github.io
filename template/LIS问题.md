@@ -24,6 +24,65 @@ public:
 };
 ```
 
+其实是贪心+二分的思想，用 `f[i]` 表示长为 `i` 的 LIS 结尾元素的最大值
+
+1.  `f[i]` 随着 `i` 单调增，这一点可以由反证法证明
+2.  据此可以在 `f` 中二分查找 `a[i]` 的插入点
+
+```cpp
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) { // 最长严格递增子序列
+        int n = nums.size();
+        vector<int> q(n + 10, 0);
+
+        int len = 0;
+        q[0] = -2e9;
+        for (int i = 0; i < n; i++)
+        {
+            int l = 0, r = len;
+            while (l < r)
+            {
+                int mid = l + r + 1 >> 1;
+                if (q[mid] < nums[i]) l = mid; // 如果是非递减 就写成 <=
+                else r = mid - 1;
+            }
+            len = max(len, l + 1);
+            q[l + 1] = nums[i]; 
+        }
+        return len;
+    }
+};
+```
+
+还需要掌握**最长下降子序列、最长非增子序列、最长非降子序列**，在于灵活运用 `f[0]` 和 `lower_bound` 和 `upper_bound`
+
+```cpp
+int LIS(vector<int> &a) { // 另一种写法
+    int n = a.size();
+    int f[n + 10];
+    int len = 0;
+    f[0] = -2e9;
+    for (int i = 0; i < n; i++) {
+        if (f[len] < a[i]) f[++ len] = a[i]; // 插入尾部的条件
+        else *lower_bound(f + 1, f + len + 1, a[i]) = a[i];
+    }
+    return len;
+}
+
+int LNAS(vector<int> &a) { // 最长不上升子序列
+    int n = a.size();
+    int f[n + 10];
+    int len = 0;
+    f[0] = 2e9;
+    for (int i = 0; i < n; i++) {
+        if (f[len] >= a[i]) f[++ len] = a[i];
+        else *upper_bound(f + 1, f + len + 1, a[i], greater<int>()) = a[i];
+    }
+    return len;
+}
+```
+
 ~~LIS 的两种二分写法~~
 
 ```c++

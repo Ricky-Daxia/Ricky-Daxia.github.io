@@ -364,8 +364,6 @@ for (int j = 0; j < n; j++)
     }
 ```
 
-### 如果某个值在计算过程中有可能为负 取模时要写成 x = (x % MOD + MOD) % MOD
-
 ### 懒惰更新技巧
 
 见 [得分最高的最小轮调](https://leetcode.cn/problems/smallest-rotation-with-highest-score/description/)
@@ -1208,67 +1206,6 @@ public:
 };
 ```
 
-### LIS
-
-其实是贪心+二分的思想，用 `f[i]` 表示长为 `i` 的 LIS 结尾元素的最大值
-
-1.  `f[i]` 随着 `i` 单调增，这一点可以由反证法证明
-2.  据此可以在 `f` 中二分查找 `a[i]` 的插入点
-
-```cpp
-class Solution {
-public:
-    int lengthOfLIS(vector<int>& nums) { // 最长严格递增子序列
-        int n = nums.size();
-        vector<int> q(n + 10, 0);
-
-        int len = 0;
-        q[0] = -2e9;
-        for (int i = 0; i < n; i++)
-        {
-            int l = 0, r = len;
-            while (l < r)
-            {
-                int mid = l + r + 1 >> 1;
-                if (q[mid] < nums[i]) l = mid; // 如果是非递减 就写成 <=
-                else r = mid - 1;
-            }
-            len = max(len, l + 1);
-            q[l + 1] = nums[i]; 
-        }
-        return len;
-    }
-};
-```
-
-还需要掌握**最长下降子序列、最长非增子序列、最长非降子序列**，在于灵活运用 `f[0]` 和 `lower_bound` 和 `upper_bound`
-
-```cpp
-int LIS(vector<int> &a) { // 另一种写法
-    int n = a.size();
-    int f[n + 10];
-    int len = 0;
-    f[0] = -2e9;
-    for (int i = 0; i < n; i++) {
-        if (f[len] < a[i]) f[++ len] = a[i]; // 插入尾部的条件
-        else *lower_bound(f + 1, f + len + 1, a[i]) = a[i];
-    }
-    return len;
-}
-
-int LNAS(vector<int> &a) { // 最长不上升子序列
-    int n = a.size();
-    int f[n + 10];
-    int len = 0;
-    f[0] = 2e9;
-    for (int i = 0; i < n; i++) {
-        if (f[len] >= a[i]) f[++ len] = a[i];
-        else *upper_bound(f + 1, f + len + 1, a[i], greater<int>()) = a[i];
-    }
-    return len;
-}
-```
-
 ### 满足下标 满足 f(i, j) 元素满足 g(nums[i], nums[j]) 的这一类题（合法范围内的可能值）
 
 比如
@@ -1430,7 +1367,7 @@ void dfs(int u, int fa)
 
 ### 用堆解决一些无向图中最小值/最小序问题
 
-如**通关**，**CF1106D**，题意都是先从无向图的根节点出发，每步去访问没访问过的节点，这个访问可能要满足一定条件（比如边权，当前权和）才能进行，问最终能访问的点/最值/字典序最小的访问序列。
+如[通关](https://www.lanqiao.cn/problems/5889/learning/)，[CF1106D](https://codeforces.com/problemset/problem/1106/D)，题意都是先从无向图的根节点出发，每步去访问没访问过的节点，这个访问可能要满足一定条件（比如边权，当前权和）才能进行，问最终能访问的点/最值/字典序最小的访问序列。
 
 想象它是一个像并查集那样逐步扩大集合的过程，每一步从当前集合中任意点出发，尝试更新一个最小的节点，那么这个过程就可以用**最小堆**来模拟
 
@@ -1438,7 +1375,7 @@ void dfs(int u, int fa)
 
 长度相等两数组，求 `|arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j|` 最大值
 
-Use the idea that abs(A) + abs(B) = max(A+B, A-B, -A+B, -A-B).
+> Use the idea that abs(A) + abs(B) = max(A+B, A-B, -A+B, -A-B).
 
 ```
 |arr1[i] - arr1[j]| + |arr2[i] - arr2[j]| + |i - j|
@@ -1584,10 +1521,6 @@ void init() {
 }
 ```
 
-### 代价、花费 => 出现次数
-
-对于题目描述的等价转换
-
 ### 使 x 变为 y 的最小操作次数
 
 给定一些操作：$x$ 自增、自减、或者除以某个数 $k$，问变成 $y$ 最小的操作次数
@@ -1603,10 +1536,6 @@ void init() {
 [10033. 使 X 和 Y 相等的最少操作次数](https://leetcode.cn/problems/minimum-number-of-operations-to-make-x-and-y-equal/)
 
 [LCP 20. 快速公交](https://leetcode.cn/problems/meChtZ/)
-
-### 相邻合并——考虑连续子数组的合并
-
-例题：[给定操作次数内使剩余元素的或值最小](https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/description/)
 
 ### 判环
 
@@ -1697,7 +1626,7 @@ def solve(t1, t2):
 
 ### [1, 2^n-1] 中每个二进制位共有多少个 1？
 
-一共 $n$ 个二进制位，固定一位填 $1$，其余任意，发现其实所有二进制位 $1$ 的个数都是 $2^(n-1)$
+一共 $n$ 个二进制位，固定一位填 $1$，其余任意，发现其实所有二进制位 $1$ 的个数都是 $2^{n-1}$
 
 ### 字典序问题
 
@@ -1749,7 +1678,7 @@ for (auto& [i, c] : cnt2) { // b 数组的数字事先存哈希表
 
 ### 矩阵对角线元素的特点
 
-![聚合键.PNG](https://pic.leetcode-cn.com/b4425d9def38f3f74a99525dd2cbe2b5257531f307231294dede11eec729f6cf-%E8%81%9A%E5%90%88%E9%94%AE.PNG)
+![https://pic.leetcode-cn.com/b4425d9def38f3f74a99525dd2cbe2b5257531f307231294dede11eec729f6cf-%E8%81%9A%E5%90%88%E9%94%AE.PNG](https://pic.leetcode-cn.com/b4425d9def38f3f74a99525dd2cbe2b5257531f307231294dede11eec729f6cf-%E8%81%9A%E5%90%88%E9%94%AE.PNG)
 
 左下到右上的：`i+j` 是定值
 
@@ -1989,6 +1918,8 @@ for (int i = 1, x; i <= n; i++) {
 给定 $a$ 和 $b$，每次操作选定任意 $x$，令 $a= \lfloor \frac{a+x}{2}\rfloor$，$b=\lfloor \frac{b+x}{2}\rfloor$，问最少几次操作可以使 $a=b$？
 
 关键在于转化为**最小化操作后 $a-b$ 的值**，然后分 $x$ 的奇偶性来讨论，由下取整的性质，不难发现 $x$ 要么取 $0$，要么取 $1$
+
+题源 [CF1901C题解区](https://www.luogu.com.cn/problem/solution/CF1901C)
 
 ### 数组分若干段，最大化 sigma(i*S[i]) 
 
