@@ -10,6 +10,16 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 树上滑窗例题
+
+给定一棵树，求出最长路径，使得路径中节点的点权互不相同
+
+需要记录每种点权最近一次出现的深度，那么路径起点的深度，就是路径所有点权的最近出现深度的最大值 $+1$
+
+通常用到**栈**来解决
+
+例题见 [LC3425](https://leetcode.cn/problems/longest-special-path/description/)
+
 ### 不重叠区间，定长窗口能覆盖的最多下标数量
 
 题源 [LC2271](https://leetcode.cn/problems/maximum-white-tiles-covered-by-a-carpet/description/) 以及 [LC3413](https://leetcode.cn/problems/maximum-coins-from-k-consecutive-bags/description/)
