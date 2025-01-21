@@ -10,6 +10,42 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 构造排列使得 gcd(i,a[i]) 之和为 k
+
+$k$ 的范围为 $[n,\frac{n(n+1)}{2}]$ 时有解
+
+观察：如果 $k$ 比较大，可以让 $a[n]=n$，转化为子问题 $f(n-1,k-n)$
+
+分界点是什么？剩下 $n-1$ 个数，最少贡献 $1$，因此分界点可以为 $k=2*n-1$
+
+如果 $k$ 较小时，可以让 $a[n]=n-1,a[n-1]=n$，转化为子问题 $f(n-2,k-2)$
+
+边界情况：列出 $n=2$、$n=3$、$n=4$ 时的所有状态看看，发现 $n=3,k=5$ 和 $n=4,k=6$ 时用这种构造解决不了，因此需要特判。当 $n=5$ 时，所有取值都可以转移到已经被解决的子问题
+
+```cpp
+std::vector<int> construct(int n, i64 k) {
+    std::vector<int> p;
+    if (n == 0) {
+         
+    } else if (n == 1) {
+        p = {1};
+    } else if (n == 3 && k == 4) {
+        p = {3, 2, 1};
+    } else if (n == 4 && k == 6) {
+        p = {3, 4, 1, 2};
+    } else if (k >= 2 * n - 1) {
+        p = construct(n - 1, k - n);
+        p.push_back(n);
+    } else {
+        p = construct(n - 2, k - 2);
+        p.push_back(n);
+        p.push_back(n - 1);
+    }
+     
+    return p;
+}
+```
+
 ### 树上滑窗例题
 
 给定一棵树，求出最长路径，使得路径中节点的点权互不相同
