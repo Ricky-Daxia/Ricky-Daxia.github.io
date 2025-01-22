@@ -1,4 +1,4 @@
-##### Trie模板
+### Trie模板
 
 ```c++
 const int N = 35010;
@@ -95,7 +95,7 @@ public:
 
 ---
 
-##### 用 trie 来为每个插入串编号，同时 O(1) 查询 s[i...j]
+### 用 trie 来为每个插入串编号，同时 O(1) 查询 s[i...j]
 
 [转换字符的最小成本](https://leetcode.cn/problems/minimum-cost-to-convert-string-ii/description/)
 
@@ -174,7 +174,7 @@ public:
 
 ---
 
-##### 如何统计一个字符串是否同时属于一个串的前后缀？
+### 如何统计一个字符串是否同时属于一个串的前后缀？
 
 题目：[3045. 统计前后缀下标对 II](https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/)
 
