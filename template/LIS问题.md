@@ -83,6 +83,8 @@ int LNAS(vector<int> &a) { // 最长不上升子序列
 }
 ```
 
+树上 LIS 问题怎么做？求出从根节点到每个节点的 LIS 长度，直接在 DFS 过程中用二分求 LIS 做法做即可，注意要**恢复现场**。题目见 [ABC165F](https://atcoder.jp/contests/abc165/tasks/abc165_f)
+
 ~~LIS 的两种二分写法~~
 
 ```c++
