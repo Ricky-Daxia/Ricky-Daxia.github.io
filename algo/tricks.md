@@ -10,6 +10,33 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 双单调栈求左边更大元素以及更更大元素
+
+模板见 [LC2454](https://leetcode.cn/problems/next-greater-element-iv/description/)
+
+应用见 [ABC140E](https://atcoder.jp/contests/abc140/tasks/abc140_e)
+
+```cpp
+        auto calc = [&](int start, int d, vector<int> &nxt, vector<int> &nxt2) {
+            vector<int> st1, st2;
+            for (int i = start; i >= 0 && i < n; i += d) {
+                int x = a[i];
+                while (st2.size() && a[st2.back()] < x) {
+                    nxt2[st2.back()] = i; // st2 栈顶的下下个更大元素是 x
+                    st2.pop_back();
+                }
+                int j = st1.size();
+                while (j && a[st1[j - 1]] < x) {
+                    nxt[st1[j - 1]] = i; // st1 栈顶的下一个更大元素是 x
+                    j --;
+                }
+                st2.insert(st2.end(), st1.begin() + j, st1.end()); // 把从 st1 弹出的这一整段元素加到 st2
+                st1.resize(j); // 弹出一整段元素
+                st1.push_back(i); // 当前元素（的下标）加到 s 栈顶
+            }
+        };
+```
+
 ### 组合计数中任意插入字符时去重的技巧
 
 给定串 $s$，任意插入 $k$ 个字符，求方案数
