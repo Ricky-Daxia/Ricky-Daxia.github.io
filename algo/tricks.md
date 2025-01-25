@@ -10,6 +10,26 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 容斥原理计算 [l,r] 内的区间个数
+
+先读入若干区间，然后每次询问回答 $[l,r]$ 内有多少个闭区间
+
+计算公式为 `f[l][r] = f[l+1][r]+f[l][r-1]-f[l+1][r-1]+cnt[l][r]`
+
+```cpp
+        int f[n + 2][n + 2];
+        memset(f, 0, sizeof(f));
+        for (int i = 0, l, r; i < m; i++) {
+            cin >> l >> r;
+            f[l][r] ++;
+        }
+        for (int l = n; l; l--) {
+            for (int r = l + 1; r <= n; r++) {
+                f[l][r] += f[l + 1][r] + f[l][r - 1] - f[l + 1][r - 1];
+            }
+        }
+```
+
 ### 双单调栈求左边更大元素以及更更大元素
 
 模板见 [LC2454](https://leetcode.cn/problems/next-greater-element-iv/description/)
