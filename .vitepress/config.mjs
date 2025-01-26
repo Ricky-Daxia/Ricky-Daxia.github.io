@@ -67,6 +67,7 @@ export default defineConfig({
           { text: 'Tarjan', link: '/template/Tarjan' },
           { text: 'Trie', link: '/template/Trie' },
           { text: '数论', link: 'template/数论' },
+          { text: '位运算', link: 'template/位运算' },
         ]
       }
     ],
