@@ -1,4 +1,4 @@
-[LC1483. 树节点的第 K 个祖先]: https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/description/
+[LC1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/description/)
 
 预处理 $f(i,k)$ 表示 $i$ 的第 $2^k$ 个父节点是谁，从 $v$ 走若干个 2 的次幂步到祖先 $m$ 
 
