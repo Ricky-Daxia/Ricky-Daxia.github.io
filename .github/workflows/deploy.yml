@@ -31,7 +31,7 @@ jobs:
           node-version: 20
           cache: npm # 设置缓存
       - name: Setup Pages
-        uses: actions/configure-pages@v2  # 在工作流程自动配置GithubPages
+        uses: actions/configure-pages@v4  # 在工作流程自动配置GithubPages
       - name: Install dependencies
         run: npm install # 安装依赖
       - name: Build with VitePress
@@ -54,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment  # 指定id
-        uses: actions/deploy-pages@v2 # 将之前的构建产物部署到github pages中
+        uses: actions/deploy-pages@v4 # 将之前的构建产物部署到github pages中
