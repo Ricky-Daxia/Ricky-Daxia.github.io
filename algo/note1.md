@@ -10,6 +10,51 @@ plugins:
 description: 积累一些有意思的题目
 ---
 
+### 反悔贪心一题
+
+题源 [这里](https://atcoder.jp/contests/aising2020/tasks/aising2020_e)：有 $n$ 只骆驼，你需要把这 $n$ 只骆驼按照某种顺序，排成一行。
+如果第 $i$ 只骆驼在前 $k_i$ 个位置中，那么它的幸福值是 $l_i$，否则是 $r_i$。
+
+**技巧一：** $l>r$ 的骆驼放在 $l<r$ 的骆驼的左边是更优的（可以用交换法证明）。因此可以把骆驼分组计算
+
+**技巧二：** 我们可以先把所有 $r$ 加起来，然后讨论 $l-r$ 怎么选取
+
+**技巧三：** 按照 $k$ 从小到大排序
+
+采取「捡到西瓜，丢掉芝麻」的反悔贪心策略：
+
+先把 $l-r$ 入堆（最小堆），如果入堆后发现堆的大小超过当前的 $k$，则弹出堆顶的「芝麻」
+
+```cpp
+        for (int i = 0, k, l, r; i < n; i++) {
+            cin >> k >> l >> r;
+            if (l > r) {
+                res += r;
+                a[k].push_back(l - r);
+            } else {
+                res += l;
+                b[n - k].push_back(r - l);
+            }
+        }
+        auto f = [&](vector<vector<int>> &a) {
+            priority_queue<int, vector<int>, greater<int>> q;
+            for (int i = 0; i < a.size(); i++) {
+                for (int x: a[i]) {
+                    res += x;
+                    q.push(x);
+                    if (q.size() > i) {
+                        res -= q.top();
+                        q.pop();
+                    }
+                }
+            }
+        };
+        f(a);
+        f(b);
+```
+
+简化版见 [luoguP2949](https://www.luogu.com.cn/problem/P2949)，很简单，自己做出来了
+
 ### 翻转子树使得全部点权 0
 
 题源 [ARC148C](https://atcoder.jp/contests/arc148/tasks/arc148_c)
