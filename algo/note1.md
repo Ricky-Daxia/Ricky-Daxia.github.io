@@ -10,6 +10,58 @@ plugins:
 description: 积累一些有意思的题目
 ---
 
+### 字符串中最多出现次数减去最少出现次数
+
+求出 $s$ 的所有子串中，出现次数**最多**的字符次数与出现次数**最少**的字符次数之差。题意可转化为**最大子数组和**：枚举字符 $a$ 和 $b$，$s$ 中的 $a$ 看成 $1$，$b$ 看成 $-1$，求最大子数组和。但是这里要求 $b$ 必须出现，而一般的最大子段和 DP 是无法保证这点的，因此
+
+- 用变量 $diff$ 维护 $a$ 和 $b$ 的出现次数之差，初始值为 $0$
+- 用另一个变量 $diffWithB$ 维护包含了 $b$ 的 $a$ 和 $b$ 的出现次数之差，初始为 $−\infty$，因为还没有遇到 $b$
+
+```cpp
+        auto calc = [&](char a, char b) {
+            int diff = 0, diff_b = -n;
+            int res = 0;
+            for (char c: s) {
+                if (c == a) {
+                    diff ++;
+                    diff_b ++;
+                } else if (c == b) {
+                    diff_b = -- diff;
+                    diff = max(diff, 0);
+                }
+                res = max(res, diff_b);
+            }
+            return res;
+        };
+```
+
+变形：要求子串长度至少为 $k$，且 $a$ 出现**奇数次**，$b$ 出现**偶数次**。对于子串长度，用滑窗来维护，即枚举 $r$ 的时候，维护 $l$ 表示左端点最右能到哪里，那么 $l$ 左侧的位置都能选，把这些位置的信息存在前缀数组中，取出最小值即可。对于出现次数的限制，只需要满足 $cur[a]$ 和 $pre[a]$ 奇偶性相反，$cur[b]$ 和 $pre[b]$ 的奇偶性相同即可。原题在 [LC3445](https://leetcode.cn/problems/maximum-difference-between-even-and-odd-frequency-ii/description/)
+
+```cpp
+// f[i][c]：前 i 个字符中，字符 c 出现了几次
+// 求出奇数频率的字符为 x，偶数频率的字符为 y 的情况下的最大子数组和
+auto gao = [&](int x, int y) {
+    int ret = -INF;
+    // g[0/1][0/1] 表示 x 和 y 在前缀里分别出现奇（偶）数次的最小前缀和
+    int g[2][2];
+    for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++) g[i][j] = INF;
+    // 枚举子数组的右端点 i
+    // j 是一个单调指针，表示子数组的左端点最大可以到哪
+    for (int i = 1, j = 0; i <= n; i++) {
+        while (i - j >= K && f[i][x] != f[j][x] && f[i][y] != f[j][y]) {
+            int &t = g[f[j][x] & 1][f[j][y] & 1];
+            t = min(t, f[j][x] - f[j][y]);
+            j++;
+        }
+        int now = f[i][x] - f[i][y];
+        // x 要出现奇数次，所以在前缀里频率的奇偶性必须不同
+        // y 要出现偶数次，所以在前缀里频率的奇偶性必须相同
+        ret = max(ret, now - g[f[i][x] & 1 ^ 1][f[i][y] & 1]);
+    }
+    return ret;
+};
+```
+
 ### 反悔贪心一题
 
 题源 [这里](https://atcoder.jp/contests/aising2020/tasks/aising2020_e)：有 $n$ 只骆驼，你需要把这 $n$ 只骆驼按照某种顺序，排成一行。
