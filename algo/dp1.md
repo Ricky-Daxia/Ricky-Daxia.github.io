@@ -94,6 +94,23 @@ int dp(int u, int k) {
         flag = false;
 ```
 
+#### 构造数组和为 m，且元素异或和为 0 的方案数
+
+思路：异或和为 $0$，意味着每个二进制位上的 $1$ 出现了偶数次，枚举最低位上有 $j$ 个 $1$，然后把当前的和 $i$ 右移一位，就得到了一个子问题
+
+定义 $f[i]$ 表示这 $n$ 个数中，元素和为 $i$ 的方案数。转移的时候枚举最低位上 $1$ 的个数 $j$，得到 $f[i]\leftarrow f[(i-j)/2]\times \binom{n}{i}$
+
+例题见 [ARC116D](https://atcoder.jp/contests/arc116/tasks/arc116_d)
+
+```cpp
+f[0] = 1;
+for (int i = 2; i <= m; i += 2) {
+    for (int j = 0; j <= i && j <= n; j += 2) {
+        f[i] = (f[i] + f[(i - j) / 2] * c[j]) % mod;
+    }
+}
+```
+
 ### 树上背包
 
 #### **选课**

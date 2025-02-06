@@ -56,7 +56,6 @@ export default defineConfig({
           { text: '线段树', link: '/template/线段树' },
           { text: '整体二分', link: '/template/整体二分' },
           { text: '子集', link: '/template/子集' },
-          { text: '组合数', link: '/template/组合数' },
           { text: '最大流最小费模板', link: '/template/最大流最小费模板' },
           { text: 'AC自动机', link: '/template/AC自动机' },
           { text: 'dfs序或重链剖分', link: '/template/dfs序或重链剖分' },
