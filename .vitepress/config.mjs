@@ -20,7 +20,8 @@ export default defineConfig({
           { text: '算法题记一', link: '/algo/note1' },
           { text: '算法题记二', link: '/algo/note2' },
           { text: '动态规划题记', link: '/algo/dp1' },
-          { text: '经典套路', link: '/algo/tricks' } 
+          { text: '经典套路', link: '/algo/tricks' },
+          { text: '题单记录', link: '/algo/lists' },
         ]
       },
       { 
