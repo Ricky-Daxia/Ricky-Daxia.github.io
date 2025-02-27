@@ -10,6 +10,18 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 曼哈顿距离转化为切比雪夫距离
+
+如何计算点对间的最大曼哈顿距离？
+
+首先 $|x_1-x_2|+|y_1-y_2|=max(x_1-x_2,x_2-x_1)+max(y_1-y_2,y_2-y_1)$
+
+不妨暴力枚举四种选法，可以总结为 $max(max(x_1+y_1,x_2+y_2)-min(x_1+y_1,x_2+y_2),max(x_1-y_1,x_2-y_2)-min(x_1-y_1,x_2-y_2))$
+
+即对于点 $(x_i,y_i)$，设 $x_i'=x_i+y_i$，$y_i'=x_i-y_i$，那么距离为 $max(x_i'-x_j')$ 和 $max(y_i'-y_j')$ 的最大值。排序之后最值相减即可
+
+结论：曼哈顿距离在坐标轴旋转 45 度后与切比雪夫距离等价
+
 ### 包含「子数组长度」的式子的处理技巧
 
 例题为 [ABC146E](https://atcoder.jp/contests/abc146/tasks/abc146_e)，求出有多少个子数组满足：`sum(b) % k = len(b)`。可以转化为 `sum(b-1) % k = 0`，然后就是常见的处理方法了
@@ -352,12 +364,6 @@ public:
 
 枚举大于 $t$ 的数 $z$，把 $z$ 的倍数都并起来
 
-### 需要考虑两个量时
-
-**两数之和**套路：如果是有“两个”，可以考虑枚举第二个，看第一个的性质
-
-应用：[两个线段获得的最多奖品](https://leetcode.cn/problems/maximize-win-from-two-segments/description/)
-
 ### 统计和为正数的子数组
 
 ![](https://cdn.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407141324484.png)
@@ -429,21 +435,6 @@ for (int i = 1; i < m + n - 2; i++)
 
 左上到右下不满足 `x+y` 为定值，枚举起点？
 
-### 调用库函数二分查找
-
-例：在前 $j$ 个数中查找有多少个 $nums[i]$ 满足 $lower-nums[j]\leq nums[i] \leq upper-nums[j]$，前提是有序数组
-
-```cpp
-LL res = 0;
-for (int j = 0; j < n; j++)
-{
-    int u = upper - nums[j], l = lower - nums[j];
-    auto R = upper_bound(nums.begin(), nums.begin() + j, u);
-    auto L = lower_bound(nums.begin(), nums.begin() + j, l);
-    res += R - L;
-}
-```
-
 ### 维护一个集合，支持动态求最值，删除和插入：multiset
 
 注意一点， `s.erase(val)` 会删除所有等于 `val` 的值，而 `s.erase(s.find(x))` 则只会删除一个 `x` ，求最小值用 `*s.begin()` ，最大值用 `s.rbegin()`
@@ -475,13 +466,27 @@ for (int j = 0; j < n; j++)
     }
 ```
 
+### 不重叠区间
+
+给定一些区间，选出若干不重叠的区间（只有一个点相交的不算），最多选多少
+
+按右端点排序，选最左边的区间
+
+```cpp
+    ranges::sort(intervals, {}, [](auto& a) { return a[1]; });
+    int ans = 0;
+    int pre_r = INT_MIN;
+    for (auto& p : intervals) {
+        if (p[0] >= pre_r) {
+            ans++;
+            pre_r = p[1];
+        }
+    }
+```
+
 ### 懒惰更新技巧
 
 见 [得分最高的最小轮调](https://leetcode.cn/problems/smallest-rotation-with-highest-score/description/)
-
-### 统计词频差
-
-用哈希表，善用 +1 -1 以及 `erase()` 方法，然后通过 `m.empty()` 来作为判断条件
 
 ### K 个不同整数的子数组的数目
 
@@ -1293,12 +1298,6 @@ void push_front(Node *x)
     x->nxt->pre = x;
 }
 ```
-
-### 数据流中维护最值（带删除）
-
-常见于数据结构题中，记得使用 `multiset` ！
-
-另一种方法是使用两个堆，然后使用**延时删除**的技巧
 
 ### 最长公共子序列
 
