@@ -30,9 +30,81 @@ description: DP 题目分类整理
 
 ### 状态设计
 
+#### Two out of three
+
+题源 [CF82D](https://codeforces.com/problemset/problem/82/D) 或 [LC3469](https://leetcode.cn/problems/find-minimum-cost-to-remove-array-elements/description/) 
+
+给定一个数组，每次从前三个数中选两个数删除，代价是较大的元素值。问全部删除的最小代价
+
+这题需要先观察出一个性质：每次操作的时候，剩下的数的下标一定是 $i,j,j+1,j+2,...$，这个性质可以通过归纳法证明
+
+借助这个性质可以设计 $f[i][j]$ 表示剩余的最左边下标为 $i$ 和 $j$ 时的最小代价，此时就是从 $a[i],a[j],a[j+1]$ 中选两个数删，然后转移到对应的状态。初始值为 $f[0][1]=0$
+
+由于是从 $f[i][j]$ 转移到 $f[j+1][j+2]$，因此 DP 数组需要开大一些，最后判断答案的时候判断大于 $n$ 的下标即可
+
+```cpp
+for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j <= n; j++) {
+        f[j + 1][j + 2] = min(f[j + 1][j + 2], f[i][j] + max(nums[i], nums[j]));
+        f[j][j + 2] = min(f[j][j + 2], f[i][j] + max(nums[i], nums[j + 1]));
+        f[i][j + 2] = min(f[i][j + 2], f[i][j] + max(nums[j], nums[j + 1]));
+    }
+}
+int res = 0x3f3f3f3f;
+for (int i = n; i < n + 3; i++) {
+    for (int j = n; j < n + 3; j++) {
+        res = min(res, f[i][j]);
+    }
+}
+```
+
+进阶：记录方案数，代码很好理解
+
+```cpp
+auto dfs = [&](auto &&dfs, int i, int j) -> int {
+    if (j >= n) {
+        return a[i];
+    } else if (j == n - 1) {
+        return max(a[i], a[j]);
+    }
+    if (f[i][j] > 0) {
+        return f[i][j];
+    }
+    int x = dfs(dfs, j + 1, j + 2) + max(a[i], a[j]);
+    int y = dfs(dfs, j, j + 2) + max(a[i], a[j + 1]);
+    int z = dfs(dfs, i, j + 2) + max(a[j], a[j + 1]);
+    f[i][j] = min(x, min(y, z));
+    return f[i][j];
+};
+
+auto output = [&](auto &&output, int i, int j) -> void {
+    if (j >= n) {
+        cout << i + 1 << '\n';
+        return;
+    } else if (j == n - 1) {
+        cout << i + 1 << ' ' << j + 1 << '\n';
+        return;
+    }
+    int x = dfs(dfs, j + 1, j + 2) + max(a[i], a[j]);
+    int y = dfs(dfs, j, j + 2) + max(a[i], a[j + 1]);
+    int z = dfs(dfs, i, j + 2) + max(a[j], a[j + 1]);
+    int mn = min(x, min(y, z));
+    if (x == mn) {
+        cout << i + 1 << ' ' << j + 1 << '\n';
+        output(output, j + 1, j + 2);
+    } else if (y == mn) {
+        cout << i + 1 << ' ' << j + 1 + 1 << '\n';
+        output(output, j, j + 2);
+    } else {
+        cout << j + 1 << ' ' << j + 1 + 1 << '\n';
+        output(output, i, j + 2);
+    }
+};
+```
+
 #### 求 1 号点到 n 号点长度不超过 d[n]+K 的路径数
 
-> [https://www.luogu.com.cn/problem/P3953](https://www.luogu.com.cn/problem/P3953)
+> [P3953](https://www.luogu.com.cn/problem/P3953)
 > 有向图，无重边和自环，存在权值为 `0` 的边，设 `1->n` 的最短路径为 `d`，求 `1->n` 的长度不超过 `d+K` 的路径数（可能存在无穷条，此时输出`-1`）
 > 点数、边数范围是 `1e5`，`K` 范围是 `50`
 
@@ -235,7 +307,7 @@ int dfs(int u) {
 
 #### 翻转子段
 
-> [https://codeforces.com/contest/1519/problem/D](https://codeforces.com/contest/1519/problem/D)
+> [CF1519D](https://codeforces.com/contest/1519/problem/D)
 > 输入 `n(≤5000)` 和两个长为 `n` 的整数数组 `a` 和 `b`，元素值均在 `[1,1e7]` 中。
 > 你可以至多反转一次 `a` 的某个子数组，求 `sum(a[i]*b[i])` 的最大值（即最大化 `a[0]*b[0]+a[1]*b[1]+...+a[n-1]*b[n-1]`）。
 
@@ -262,7 +334,7 @@ LL s = 0;
 
 #### 砖块涂色
 
-> [https://codeforces.com/problemset/problem/1114/D](https://codeforces.com/problemset/problem/1114/D)
+> [CF1114D](https://codeforces.com/problemset/problem/1114/D)
 > 有 `n` 个砖块排成一排，从左到右编号为 `1∼n（n <= 5000）`。
 > 其中，第 `i` 个砖块的初始颜色为 `ci`。
 > 我们规定，如果编号范围 `[i,j]` 内的所有砖块的颜色都相同，且当第 `i−1` 和 第 `j+1` 个砖块存在时，这两个砖块的颜色和区间 `[i,j]` 的颜色均不同, 则砖块 `i` 和 `j` 属于同一个连通块。
@@ -354,7 +426,7 @@ public:
 
 #### 统计不同的回文子序列
 
-> [730. 统计不同回文子序列](https://leetcode.cn/problems/count-different-palindromic-subsequences/)
+> [LC730](https://leetcode.cn/problems/count-different-palindromic-subsequences/)
 > 返回不同的非空回文子序列个数，`n` 是 `1000`
 
 怎么去重？定义 `f[i][j]` 表示区间 `[i,j]` 的不同回文子序列数，如果 `s[i]=s[j]=x`，那么 `f[i][j]` **增加了** `f[i-1][j+1]` 中的方案两端拼 `xx` + 单独的 `xx` + 单独的 `x`。去重的时候考虑**枚举端点字符 x**，寻找 `[i+1,j-1]` 中有没有出现一段区间 `[l,r]`，其中 `s[l]=s[r]=x`，有的话只需要减去 `f[l+1][r-1]` 即可。这个可以通过预处理 `nxt` 和 `pre` 数组得到。特别考虑如果 `l==r` 时怎么处理（单独的 `x` 不能算进去），以及 `s[i] != s[j]` 时，根据状态定义可以用容斥原理解决（`f[i+1][j]+f[i][j-1]-f[i+1][j-1]`）
@@ -405,7 +477,7 @@ for (int i = 0; i <= m; i++) g[i] = 1;
 
 #### 可撤销多重背包方案数
 
-参考 [https://leetcode.cn/circle/discuss/YnZBve/](https://leetcode.cn/circle/discuss/YnZBve/)
+参考 [这篇博客](https://leetcode.cn/circle/discuss/YnZBve/)
 
 > `N` 种物品，第 `i` 种有 `c[i]` 个，重量为 `v[i]`。求对于 `j=1,2,...,M`，求背包重量为 `j` 时的方案数
 
@@ -697,7 +769,7 @@ int main()
 
 #### 背包问题的翻译
 
-> [Problem - 543A - Codeforces](https://codeforces.com/problemset/problem/543/A)
+> [CF543A](https://codeforces.com/problemset/problem/543/A)
 > 有 `n` 个程序员，每个程序员都可以写任意行代码，总共要编写 `m` 行代码，这 `m` 行代码可以由多个程序员来编写。但是第 `i` 个程序员在一行代码中会出现 `a[i]` 个 bug。现在希望知道有多少种方案能使得这 `m` 行代码中的 bug 的数量不超过 `b` 个。
 
 现在有一个体积为 `b` 的背包，有 `n` 个物品，第 `i` 个物品的体积为 `a[i]`，个数有无限个。要求在这 `n` 个物品中取恰好 `m` 个物品，且背包能装下的方案有多少种，答案模上 `p`。
@@ -716,7 +788,7 @@ f[0][0] = 1;
 
 #### 01 背包变形题
 
-> [https://www.luogu.com.cn/problem/P2340](https://www.luogu.com.cn/problem/P2340)
+> [P2340](https://www.luogu.com.cn/problem/P2340)
 > 选 `n` 个人，使得情商和及智商和都是非负数，输出最大的二者总和
 
 自己想的时候没有想到转化为背包问题，怎么分析呢？关键在于每个人只有**选或不选**两种状态，据此考虑背包。首先背包容量肯定是 n，因为是 n 个人。其次，体积和价值怎么定？
@@ -784,7 +856,7 @@ while (T -- ) {
 
 #### 石子合并也能是背包
 
-> [1049. 最后一块石头的重量 II](https://leetcode.cn/problems/last-stone-weight-ii/)
+> [LC1049](https://leetcode.cn/problems/last-stone-weight-ii/)
 > 每次选两块石头 `x` 和 `y`，若 `x==y`，则粉碎，否则，剩下一个 `abs(x-y)` 的石头，问最后剩下的最小重量
 
 本质是给数组的数字添加正负号，求最后结果的最小值（可以手玩一下样例来观察出这个性质）。进而转化为求不超过 `sum/2` 的最大体积，就是经典背包问题
@@ -961,7 +1033,7 @@ f[i][j] = g[md];
 
 #### 最小高度树
 
-[题目链接](https://leetcode.cn/problems/minimum-height-trees/description/)
+[CF310](https://leetcode.cn/problems/minimum-height-trees/description/)
 
 这道题首先求出以 `0` 为根时各子树的高度，记录在 `h[]` 数组中；dp 的时候是先求出 `u` 的子节点的最大高度和次大高度，然后记录 `f[u]`；之后换根时注意了，**是先更新了 `h[u]` 再去 `dp(v)`！**这样在 `dp(v)` 的时候，`h[]` 刚好就是以 `v` 为根时各子树的高度
 
@@ -969,7 +1041,7 @@ f[i][j] = g[md];
 
 #### 求树上长度恰好为 k 的路径个数
 
-> [Problem - 161D - Codeforces](https://codeforces.com/problemset/problem/161/D)
+> [CF161D](https://codeforces.com/problemset/problem/161/D)
 
 分类讨论
 
@@ -999,7 +1071,7 @@ void dfs(int u, int fa) {
 
 #### 换根 DP 解决白色点-黑色点的最大值
 
-> [https://codeforces.com/problemset/problem/1324/F](https://codeforces.com/problemset/problem/1324/F)
+> [CF1324F](https://codeforces.com/problemset/problem/1324/F)
 > 对于每个节点 `u`，选出一个**包含** `u` 的连通子图，设子图中白点个数为 `cnt1`，黑点个数为 `cnt2`，请最大化 `cnt1-cnt2`。并输出这个值。
 
 法一：
@@ -1063,7 +1135,7 @@ void dfs2(int now, int pre) {
 
 #### 求 sigma(d[i]*a[i]) for 每个点为根
 
-> [Problem - 1092F - Codeforces](https://codeforces.com/problemset/problem/1092/F)
+> [CF1092F](https://codeforces.com/problemset/problem/1092/F)
 
 当根从 `u` 换到 `v` 时，以 `v` 为根子树的贡献各减少 `1`，共减少 `s[v]`，其余部分贡献各增加 `1`，共增加 `sum-s[v]`，因此转移方程为 `f[v]=f[u]+sum-2*s[v]`
 
@@ -1089,7 +1161,7 @@ void dfs2(int u, int fa) {
 
 #### 二叉树灯饰——状态设计
 
-> [LCP 64. 二叉树灯饰 - 力扣（LeetCode）](https://leetcode.cn/problems/U7WvvU/description/)
+> [LCP64](https://leetcode.cn/problems/U7WvvU/description/)
 > 二叉树：0 表示关灯，1 表示开灯
 >
 > - 操作 1：切换当前根节点状态
@@ -1306,7 +1378,7 @@ public:
 
 #### 后缀和优化
 
-- [1444. 切披萨的方案数](https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/)
+- [LC1444](https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/)
 
 参考 $O(nmk)$ 的解法，用到了后缀和来优化
 
@@ -1401,7 +1473,7 @@ cin >> n;
 
 #### 求 min(max(最大子段和，| 最小子段和 |))
 
-> [LCP 65. 舒适的湿度 - 力扣（LeetCode）](https://leetcode.cn/problems/3aqs1c/description/)
+> [LCP65](https://leetcode.cn/problems/3aqs1c/description/)
 > 题目意思是，可以把数组的一些数变成相反数，然后最小化数组的 `max(最大子段和，最小子段和的绝对值)`
 > 数据范围和值域都是 `1000`
 
@@ -1448,7 +1520,7 @@ public:
 
 #### 前缀 max 优化 DP
 
-> [LCP 57. 打地鼠 - 力扣（LeetCode）](https://leetcode.cn/problems/ZbAuEH/description/)
+> [LCP57](https://leetcode.cn/problems/ZbAuEH/description/)
 > `3×3` 网格上，每秒每个位置最多出现一只地鼠，地鼠出现的格式为 `(t,x,y)`，`t=0` 时锤子在 `(1,1)`，每移动一格需要 `1s`，问最多打到几只地鼠。`t` 的取值范围为 `1e9`
 
 坑点在于，`t=0` 时其他位置的地鼠是打不到的
@@ -1498,7 +1570,7 @@ public:
 
 #### 划分数字的方案数
 
-> [1977. 划分数字的方案数](https://leetcode.cn/problems/number-of-ways-to-separate-numbers/)
+> [LC1977](https://leetcode.cn/problems/number-of-ways-to-separate-numbers/)
 > 给一个字符串 `num`，一个正整数数组，非递减，每个数拼起来得到 `num`，问有多少种构造数组的方案，要求 $n^2$ 做法
 
 定义 `f[i][j]` 表示考虑了 `[0,j]` 这一段，最后一段数是 `[i,j]`，转移的话就考虑前一段，就是 `sigma(f[k][i-1])`，由于数位越多，数字越大，得到 `i-1-k<=j-i`，然后要分情况了，`k=2*i-j-1` 时，前一段和这一段数位相同，需要比较数字本身，`k>=2*i-j` 时，连续的一段可以用前缀和累加
@@ -1878,7 +1950,7 @@ for (int k = 3; k <= 2 * n; k++)
 
 第一类斯特林数指的是：$C[n][k]$ 表示 $n$ 个元素划分 $k$ 个圆排列的方案数
 
-> [1866. 恰有 K 根木棍可以看到的排列数目](https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/)
+> [LC1866](https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/)
 > 有 `n` 根长度互不相同的木棍，长度为从 `1` 到 `n` 的整数。请你将这些木棍排成一排，并满足从左侧 **可以看到** **恰好** `k` 根木棍。从左侧 **可以看到** 木棍的前提是这个木棍的 **左侧** 不存在比它 **更长的** 木棍。
 >
 > - 例如，如果木棍排列为 `[` **1** `,` **3** `,2,` **5** `,4]` ，那么从左侧可以看到的就是长度分别为 `1`、`3` 、`5` 的木棍。
@@ -1934,7 +2006,7 @@ int cal(int N, int K) {
 
 #### 262144
 
-> [https://www.luogu.com.cn/problem/P3147](https://www.luogu.com.cn/problem/P3147)
+> [P3147](https://www.luogu.com.cn/problem/P3147)
 > 给 `n` 个数`（2<=n<=262144）`，范围 `1-40`，可以把两个相邻的相同数 `x` 合并成 `x+1`，问最终得到的数最大是多少
 
 区间 DP？但这个范围不行啊，而且这个范围也太奇怪了
@@ -2056,7 +2128,7 @@ public:
 
 #### 网格图上放积木
 
-> [https://codeforces.com/contest/991/problem/D](https://codeforces.com/contest/991/problem/D)
+> [CF991D](https://codeforces.com/contest/991/problem/D)
 > 输入一个 2 行 n(≤100) 列的棋盘。
 > 用数字 0 表示空格子，大写字母 X 表示一开始就被占据的格子。
 > 你有无数个 L 形状的积木，可以旋转，也就是如下 4 种形状：
@@ -2111,7 +2183,7 @@ for (int i = 1; i < 1 << n; i++)
 
 #### 二进制表示子集
 
-> [门店商品调配][[https://leetcode.cn/contest/zj-future2022/problems/NBCXIp/](https://leetcode.cn/contest/zj-future2022/problems/NBCXIp/)]
+> [门店商品调配](https://leetcode.cn/contest/zj-future2022/problems/NBCXIp/)
 > 某连锁店开设了若干门店，门店间允许进行商品借调以应对暂时性的短缺。本月商品借调的情况记于数组 `distributions`，其中 `distributions[i] = [from,to,num]`，表示从 `from` 门店调配了 `num` 件商品给 `to` 门店。
 > 若要使得每一个门店最终借出和借入的商品数量相同，请问至少还需要进行多少次商品调配。
 > **注意：**一次商品调配以三元组 `[from, to, num]` 表示，并有 `from ≠ to` 且 `num > 0`。
@@ -2380,7 +2452,7 @@ int res = 0;
 
 #### 统计无向图中的简单环
 
-> [https://codeforces.com/problemset/problem/11/D](https://codeforces.com/problemset/problem/11/D)
+> [CF11D](https://codeforces.com/problemset/problem/11/D)
 > 求无向图中的简单环个数，保证不存在重边和自环。
 > 简单环：除起点外，其余的点都只出现一次的回路。
 > 点数最多是 `19`
@@ -2426,7 +2498,7 @@ for (int i = 0; i < n; i++) {
 
 #### 偶像出列！
 
-> [https://www.luogu.com.cn/problem/P3694](https://www.luogu.com.cn/problem/P3694)
+> [P3694](https://www.luogu.com.cn/problem/P3694)
 > 有 `n` 个偶像来自 `m` 个乐队，要求重新排列，使得同一乐队的站到一起。方式是，让一部分人出列，然后任意插回到空位中，问最少出列几人
 > `n` 的范围是 `1e5`，`m` 的范围是 `20`
 
@@ -2525,9 +2597,9 @@ public:
 };
 ```
 
-#### 基于状态机的 7 进制状压——魔法棋盘
+#### 基于状态机的 7 进制状压
 
-> [LCP 76. 魔法棋盘 - 力扣（LeetCode）](https://leetcode.cn/problems/1ybDKD/description/)
+> [LCP76](https://leetcode.cn/problems/1ybDKD/description/)
 > 棋盘上有空格、黑棋、红棋和问号四种，问号可以填入前三种，不产生冲突的填法有多少种（`n*m<=30`）
 > 产生冲突的定义：两颗不同颜色的棋子，在同一行或同一列；且之间恰好有一颗棋子（可以有空位）
 
@@ -2624,7 +2696,7 @@ public:
 
 反转一下，把这一位为 `0` 的加到为 `1` 的统计值中，最后求 `a[i]` 对应的数对时，把 `a[i]` 异或 `mask` 反转一下
 
-这个做法实际上叫做 **高维前缀和（SOSDP）**，一般用于子集求和类问题，当然它不止可以求前缀和，前缀积，前缀 `max`，前缀 `min` 都可以。这篇博客介绍得很清楚：[https://codeforces.com/blog/entry/45223](https://codeforces.com/blog/entry/45223)
+这个做法实际上叫做 **高维前缀和（SOSDP）**，一般用于子集求和类问题，当然它不止可以求前缀和，前缀积，前缀 `max`，前缀 `min` 都可以。[这篇博客](https://codeforces.com/blog/entry/45223)介绍得很清楚
 
 ```cpp
 // S(mask,i) 表示 mask 子集中只有最右边 i 位与其不同的状态
@@ -2651,7 +2723,7 @@ for (int i = 0; i < 20; i++)
 
 #### 两道 SOS-DP 的经典题
 
-1. https://atcoder.jp/contests/arc100/tasks/arc100_c
+1. [ARC100C](https://atcoder.jp/contests/arc100/tasks/arc100_c)
 
 ![](https://cdn.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407141607278.png)
 
@@ -2681,7 +2753,7 @@ PII merge(PII s, PII t)
     }
 ```
 
-1. [https://codeforces.com/contest/1208/problem/F](https://codeforces.com/contest/1208/problem/F)
+2. [CF1208F](https://codeforces.com/contest/1208/problem/F)
 
 ![](https://cdn.jsdelivr.net/gh/Ricky-Daxia/Hei_Xiu/202407141608005.png)
 
@@ -3055,7 +3127,7 @@ int main()
 
 难点在于讨论 `s[n]` 的情况，对应如何转移，以及 **延迟 DP** ，代码上学习 `struct f[]` 的作用：统一两种情况的计算
 
-[https://www.luogu.com.cn/blog/endlesscheng/solution-at-diverta2019-e](https://www.luogu.com.cn/blog/endlesscheng/solution-at-diverta2019-e)
+[题解](https://www.luogu.com.cn/blog/endlesscheng/solution-at-diverta2019-e)
 
 ```cpp
 struct {
@@ -3973,7 +4045,7 @@ void dp(int u, int fa, LL up)
 
 提示 2：求出最小路径和以及最大路径和，如果一个 <=0，一个 >=0，根据提示 1，可以通过交换，变成 0。**（不必思考具体怎么走，而是转化为一个取值范围问题，具体方案的证明看 tutorial）**
 
-怎么求？这是个经典 DP，见 [https://leetcode.cn/problems/minimum-path-sum/](https://leetcode.cn/problems/minimum-path-sum/)
+怎么求？这是个经典 DP，见 [LC64](https://leetcode.cn/problems/minimum-path-sum/)
 
 ```cpp
 mn[0][0] = mx[0][0] = g[0][0];
