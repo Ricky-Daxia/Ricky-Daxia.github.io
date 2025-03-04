@@ -504,6 +504,18 @@ for (int i = 1; i < m + n - 2; i++)
 
 经典中位数贪心，把所有数变为中位数即可（见 [最小操作次数使数组元素相等 II](https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/)）
 
+### 回文串判断
+
+```cpp
+// is_palindrome[l][r] 表示 s[l] 到 s[r] 是否为回文串
+vector is_palindrome(n, vector<int>(n, true));
+for (int l = n - 2; l >= 0; l--) {
+    for (int r = l + 1; r < n; r++) {
+        is_palindrome[l][r] = s[l] == s[r] && is_palindrome[l + 1][r - 1];
+    }
+}
+```
+
 ### 回文串之中心扩散法
 
 [不重叠回文子字符串的最大数目](https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/description/)
