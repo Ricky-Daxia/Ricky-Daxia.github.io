@@ -12,6 +12,22 @@ description: 积累一些有意思的题目
 
 # 算法题笔记二
 
+### 正方形边界上选 k 个点，最大化最小曼哈顿距离
+
+题源 [LC3464](https://leetcode.cn/problems/maximize-the-distance-between-points-on-a-square/description/)，数据范围是 $k\geq 4$，这个条件非常关键
+
+技巧：**二维转一维 + 倍增**
+
+按照逆时针的顺序把边摊平，所有点可视为一维数组的坐标点，然后二分最小距离，check 的时候枚举起点，每次找到当前点右边最近的距离大于等于 $mid$ 的点，看能否找到 $k$ 个点
+
+注意：由于一维数组是环形的，还需要保证最后一个点和第一个点的距离大于等于 $mid$
+
+往右边找点的过程，可以用**倍增**来优化，记 $f[cur][l]$ 表示 $cur$ 往右找的最近的第 $2^l$ 个点
+
+因为 $k\geq 4$，所以点之间的距离不超过边长 $a$，这意味着可以把曼哈顿距离转化为沿着边运动的距离，二维转一维才成立。否则就不可以这样做了
+
+代码见[提交](https://leetcode.cn/problems/maximize-the-distance-between-points-on-a-square/submissions/606609221/)
+
 ### 数组每个数往左往右最多可以吸收多少个数
 
 题源 [ARC189D](https://atcoder.jp/contests/arc189/tasks/arc189_d)
