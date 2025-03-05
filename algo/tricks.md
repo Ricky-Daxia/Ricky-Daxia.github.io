@@ -10,6 +10,137 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 扫描线+线段树求矩形面积的并集
+
+题源 [LC850](https://leetcode.cn/problems/rectangle-area-ii/description/)，给定若干个二维平面上的矩形，求出总面积，重叠部分算一次
+
+考虑一条平行于 $x$ 轴的扫描线，所有被覆盖到的区间构成了当前的底边长，每次扫描的时候都会加入/移除一些区间，考虑用线段树维护这些区间的总长
+
+其实我们并不关心每个点的 $x$ 值，把所有 $x$ 值离散化之后，区间长度就是 $x_i-x_j$，那么不如直接维护这 $2n$ 个点所构成的 $2n-1$ 个区间，每次操作会把一段连续区间的覆盖数 $+1$ 或 $-1$
+
+然后出现了一个难点：每次计算底边长的时候需要知道所有覆盖值大于 $0$ 的区间和，怎么用线段树维护这个信息？
+
+注意，这里不可以直接维护这个区间和，因为每次对一段连续区间执行操作之后，内部有些区间覆盖值大于 $0$，有些可能减为 $0$，说明这个操作对元素会有不同的影响。我们需要维护那些对于所有元素都有相同影响的操作
+
+**技巧**：维护覆盖值的最小值 $x$，以及满足覆盖值等于 $x$ 的区间和 $s$。这样的好处是：每次执行 $+v$ 操作，只会影响 $x$，不影响 $s$。如何求目标区间和？设区间总长为 $t$，当 $x=0$ 时，答案为 $t-s$，否则答案为 $s$
+
+使用懒标记下推的线段树维护即可
+
+```cpp
+class Solution {
+public:
+    int rectangleArea(vector<vector<int>>& rectangles) {
+        int n = rectangles.size(), m = 0;
+        map<int, int> mp;
+        for (auto &r : rectangles) {
+            mp[r[0]] = mp[r[2]] = 1;
+        }
+        for (auto &p : mp) {
+            p.second = m ++;
+        }
+        int A[m];
+        for (auto &p : mp) {
+            A[p.second] = p.first;
+        }
+
+        struct Node {
+            // mn：当前节点的最小覆盖数
+            // len：满足覆盖数 = 最小覆盖数的 A[i] 之和
+            // lazy：加法的懒标记
+            int mn, len, lazy;
+
+            // 对节点的覆盖数整个增加 qv，只影响 mn，不影响 len
+            void add(int qv) {
+                mn += qv;
+                lazy += qv;
+            }
+        } tree[m * 4 + 5];
+
+        // 线段树两个子节点合并
+        auto merge = [&](Node &nl, Node &nr) {
+            int mn = min(nl.mn, nr.mn);
+            return Node {
+                mn,
+                (nl.mn == mn ? nl.len : 0) + (nr.mn == mn ? nr.len : 0),
+                0
+            };
+        };
+
+        // 线段树模板开始
+
+        // 建树
+        auto build = [&](this auto &&self, int id, int l, int r) -> void {
+            if (l == r) {
+                // 区间长度
+                tree[id] = { 0, A[r] - A[r - 1], 0 };
+            }
+            else {
+                int nxt = id << 1, mid = (l + r) >> 1;
+                self(nxt, l, mid); self(nxt | 1, mid + 1, r);
+                tree[id] = merge(tree[nxt], tree[nxt | 1]);
+            }
+        };
+
+        // 懒标记下推
+        auto down = [&](int id) {
+            if (tree[id].lazy == 0) {
+                return;
+            }
+            int nxt = id << 1;
+            tree[nxt].add(tree[id].lazy);
+            tree[nxt | 1].add(tree[id].lazy);
+            tree[id].lazy = 0;
+        };
+
+        // 区间加减覆盖次数
+        auto modify = [&](this auto &&self, int id, int l, int r, int ql, int qr, int qv) -> void {
+            if (ql <= l && r <= qr) {
+                tree[id].add(qv);
+            }
+            else {
+                down(id);
+                int nxt = id << 1, mid = (l + r) >> 1;
+                if (ql <= mid) {
+                    self(nxt, l, mid, ql, qr, qv);
+                }
+                if (qr > mid) {
+                    self(nxt | 1, mid + 1, r, ql, qr, qv);
+                }
+                tree[id] = merge(tree[nxt], tree[nxt | 1]);
+            }
+        };
+
+        // 线段树模板结束
+
+        // 把矩形的上下边界取出来
+        vector<array<int, 4>> vec;
+        for (auto &r : rectangles) {
+            // y, x1 和 x2 所覆盖的区间(+1 是因为区间计数从 1 开始),qv
+            vec.push_back({r[1], mp[r[0]] + 1, mp[r[2]], 1});
+            vec.push_back({r[3], mp[r[0]] + 1, mp[r[2]], -1});
+        }
+        sort(vec.begin(), vec.end());
+
+        // 求总的面积并
+        long long tot = 0;
+        build(1, 1, m - 1);
+        for (int i = 0; i + 1 < vec.size(); i++) {
+            // 考虑水平线 y = vec[i][0] 和 y = vec[i + 1][0] 之间的情况
+            modify(1, 1, m - 1, vec[i][1], vec[i][2], vec[i][3]);
+            // 求横截长度
+            int len = A[m - 1] - A[0];
+            // 如果最小覆盖数是 0，那么扣掉相应的长度
+            if (tree[1].mn == 0) {
+                len -= tree[1].len;
+            }
+            // 面积 = 横截长度 * 高度差
+            tot += 1LL * len * (vec[i + 1][0] - vec[i][0]) % 1000000007;
+        }
+        return tot % 1000000007;
+    }
+};
+```
+
 ### 曼哈顿距离转化为切比雪夫距离
 
 如何计算点对间的最大曼哈顿距离？
@@ -483,10 +614,6 @@ for (int i = 1; i < m + n - 2; i++)
         }
     }
 ```
-
-### 懒惰更新技巧
-
-见 [得分最高的最小轮调](https://leetcode.cn/problems/smallest-rotation-with-highest-score/description/)
 
 ### K 个不同整数的子数组的数目
 
