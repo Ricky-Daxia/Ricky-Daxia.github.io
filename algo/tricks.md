@@ -256,13 +256,65 @@ std::vector<int> construct(int n, i64 k) {
 
 ### 树上滑窗例题
 
-给定一棵树，求出最长路径，使得路径中节点的点权互不相同
+题源 [LC3425](https://leetcode.cn/problems/longest-special-path/description/)，给定一棵树，求出最长路径，使得路径中节点的点权互不相同
 
 需要记录每种点权最近一次出现的深度，那么路径起点的深度，就是路径所有点权的最近出现深度的最大值 $+1$
 
-通常用到**栈**来解决
+用一个哈希表记录每种点权最近出现的深度，用一个**栈**维护根节点到 DFS 节点的路径长度，那么路径长度可以通过作差得到
 
-例题见 [LC3425](https://leetcode.cn/problems/longest-special-path/description/)
+```cpp
+    vector<int> nums;
+    vector<vector<PII>> g;
+    PII res = {-1, 0};
+    vector<int> dis = {0};
+    unordered_map<int, int> last_dep; // 最近出现深度的最大值 +1
+    void dfs(int u, int fa, int tot_dep) {
+        int color = nums[u];
+        int old_dep = last_dep[color];
+        tot_dep = max(tot_dep, old_dep);
+
+        // 这里还要求最长路径的最小节点数，就是 dis.size() - tot_dep - 1，为了方便处理，变成相反数
+        res = max(res, pair(dis.back() - dis[tot_dep], tot_dep - (int)dis.size()));
+
+        last_dep[color] = dis.size();
+        for (auto &[v, w]: g[u]) {
+            if (v != fa) {
+                dis.push_back(dis.back() + w); // 把根节点到每个节点的距离入栈
+                dfs(v, u, tot_dep);
+                dis.pop_back();
+            }
+        }
+        last_dep[color] = old_dep;
+    }
+```
+
+进阶版题源 [LC3486](https://leetcode.cn/problems/longest-special-path-ii/description/)，允许路径上只有一个点权出现两次。需要额外维护这个重复点权出现的**更靠上的深度**，其余逻辑不用变
+
+```cpp
+    vector<int> nums;
+    vector<vector<PII>> g;
+    PII res = {-1, 0};
+    vector<int> dis = {0};
+    unordered_map<int, int> last_dep; // 最近出现深度 +1
+    void dfs(int u, int fa, int tot_dep, int last1) {
+        int color = nums[u];
+        int last2 = last_dep[color];
+        // 更新时需要比较 维护的重复点权 和 当前点权 的出现情况
+        tot_dep = max(tot_dep, min(last1, last2));
+
+        res = max(res, pair(dis.back() - dis[tot_dep], tot_dep - (int)dis.size()));
+
+        last_dep[color] = dis.size();
+        for (auto &[v, w]: g[u]) {
+            if (v != fa) {
+                dis.push_back(dis.back() + w);
+                dfs(v, u, tot_dep, max(last1, last2)); // last1 的更新逻辑
+                dis.pop_back();
+            }
+        }
+        last_dep[color] = last2;
+    }
+```
 
 ### 不重叠区间，定长窗口能覆盖的最多下标数量
 
@@ -848,7 +900,7 @@ int main()
 }
 ```
 
-### 求 lcp 矩阵
+### 求 LCP 矩阵
 
 ```cpp
 int lcp[n + 1][n + 1]; // lcp[i][j] 表示 s[i:] 和 s[j:] 的最长公共前缀
@@ -858,6 +910,14 @@ int lcp[n + 1][n + 1]; // lcp[i][j] 表示 s[i:] 和 s[j:] 的最长公共前缀
                 if (s[i] == s[j])
                     lcp[i][j] = lcp[i + 1][j + 1] + 1;
 ```
+
+### LCP 的性质
+
+给定字符串数组，任选 $k$ 个串，最大的 LCP 是多少？
+
+**性质一**：把字符串按字典序**排序**，那么答案一定在一个连续子数组内，考虑长度为 $k$ 的子数组即可
+
+**性质二**：子数组的 LCP，等价于首尾元素的 LCP。这一点可以通过证明 $LCP_1 \leq LCP$ 和 $LCP_1 \geq LCP$ 来证明，较为简单
 
 ### 区间分组，组内区间互不相交，最少组数
 

@@ -335,6 +335,7 @@ int main()
 ### 数位 DP 2.0 模板
 
 ```python
+# 题源 [LC2999](https://leetcode.cn/problems/count-the-number-of-powerful-integers/description/)
 class Solution:
     def numberOfPowerfulInt(self, start: int, finish: int, limit: int, s: str) -> int:
 
@@ -509,3 +510,39 @@ public:
 
 ---
 
+### 数位 DP 2.1 模板
+
+主要优化点在于省略 $is_num$ 参数，且无需补前导零
+
+当 $limitLow = \text{true}$，且 $i$ 比 $r$ 和 $l$ 的十进制长度之差还小时，当前数位可以不填
+
+```python
+# 题源 [LC3490](https://leetcode.cn/problems/count-beautiful-numbers/description/)
+class Solution:
+    def beautifulNumbers(self, l: int, r: int) -> int:
+        low = list(map(int, str(l)))
+        high = list(map(int, str(r)))
+        n = len(high)
+        diff_lh = n - len(low)  # 这样写无需给 low 补前导零，也无需 is_num 参数
+
+        @cache
+        def dfs(i: int, m: int, s: int, limit_low: bool, limit_high: bool) -> int:
+            if i == n:
+                return 1 if s and m % s == 0 else 0
+
+            lo = low[i - diff_lh] if limit_low and i >= diff_lh else 0
+            hi = high[i] if limit_high else 9
+
+            res = 0
+            if limit_low and i < diff_lh:
+                res += dfs(i + 1, 1, 0, True, False)  # 什么也不填
+                d = 1  # 下面循环从 1 开始
+            else:
+                d = lo
+            # 枚举填数位 d
+            for d in range(d, hi + 1):
+                res += dfs(i + 1, m * d, s + d, limit_low and d == lo, limit_high and d == hi)
+            return res
+
+        return dfs(0, 1, 0, True, True)
+```
