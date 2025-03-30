@@ -303,6 +303,28 @@ int dfs(int u) {
 
 转移是很简单的：不选，选（1）和前一个数分在一起（2）单独开一段
 
+#### 划分段数转换为前后缀和
+
+> 你可以将 `nums` 分割成多个子数组。第 `i` 个子数组由元素 `nums[l..r]` 组成，其代价为：
+> 
+> `(nums[0] + nums[1] + ... + nums[r] + k * i) * (cost[l] + cost[l + 1] + ... + cost[r])`
+>
+> 返回通过任何有效划分得到的 **最小** 总代价
+> 
+> 数据范围是 $1000$
+
+题意转换为两部分
+
+- `(nums[1] + ... + nums[r]) * (cost[l] + ... + cost[r])`
+
+- `k * i * (cost[l] + ... + cost[r])`
+
+第一部分很简单，难点在于第二部分。参考[题解](https://leetcode.cn/problems/minimum-cost-to-divide-array-into-subarrays/solutions/3633239/qian-zhui-he-dp-by-tsreaper-7g2c/)中的图可以发现，划分段数跟倍率相关，转化为 `cost` 的某一子段和被统计的次数，进而得出本质：第二部分的代价就是 `cost` 的后缀和
+
+类似的转换思路见 [CF1175D](https://codeforces.com/problemset/problem/1175/D)
+
+代码见 [LC3500](https://leetcode.cn/problems/minimum-cost-to-divide-array-into-subarrays/description/)
+
 ### 区间 DP
 
 #### 翻转子段

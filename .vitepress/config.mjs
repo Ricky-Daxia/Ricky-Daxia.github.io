@@ -43,7 +43,7 @@ export default defineConfig({
           { text: '01-BFS', link: '/template/01BFS' },
           { text: '单调栈', link: '/template/单调栈' },
           { text: '动态区间求并', link: '/template/动态区间求并' },
-          { text: '滑动窗口前K小数', link: '/template/滑动窗口前K小数' },
+          { text: '对顶堆', link: '/template/对顶堆' },
           { text: '矩阵快速幂优化floyd', link: '/template/矩阵快速幂优化floyd' },
           { text: '马拉车与扩展kmp', link: '/template/马拉车与扩展kmp' },
           { text: '普通莫队算法', link: '/template/普通莫队算法' },
