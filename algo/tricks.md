@@ -10,6 +10,37 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 模拟进制转换
+
+把十进制字符串转换为 $b$ 进制的结果，可以结合竖式除法来理解下面的代码
+
+```cpp
+// 把十进制字符串 s 转成 b 进制
+// 用小学学过的【竖式除法】计算，读者可以先用竖式除法算算 1234÷10，再对照下面的代码
+vector<int> trans(string& s, int b) {
+    for (char& c : s) {
+        c -= '0';
+    }
+    vector<int> digits;
+    while (!s.empty()) {
+        string nxt_s; // 用竖式除法计算 s / b 得到的商（十进制）
+        int rem = 0; // s % b
+        for (char c : s) {
+            rem = rem * 10 + c;
+            int q = rem / b; // 商
+            if (q || !nxt_s.empty()) {
+                nxt_s.push_back(q);
+            }
+            rem = rem % b;
+        }
+        digits.push_back(rem);
+        s = move(nxt_s);
+    }
+    ranges::reverse(digits);
+    return digits;
+}
+```
+
 ### 扫描线+线段树求矩形面积的并集
 
 题源 [LC850](https://leetcode.cn/problems/rectangle-area-ii/description/)，给定若干个二维平面上的矩形，求出总面积，重叠部分算一次
