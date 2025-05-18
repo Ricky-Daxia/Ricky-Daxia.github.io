@@ -50,6 +50,7 @@ export default defineConfig({
           { text: '射线法判断点是否在多边形内', link: '/template/射线法判断点是否在多边形内' },
           { text: '实用函数', link: '/template/实用函数' },
           { text: '树上倍增或lca', link: '/template/树上倍增或lca' },
+          { text: '虚树', link: '/template/虚树' },
           { text: '树上启发式合并', link: '/template/树上启发式合并' },
           { text: '树状数组', link: '/template/树状数组' },
           { text: '数位DP', link: '/template/数位DP' },
