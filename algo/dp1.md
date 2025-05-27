@@ -195,28 +195,23 @@ for (int i = 2; i <= m; i += 2) {
 
 转移方程就是：**规定根节点必选（因为不选根节点就无法选子节点）**，枚举子节点选多少个，即 `f[x][i][j]=max{f[x][i-1][j], f[x][i-1][j-k]+f[v][sz[v]][k]`，其中 `0<=k<j`，其中前者又是 `k=0` 时的情况，因此可合并到后面的式子中
 
-边界条件：`f[x][1][0]=0, f[x][1][1]=1`，分别代表不选和选根节点
-
-优化思路：用已经求好的答案更新未来的问题，即 `f[x][i+1][j+k]=max{f[v][sz[v]][k]+f[x][i][j]}`，其中第二维可以通过倒序枚举来优化掉，复杂度的证明用到了 lca 的知识
-
-**TODO：还没弄懂**
+边界条件：`f[x][1][0]=0, f[x][1][1]=1`，分别代表不选和选根节点。复杂度是 $O(nm^2)$
 
 ```cpp
-int dfs(int u) {
-    int p = 1;
+void dfs(int u) {
     f[u][1] = s[u];
     for (int v: g[u]) {
-        int sz = dfs(v);
-        for (int i = min(p, m + 1); i; i--) {
-            for (int j = 1; j <= sz && i + j <= m + 1; j++) {
-                f[u][i + j] = max(f[u][i + j], f[u][i] + f[v][j]);
+        dfs(v);
+        for (int j = m; j > 0; j--) {
+            for (int k = 0; k < j; k++) {
+                f[u][j] = max(f[u][j], f[u][j - k] + f[v][k]);
             }
         }
-        p += sz;
     }
-    return p;
 }
 ```
+
+一个通过后序遍历优化为 $O(nm)$ 的[链接](https://www.luogu.com.cn/article/kq00ov2b)
 
 #### 取气球
 
@@ -226,13 +221,15 @@ int dfs(int u) {
 > - 要么删掉一个根节点，获得子树所有气球
 >     问不超过给定代价的情况下，最多拿走几个气球
 
-对于树上背包，另一种定义状态是 `f[u][j]` 表示以 `u` 为根的子树，获得 `j` 个气球的最小代价
+定义状态是 `f[u][j]` 表示以 `u` 为根的子树，获得 `j` 个气球的最小代价
 
 **边权转点权**的技巧：把每个气球上方的边看成一个点，点权为 `b[u]`，表示花 `b[u]` 代价获得 `u` 这棵子树
 
 1. 如果 `b[u]<=j`，直接获得子树是最优的，`f[u][j]=b[u]`
 2. 对子树转移：`f[u][j+k]=min(f[u][j+k], f[u][j]+f[v][k])`
 3. 对于 `u` 的代价不小于 `a[u]` 的情况：`f[u][sz[u]-1]=min(f[u][sz[u]-1],a[u])，f[u][sz[u]]=min(f[u][sz[u]],b[u])`
+
+下面这种写法参考 oi-wiki 的写法，使用了子树合并的方式，可以证明复杂度是 $O(nk)$ 的
 
 ```cpp
 int dfs(int u) {
@@ -263,32 +260,80 @@ int dfs(int u) {
     }
 ```
 
-#### 洛谷 P1273 有线电视网
+#### LC 例题
 
-对于这种树上问最多满足的节点数量的，要想到是背包
+题源 [LC3562](https://leetcode.cn/problems/maximum-profit-from-trading-stocks-with-discounts/description/)
 
-经典定义 `f[i][j]` 表示以 `i` 为根的子树，满足 `j` 个用户的最大收益。显然对于根节点，直接就是 `f[u][1] = w[u]`；然后就考虑背包部分，考虑每个子节点，递归计算，然后合并（倒序枚举体积，正序枚举当前子树选几个），这样做下来，对于树形背包似乎也挺清晰的。值得一提的是，**树形背包的复杂度是 $O(nk)$或 $O(n^2)$ 的**，证明看 oiwiki
+给定树和每个点的买入价格和卖出价格，父节点买入，子节点可以半价买入。求不超过给定总成本，最大利润
+
+我们需要知道子节点 $v$ 在成本不超过 $j$ 的情况下，最多能获得的利润。不妨直接让 DFS 返回一个数组，这样就知道每个 $j$ 对应的利润来转移
 
 ```cpp
-int dfs(int u) {
-    if (u >= n - m + 1) {
-        f[u][1] = w[u]; // 叶子节点
-        return 1;
-    }
-    int sum = 0;
-    for (auto &[v, c]: g[u]) {
-        int sz = dfs(v);
-        sum += sz; // 更新体积
-        for (int j = sum; j >= 0; j--) {
-            for (int i = 1; i <= min(j, sz); i++) { // 子树中选 i 个
-                if (j - i >= 0) { // 注意这个限制
-                    f[u][j] = max(f[u][j], f[u][j - i] + f[v][i] - c);
+auto dfs = [&](this auto&& dfs, int x) -> vector<array<int, 2>> {
+    // 计算从 x 的所有儿子子树 y 中，能得到的最大利润之和
+    vector<array<int, 2>> sub_f(budget + 1);
+    for (int y : g[x]) {
+        auto fy = dfs(y);
+        for (int j = budget; j >= 0; j--) {
+            // 枚举子树 y 的预算为 jy
+            // 当作一个体积为 jy，价值为 fy[jy][k] 的物品
+            for (int jy = 0; jy <= j; jy++) {
+                for (int k = 0; k < 2; k++) {
+                    sub_f[j][k] = max(sub_f[j][k], sub_f[j - jy][k] + fy[jy][k]);
                 }
             }
         }
     }
-    return sum;
-}
+
+    vector<array<int, 2>> f(budget + 1);
+    for (int j = 0; j <= budget; j++) {
+        for (int k = 0; k < 2; k++) {
+            int cost = present[x] / (k + 1);
+            if (j >= cost) {
+                // 不买 x，转移来源是 sub_f[j][0]
+                // 买 x，转移来源为 sub_f[j-cost][1]，因为对于子树来说，父节点一定买
+                f[j][k] = max(sub_f[j][0], sub_f[j - cost][1] + future[x] - cost);
+            } else { // 只能不买 x
+                f[j][k] = sub_f[j][0];
+            }
+        }
+    }
+    return f;
+};
+```
+
+正常写法
+
+```cpp
+auto dfs = [&](this auto &&dfs, int u) -> void {
+    int sub_f[budget + 1][2];
+    memset(sub_f, 0, sizeof(sub_f));
+    for (int v: g[u]) {
+        dfs(v);
+        for (int j = budget; j >= 0; j--) {
+            for (int i = 0; i <= j; i++) {
+                for (int k = 0; k < 2; k++) {
+                    // 临时数组 合并子树的情况
+                    sub_f[j][k] = max(sub_f[j][k], sub_f[j - i][k] + f[v][i][k]);
+                }
+            }
+        }
+    }
+    
+    for (int j = 0; j <= budget; j++) {
+        f[u][j][0] = f[u][j][1] = sub_f[j][0]; // 不选
+        int cost = present[u - 1];
+        // 选
+        if (j >= cost) {
+            f[u][j][0] = max(f[u][j][0], sub_f[j - cost][1] + future[u - 1] - cost);
+        }
+        cost /= 2;
+        if (j >= cost) {
+            f[u][j][1] = max(f[u][j][1], sub_f[j - cost][1] + future[u - 1] - cost);
+        }
+        
+    }
+};
 ```
 
 ### 划分型 DP
