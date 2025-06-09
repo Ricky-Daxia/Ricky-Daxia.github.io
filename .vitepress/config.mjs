@@ -69,6 +69,7 @@ export default defineConfig({
           { text: 'Trie', link: '/template/Trie' },
           { text: '数论', link: 'template/数论' },
           { text: '位运算', link: 'template/位运算' },
+          { text: 'logTrick', link: 'template/logTrick' },
         ]
       }
     ],
