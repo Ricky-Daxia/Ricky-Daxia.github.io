@@ -10,6 +10,50 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### [1,n] 中字典序第 k 小的树
+
+等价于一棵**十叉树**上先序遍历的第 $k$ 个节点
+
+如何计算子树的节点数？按层计算：`1+10+100...+(n-1000)`，利用等比数列求和公式优化，复杂度为 $O(Dlogn)$，其中 $D=10$
+
+```cpp
+class Solution {
+public:
+    int findKthNumber(int n, int k) {
+        int pow10 = 1; // 直接跳到子树 1 最后一层，left 和 right 需要乘以 pow10
+        for (int x = n / 10; x > 0; x /= 10) {
+            pow10 *= 10;
+        }
+
+        // 统计 node 子树大小，O(1)
+        auto count_subtree_size = [&](int node) -> int {
+            int size = (pow10 - 1) / 9; // 1+10+100+...
+            long long left = 1LL * node * pow10;
+            long long right = 1LL * (node + 1) * pow10;
+            if (left <= n) {
+                size += min(right, n + 1LL) - left; // 余项
+            }
+            return size;
+        };
+
+        int node = 1;
+        k--; // 访问节点 node
+        while (k > 0) {
+            int size = count_subtree_size(node);
+            if (size <= k) { // 向右，跳过 node 子树
+                node++; // 访问 node 右侧兄弟节点
+                k -= size; // 访问子树中的每个节点，以及新的 node 节点
+            } else { // 向下，深入 node 子树
+                pow10 /= 10; // 子树层数减一
+                node *= 10; // 访问 node 的第一个儿子
+                k--; // 访问新的 node 节点
+            }
+        }
+        return node;
+    }
+};
+```
+
 ### 最多可以让 k 个数翻倍，可以使子数组的 gcd 翻倍吗？
 
 维护子数组内质因数 $2$ 的最少次数，以及最小次数的出现次数，当出现次数不超过 $k$ 的时候，我们把这些数翻倍，就可以让子数组的 gcd 翻倍
