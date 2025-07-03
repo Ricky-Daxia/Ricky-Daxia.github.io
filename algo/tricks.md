@@ -10,6 +10,46 @@ plugins:
 description: 做题过程中积累的经典套路
 ---
 
+### 判断满足「最小值+最大值」不超过 k 的子序列数量
+
+求子序列，不关心元素的位置，可以先排序
+
+然后用相向双指针，判断 $a[l]$ 和 $a[r]$ 是否可以作为序列的左右端点，如果可以，那么中间的数都可以「选或不选」，例题见 [LC1498](https://leetcode.cn/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/description/)
+
+如果是两数之和 ≤（或者 =、≥）问题，其中一个数变小，另一个数变大，通常用相向双指针解决
+
+如果是两数之差 ≤（或者 =、≥）问题，其中一个数变大，另一个数也变大，通常用同向双指针解决
+
+
+### 自动机思想判断子序列
+
+一般判断子序列是枚举原串的每一个字符，用指针标记当前匹配到的位置。可以通过 DP 思想预处理原串，用 $nxt[i][c]$ 表示 $i$ 右边最近字符 $c$ 的下标。然后遍历目标串的每一个字符来跳转位置即可
+
+```cpp
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int n = t.size();
+        vector<array<int, 26>> nxt(n + 1);
+        ranges::fill(nxt[n], n);
+        for (int i = n - 1; i >= 0; i--) {
+            nxt[i] = nxt[i + 1];
+            nxt[i][t[i] - 'a'] = i;
+        }
+
+        // 这个写法无论 s 为空还是 t 为空，都能算出正确答案
+        int i = -1;
+        for (char c : s) {
+            i = nxt[i + 1][c - 'a'];
+            if (i == n) { // c 不在 t 中，说明 s 不是 t 的子序列
+                return false;
+            }
+        }
+        return true; // s 是 t 的子序列
+    }
+};
+```
+
 ### [1,n] 中字典序第 k 小的数
 
 等价于一棵**十叉树**上先序遍历的第 $k$ 个节点
