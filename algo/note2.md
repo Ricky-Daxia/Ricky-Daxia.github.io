@@ -12,6 +12,198 @@ description: 积累一些有意思的题目
 
 # 算法题笔记二
 
+### 查询子树第 k 小的路径异或和
+
+每次查询求出节点 $u$ 的子树中，第 $k$ 小的**不同**路径异或和，其中异或和是点权的异或和
+
+方法一：有序集合的启发式合并，需要用到 pbds 中的数据结构
+
+```cpp
+#include <ext/pb_ds/assoc_container.hpp>
+
+using namespace __gnu_pbds;
+using ordered_set = tree<int, null_type, less<>, rb_tree_tag, tree_order_statistics_node_update>;
+
+class Solution {
+public:
+    vector<int> kthSmallest(vector<int>& par, vector<int>& vals, vector<vector<int>>& queries) {
+        int n = par.size();
+        vector<vector<int>> g(n);
+        for (int i = 1; i < n; i++) {
+            g[par[i]].push_back(i);
+        }
+
+        int m = queries.size();
+        vector<vector<pair<int, int>>> qs(n);
+        for (int i = 0; i < m; i++) {
+            int x = queries[i][0], k = queries[i][1];
+            qs[x].emplace_back(k, i);
+        }
+
+        vector<int> ans(m, -1);
+        // 必须返回指针，直接返回 ordered_set 会重新 build 一个新的有序集合，导致超时
+        auto dfs = [&](this auto&& dfs, int x, int xor_) -> ordered_set* {
+            xor_ ^= vals[x];
+
+            ordered_set* st = new ordered_set();
+            st->insert(xor_);
+            for (int y : g[x]) {
+                ordered_set* st_y = dfs(y, xor_);
+                // 启发式合并：小集合并入大集合
+                if (st_y->size() > st->size()) {
+                    swap(st, st_y);
+                }
+                for (int v : *st_y) {
+                    st->insert(v);
+                }
+                delete st_y;
+            }
+
+            for (auto& [k, idx] : qs[x]) {
+                if (k - 1 < st->size()) {
+                    ans[idx] = *st->find_by_order(k - 1);
+                }
+            }
+            return st;
+        };
+
+        ordered_set* st = dfs(0, 0);
+        delete st;
+
+        return ans;
+    }
+};
+```
+
+方法二：离线莫队+权值树状数组维护第 $k$ 小
+
+通过 DFS 序，将子树转换为子数组的区间第 $k$ 小，并通过权值树状数组维护区间信息
+
+细节是：题目要求权值不同，因此需要记录每个权值出现的次数
+
+```cpp
+template<typename T>
+class FenwickTree {
+    vector<T> tree;
+    int hb;
+
+public:
+    // 使用下标 1 到 n
+    FenwickTree(size_t n) : tree(n + 1), hb(1 << (bit_width(n) - 1)) {}
+
+    // a[i] 增加 val
+    // 1 <= i <= n
+    // 时间复杂度 O(log n)
+    void update(int i, T val) {
+        for (; i < tree.size(); i += i & -i) {
+            tree[i] += val;
+        }
+    }
+
+    // 求第 k 小（k 从 1 开始）
+    // 如果不存在第 k 小，返回 n+1
+    // 时间复杂度 O(log n)
+    int kth(int k) {
+        int res = 0;
+        for (int b = hb; b > 0; b >>= 1) {
+            int next = res | b;
+            if (next < tree.size() && k > tree[next]) {
+                k -= tree[next];
+                res = next;
+            }
+        }
+        return res + 1;
+    }
+};
+
+class Solution {
+public:
+    vector<int> kthSmallest(vector<int>& par, vector<int>& vals, vector<vector<int>>& queries) {
+        int n = par.size();
+        vector<vector<int>> g(n);
+        for (int i = 1; i < n; i++) {
+            g[par[i]].push_back(i);
+        }
+
+        vector<int> a(n);
+        vector<pair<int, int>> ranges(n); // 左闭右开 [l,r)
+        int dfn = 0;
+        auto dfs = [&](this auto&& dfs, int x, int xor_val) -> void {
+            ranges[x].first = dfn;
+            xor_val ^= vals[x];
+            a[dfn++] = xor_val;
+            for (int y : g[x]) {
+                dfs(y, xor_val);
+            }
+            ranges[x].second = dfn;
+        };
+        dfs(0, 0);
+
+        // 排序去重
+        vector<int> b = a;
+        ranges::sort(b);
+        b.erase(ranges::unique(b).begin(), b.end());
+
+        // 离散化
+        for (int& v : a) {
+            v = ranges::lower_bound(b, v) - b.begin() + 1; // 从 1 开始
+        }
+
+        int nq = queries.size();
+        int block_size = ceil(n / sqrt(nq * 2)); // 块大小
+
+        struct Query { int bid, l, r, k, qid; };
+        vector<Query> qs(nq);
+        for (int i = 0; i < nq; i++) {
+            auto& q = queries[i];
+            auto [l, r] = ranges[q[0]]; // 左闭右开
+            qs[i] = {l / block_size, l, r, q[1], i};
+        }
+
+        ranges::sort(qs, [](auto& a, auto& b) {
+            if (a.bid != b.bid) {
+                return a.bid < b.bid;
+            }
+            // 奇偶化排序
+            return a.bid % 2 == 0 ? a.r < b.r : a.r > b.r;
+        });
+
+        int m = b.size();
+        FenwickTree<int> t(m + 1);
+        vector<int> cnt(m + 1);
+        auto move = [&](int i, int delta) {
+            int v = a[i];
+            if (delta > 0) {
+                if (cnt[v] == 0) {
+                    t.update(v, 1);
+                }
+                cnt[v]++;
+            } else {
+                cnt[v]--;
+                if (cnt[v] == 0) {
+                    t.update(v, -1);
+                }
+            }
+        };
+
+        vector<int> ans(nq, -1);
+        int l = 0, r = 0;
+        for (auto& [_, ql, qr, k, i] : qs) {
+            while (l < ql) move(l++, -1);
+            while (r < qr) move(r++, 1);
+            while (l > ql) move(--l, 1);
+            while (r > qr) move(--r, -1);
+
+            int res = t.kth(k) - 1; // 离散化时 +1 了，所以要 -1
+            if (res < m) {
+                ans[i] = b[res];
+            }
+        }
+        return ans;
+    }
+};
+```
+
 ### 正方形边界上选 k 个点，最大化最小曼哈顿距离
 
 题源 [LC3464](https://leetcode.cn/problems/maximize-the-distance-between-points-on-a-square/description/)，数据范围是 $k\geq 4$，这个条件非常关键

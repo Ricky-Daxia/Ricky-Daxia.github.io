@@ -378,3 +378,21 @@ public:
 此题的性质是：假设存在这条链，那么点集中深度最大的点 $a$ 以及跟 $a$ 距离最远的点 $b$ 之间形成一条链，其余点都在这条链上
 
 怎么判断点 $i$ 是否在这条链上？我的方法是判断 `dis(u,i)+dis(i,v)==dis(u,v)`
+
+---
+
+倍增思想可用于求解节点 $u$ 的祖先中，距离「至多」为 $d$ 的最远节点
+
+```cpp
+// 从 x 往上跳【至多】d 距离，返回最远能到达的节点
+int upto_dis(int x, long long d) {
+    long long dx = dis[x];
+    for (int i = pa[x].size() - 1; i >= 0; i--) {
+        int p = pa[x][i];
+        if (p != -1 && dx - dis[p] <= d) { // 可以跳至多 d
+            x = p;
+        }
+    }
+    return x;
+};
+```
